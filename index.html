@@ -4,1159 +4,639 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b18">
-<title>Intercontinental Play | Cinema Digital</title>
-
+<meta name="theme-color" content="#10152b">
+<meta name="description" content="Intercontinental Play — filmes, documentários e entretenimento. Entrou, clicou, assistiu!">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Intercontinental Play</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./mascote-intercontinental.png">
 <style>
-:root{
-  --bg:#080b18;
-  --panel:#11182b;
-  --panel2:#171f37;
-  --cyan:#36e7f5;
-  --blue:#438dff;
-  --purple:#a66cff;
-  --pink:#ff579d;
-  --gold:#ffd477;
-  --text:#f7f8ff;
-  --muted:#a4afc8;
-  --line:#ffffff15;
+:root {
+  --bg:#090d1b;
+  --panel:#141c32;
+  --panel2:#1b2743;
+  --gold:#ffc857;
+  --cyan:#39d8e8;
+  --text:#f5f7ff;
+  --muted:#aebbd3;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
   margin:0;
+  background:radial-gradient(circle at top,#1b3155 0,#090d1b 48%);
   color:var(--text);
-  background:
-    radial-gradient(ellipse at 10% 0%,#44246b55,transparent 35%),
-    radial-gradient(ellipse at 100% 35%,#064d7950,transparent 38%),
-    var(--bg);
-  font-family:Arial,Segoe UI,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   overflow-x:hidden;
 }
-button,input{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-::selection{background:#36e7f5;color:#07101b}
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-thumb{
-  background:linear-gradient(var(--cyan),var(--purple));
-  border-radius:10px;
-}
-
-/* CABEÇALHO */
-header{
+button,input {font:inherit}
+button {cursor:pointer}
+img {max-width:100%;display:block}
+header {
   position:sticky;
   top:0;
-  z-index:100;
-  min-height:76px;
-  padding:12px 5%;
+  z-index:20;
+  background:rgba(8,13,28,.96);
+  border-bottom:1px solid #293858;
+  backdrop-filter:blur(12px);
+}
+.header-inner {
+  max-width:1400px;
+  margin:auto;
+  padding:13px 22px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:22px;
-  background:#080b18ed;
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid #36e7f52a;
+  gap:16px;
+  flex-wrap:wrap;
 }
-.brand{
+.brand {
   display:flex;
   align-items:center;
   gap:12px;
-  min-width:220px;
+  min-width:0;
 }
-.logo{
-  width:49px;
-  height:49px;
-  padding:2px;
-  border-radius:15px;
-  background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
-  box-shadow:0 0 22px #36e7f544;
-}
-.logo img{
-  width:100%;
-  height:100%;
-  border-radius:13px;
-  object-fit:cover;
-  background:#11182b;
-}
-.brand-name{
-  font-weight:950;
-  font-size:17px;
-  letter-spacing:1px;
-}
-.brand-name span{
-  background:linear-gradient(90deg,var(--cyan),#b99aff,var(--pink));
-  color:transparent;
-  -webkit-background-clip:text;
-}
-.brand small{
-  display:block;
-  margin-top:5px;
-  color:var(--cyan);
-  font-size:9px;
-  letter-spacing:3px;
-}
-nav{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-}
-nav a{
-  color:var(--muted);
-  font-size:12px;
-  font-weight:800;
-  transition:.2s;
-}
-nav a:hover{color:var(--cyan)}
-.search-wrap{width:min(245px,25vw)}
-.search{
-  width:100%;
-  padding:12px 16px;
-  color:white;
-  outline:none;
-  border:1px solid var(--line);
-  border-radius:30px;
-  background:#171f37;
-  font-size:12px;
-}
-.search:focus{
-  border-color:var(--cyan);
-  box-shadow:0 0 18px #36e7f522;
-}
-
-/* CAPA PRINCIPAL */
-.hero{
-  min-height:460px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  padding:65px 7%;
-  border-bottom:1px solid var(--line);
-  background:
-    radial-gradient(ellipse at 78% 50%,#7542b955,transparent 45%),
-    radial-gradient(ellipse at 100% 100%,#006b9950,transparent 50%),
-    linear-gradient(110deg,#121a32,#080b18 75%);
-}
-.hero:after{
-  content:"";
-  position:absolute;
-  width:420px;
-  height:420px;
-  right:15%;
-  top:5%;
-  border:1px solid #ffffff0c;
+.brand img {
+  width:55px;
+  height:55px;
+  object-fit:contain;
   border-radius:50%;
-  box-shadow:0 0 0 35px #ffffff05,0 0 0 75px #ffffff03;
+  background:#202b48;
 }
-.hero-content{
-  position:relative;
-  z-index:3;
-  max-width:620px;
+.brand h1 {
+  font-size:clamp(17px,3vw,25px);
+  margin:0;
+  color:var(--gold);
+  letter-spacing:1px;
+  overflow-wrap:anywhere;
 }
-.kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:9px 15px;
-  border:1px solid #36e7f550;
-  border-radius:30px;
-  color:var(--cyan);
-  background:#36e7f511;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-.hero h1{
-  margin:22px 0 16px;
-  max-width:650px;
-  font-size:clamp(38px,5.5vw,68px);
-  line-height:1.02;
-  letter-spacing:-2px;
-  background:linear-gradient(110deg,#fff 25%,var(--cyan),#c19aff 80%);
-  color:transparent;
-  -webkit-background-clip:text;
-}
-.hero p{
-  max-width:480px;
-  color:#b6c1d9;
-  font-size:15px;
-  line-height:1.8;
-}
-.hero-buttons{
+.brand small {color:var(--muted);font-size:11px}
+nav {
   display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+nav a {
+  color:#e9efff;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:20px;
+  font-size:13px;
+}
+nav a:hover {background:#263858;color:var(--gold)}
+.install-btn,.primary-btn {
+  border:0;
+  border-radius:22px;
+  padding:11px 17px;
+  background:linear-gradient(120deg,#ffcc5c,#ff9d43);
+  color:#172039;
+  font-weight:bold;
+}
+.install-btn:hover,.primary-btn:hover {filter:brightness(1.1)}
+main {max-width:1400px;margin:auto;padding:22px}
+.hero {
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(180px,.6fr);
+  gap:20px;
+  align-items:center;
+  padding:30px;
+  border:1px solid #33476d;
+  border-radius:24px;
+  background:linear-gradient(120deg,#1b3155,#18213b 65%,#30264a);
+  overflow:hidden;
+}
+.hero h2 {
+  font-size:clamp(27px,5vw,48px);
+  line-height:1.12;
+  margin:0 0 12px;
+  overflow-wrap:anywhere;
+}
+.hero h2 span {color:var(--gold)}
+.hero p {color:#d0d9eb;line-height:1.6;margin:0 0 18px}
+.hero-mascot {
+  width:100%;
+  max-width:250px;
+  max-height:250px;
+  object-fit:contain;
+  justify-self:center;
+  filter:drop-shadow(0 12px 20px #0008);
+}
+.hero-tag {
+  display:inline-block;
+  color:#12203a;
+  background:var(--cyan);
+  border-radius:20px;
+  padding:7px 12px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+.player-section {margin-top:28px}
+.section-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   flex-wrap:wrap;
   gap:12px;
-  margin-top:27px;
+  margin:25px 0 14px;
 }
-.btn{
-  border:0;
-  border-radius:9px;
-  padding:14px 21px;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
-  transition:.25s;
-}
-.btn:hover{transform:translateY(-3px);filter:brightness(1.13)}
-.btn-primary{
-  color:#07101b;
-  background:linear-gradient(110deg,var(--cyan),#8bbdff);
-  box-shadow:0 8px 25px #36e7f52c;
-}
-.btn-outline{
-  color:white;
-  border:1px solid #ffffff30;
-  background:#ffffff0b;
-}
-.hero-mascot{
-  position:absolute;
-  z-index:2;
-  right:4%;
-  bottom:0;
-  width:min(37%,430px);
-  height:94%;
-  object-fit:contain;
-  object-position:center bottom;
-  filter:drop-shadow(0 0 35px #36e7f555);
-  animation:mascotFloat 6s ease-in-out infinite;
-}
-@keyframes mascotFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-11px)}
-}
-
-/* FAIXA DE DESTAQUES */
-.promo-wrap{padding:22px 5% 0}
-.promo{
-  min-height:130px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  padding:24px 28px;
-  border:1px solid #a66cff50;
-  border-radius:17px;
-  background:
-    radial-gradient(circle at 90% 10%,#a66cff44,transparent 40%),
-    linear-gradient(115deg,#211735,#11182b 65%,#142b42);
-  box-shadow:0 14px 38px #0005;
-  transition:background .4s;
-}
-.promo:before{
-  content:"";
-  position:absolute;
-  top:0;left:0;
-  width:4px;height:100%;
-  background:linear-gradient(var(--cyan),var(--purple),var(--pink),var(--gold));
-}
-.promo-content{position:relative;z-index:1}
-.promo-label{
-  color:var(--gold);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:3px;
-}
-.promo h3{margin:9px 0;font-size:21px}
-.promo p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-}
-.promo-button{
-  position:relative;
-  z-index:1;
-  flex-shrink:0;
-  padding:13px 20px;
-  border:0;
-  border-radius:9px;
-  color:white;
-  font-size:11px;
-  font-weight:900;
-  background:linear-gradient(120deg,var(--purple),var(--pink));
-  box-shadow:0 8px 25px #a66cff30;
-}
-.promo-dots{display:flex;gap:6px;margin-top:13px}
-.promo-dot{
-  width:18px;height:4px;
-  border-radius:5px;
-  background:#ffffff30;
-}
-.promo-dot.active{
-  width:31px;
-  background:var(--gold);
-}
-
-/* CONTEÚDO */
-main{padding:25px 5% 75px}
-.section{margin:38px 0 48px}
-.heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:19px;
-  padding-left:15px;
-  border-left:4px solid var(--cyan);
-}
-.heading h2{
-  margin:0;
-  font-size:21px;
-  letter-spacing:.2px;
-}
-.heading small{
-  color:var(--cyan);
-  font-size:11px;
-  font-weight:700;
-}
-
-/* PLAYER */
-#playerArea{
-  display:none;
-  margin:25px 0 45px;
-  padding:22px;
-  border:1px solid #36e7f555;
+.section-title h2 {margin:0;font-size:22px}
+.player-box {
+  background:#050812;
+  border:1px solid #34466a;
   border-radius:20px;
-  background:
-    radial-gradient(ellipse at 90% 0%,#663e9b35,transparent 50%),
-    linear-gradient(135deg,#17213d,#090d1c);
-  box-shadow:0 20px 65px #0009,0 0 35px #36e7f51b;
-  animation:playerIn .45s ease;
-}
-@keyframes playerIn{
-  from{opacity:0;transform:translateY(18px) scale(.99)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-.player-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin-bottom:18px;
-}
-.player-label{
-  color:var(--gold);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:3px;
-}
-.player-head h2{
-  margin:8px 0 0;
-  color:var(--cyan);
-  font-size:clamp(18px,3vw,27px);
-}
-.close{
-  padding:10px 15px;
-  color:white;
-  border:1px solid #ffffff2a;
-  border-radius:8px;
-  background:#ffffff0b;
-  font-size:11px;
-  font-weight:900;
-}
-.close:hover{background:var(--pink);border-color:var(--pink)}
-.screen{
-  padding:5px;
-  border-radius:15px;
-  background:linear-gradient(110deg,var(--cyan),var(--purple),var(--pink),var(--gold));
-  box-shadow:0 0 30px #36e7f525;
-}
-.screen-inner{
-  position:relative;
-  height:0;
-  padding-bottom:56.25%;
   overflow:hidden;
-  border-radius:11px;
+  box-shadow:0 15px 45px #0007;
+}
+.player-screen {
+  width:100%;
+  aspect-ratio:16/9;
   background:#000;
 }
-.screen-inner iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
+.player-screen iframe {width:100%;height:100%;border:0}
+.player-placeholder {
   height:100%;
-  border:0;
-}
-.player-info{
   display:flex;
-  flex-wrap:wrap;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  color:#b9c5dc;
+}
+.play-symbol {font-size:55px;color:var(--gold)}
+.player-info {
+  padding:15px 18px;
+  display:flex;
+  align-items:center;
   justify-content:space-between;
+  flex-wrap:wrap;
   gap:12px;
-  margin-top:15px;
-  color:#c9d5ed;
-  font-size:12px;
+  background:#111a2e;
 }
-.live{
-  color:var(--cyan);
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-.live:before{
-  content:"";
-  display:inline-block;
-  width:7px;height:7px;
-  margin-right:8px;
-  border-radius:50%;
-  background:var(--cyan);
-  box-shadow:0 0 10px var(--cyan);
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{50%{opacity:.3}}
-
-/* FILTROS */
-.filters{
-  display:flex;
-  gap:9px;
-  overflow-x:auto;
-  padding:5px 2px 19px;
-  scrollbar-width:none;
-}
-.filters::-webkit-scrollbar{display:none}
-.filter{
-  flex-shrink:0;
-  padding:10px 17px;
-  color:var(--muted);
-  border:1px solid #ffffff18;
-  border-radius:30px;
-  background:#121a30;
-  font-size:11px;
-  font-weight:800;
-  transition:.2s;
-}
-.filter:hover,.filter.active{
+.player-info h3 {margin:0 0 5px;font-size:18px}
+.player-info p {margin:0;color:var(--muted);font-size:12px}
+.player-actions {display:flex;gap:8px;flex-wrap:wrap}
+.action-btn {
+  border:1px solid #435779;
+  background:#202d49;
   color:white;
-  border-color:var(--cyan);
-  background:linear-gradient(120deg,#36e7f522,#a66cff30);
-  box-shadow:0 0 16px #36e7f51c;
-}
-
-/* GRADE DE FILMES */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:27px 18px;
-}
-.movie{
-  min-width:0;
-  position:relative;
-  cursor:pointer;
-  animation:cardIn .35s ease both;
-}
-@keyframes cardIn{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.poster{
-  position:relative;
-  aspect-ratio:2/3;
-  overflow:hidden;
-  border:1px solid #ffffff18;
-  border-radius:13px;
-  background:linear-gradient(145deg,#1b2944,#101528);
-  box-shadow:0 12px 27px #0007;
-  transition:.35s;
-}
-.poster img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .5s;
-}
-.movie:hover .poster{
-  transform:translateY(-7px) scale(1.025);
-  border-color:var(--cyan);
-  box-shadow:0 17px 35px #0009,0 0 22px #36e7f530;
-}
-.movie:hover .poster img{transform:scale(1.08)}
-.poster:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:linear-gradient(0deg,#080b18b8,transparent 55%);
-}
-.poster-number{
-  position:absolute;
-  left:11px;
-  bottom:11px;
-  z-index:2;
-  color:#ffffffdd;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-shadow:0 2px 8px #000;
-}
-.poster-overlay{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:grid;
-  place-items:center;
-  opacity:0;
-  background:#080b1866;
-  transition:.25s;
-}
-.movie:hover .poster-overlay{opacity:1}
-.play-circle{
-  width:58px;height:58px;
-  display:grid;
-  place-items:center;
-  color:#07101b;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--cyan),#b19aff);
-  box-shadow:0 0 27px #36e7f588;
-  font-size:22px;
-  transform:scale(.8);
-  transition:.25s;
-}
-.movie:hover .play-circle{transform:scale(1)}
-.movie h3{
-  margin:11px 2px 5px;
-  overflow:hidden;
-  color:#f4f6ff;
-  font-size:13px;
-  line-height:1.4;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-.genre{
-  margin:0 2px;
-  color:var(--muted);
-  font-size:10px;
-}
-.status-tag{
-  display:inline-block;
-  margin:7px 2px 0;
-  padding:4px 7px;
-  color:#e7d8ff;
-  border:1px solid #a66cff40;
-  border-radius:5px;
-  background:#a66cff12;
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:.4px;
-}
-.fav{
-  position:absolute;
-  z-index:5;
-  top:9px;right:9px;
-  width:35px;height:35px;
-  display:grid;
-  place-items:center;
-  color:white;
-  border:1px solid #ffffff40;
-  border-radius:50%;
-  background:#080b18c9;
-  font-size:19px;
-}
-.fav.on{color:var(--pink);border-color:var(--pink)}
-.empty{
-  grid-column:1/-1;
-  padding:35px 20px;
-  color:var(--muted);
-  text-align:center;
-  border:1px dashed #36e7f544;
-  border-radius:13px;
-  background:#11182b77;
-}
-
-/* RECOMENDAÇÕES */
-#recommendedSection{display:none}
-.note{
-  margin:0 0 20px;
-  padding:13px 16px;
-  color:#c3cde2;
-  border:1px solid #ffd47735;
-  border-radius:10px;
-  background:#ffd4770b;
-  font-size:11px;
-  line-height:1.6;
-}
-
-/* RODAPÉ */
-footer{
-  padding:38px 15px;
-  text-align:center;
-  color:var(--muted);
-  border-top:1px solid #ffffff12;
-  font-size:11px;
-  line-height:1.9;
-}
-footer strong{
-  color:var(--cyan);
-  letter-spacing:2px;
-  font-size:13px;
-}
-.footer-mark{
-  display:inline-block;
-  margin-top:8px;
-  padding:5px 10px;
-  color:var(--gold);
-  border:1px solid #ffd47740;
   border-radius:20px;
-  font-size:9px;
-  letter-spacing:2px;
+  padding:9px 13px;
 }
-
-/* AVISO */
-.toast{
+.action-btn:hover {background:#344969}
+.search-row {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:18px 0;
+}
+.search-row input {
+  flex:1 1 240px;
+  min-width:0;
+  border:1px solid #405477;
+  background:#111a2e;
+  color:white;
+  padding:13px 16px;
+  border-radius:25px;
+  outline:none;
+}
+.search-row input:focus {border-color:var(--cyan)}
+.filters {display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn {
+  padding:9px 15px;
+  border-radius:20px;
+  color:#dce6fa;
+  background:#1a2741;
+  border:1px solid #35496c;
+}
+.filter-btn.active {background:var(--gold);color:#172039;border-color:var(--gold);font-weight:bold}
+.catalog {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(170px,100%),1fr));
+  gap:17px;
+}
+.movie-card {
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #293c60;
+  border-radius:15px;
+  background:linear-gradient(160deg,#192641,#10182b);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  cursor:pointer;
+}
+.movie-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--gold);
+  box-shadow:0 12px 25px #0007;
+}
+.movie-card.selected {border:2px solid var(--cyan)}
+.poster {
+  aspect-ratio:16/10;
+  position:relative;
+  background:#202b42;
+  overflow:hidden;
+}
+.poster img {width:100%;height:100%;object-fit:cover}
+.poster-number {
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#080d1bdc;
+  color:var(--gold);
+  padding:5px 8px;
+  border-radius:12px;
+  font-size:11px;
+}
+.movie-details {padding:11px}
+.movie-details h3 {
+  font-size:14px;
+  margin:0 0 10px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
+}
+.movie-details button {
+  border:0;
+  border-radius:18px;
+  padding:7px 10px;
+  background:#263b60;
+  color:white;
+  font-size:11px;
+}
+.movie-details button:hover {background:#3c5b89}
+.empty {color:var(--muted);padding:25px 0}
+.promo {
+  margin:30px 0;
+  border:1px solid #6a5833;
+  border-radius:18px;
+  padding:20px;
+  background:linear-gradient(110deg,#40321d,#1d2944);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.promo h2 {margin:0 0 6px;color:var(--gold)}
+.promo p {margin:0;color:#e0e6f3;line-height:1.5}
+footer {
+  text-align:center;
+  padding:30px 18px;
+  margin-top:35px;
+  border-top:1px solid #293858;
+  color:#9eacc7;
+  font-size:13px;
+  line-height:1.7;
+}
+.toast {
   position:fixed;
-  z-index:500;
+  bottom:20px;
   left:50%;
-  bottom:25px;
+  transform:translateX(-50%);
+  background:#263b60;
+  border:1px solid #6681a9;
+  color:white;
+  padding:12px 18px;
+  border-radius:25px;
+  z-index:100;
+  box-shadow:0 8px 25px #0008;
   display:none;
   max-width:90%;
-  transform:translateX(-50%);
-  padding:13px 22px;
-  color:white;
-  border:1px solid var(--cyan);
-  border-radius:30px;
-  background:#11182cf5;
-  box-shadow:0 0 25px #36e7f530;
-  font-size:12px;
   text-align:center;
 }
-
-/* RESPONSIVO */
-@media(max-width:850px){
-  header{flex-wrap:wrap;padding:12px 4%}
-  nav{order:3;width:100%;gap:25px}
-  .search-wrap{width:100%;order:4}
-  .hero{min-height:390px;padding:45px 5%}
-  .hero-mascot{right:-9%;width:60%;opacity:.32}
-  .hero-content{max-width:570px}
-  .promo{align-items:flex-start;flex-direction:column}
-  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:23px 13px}
+@media(max-width:760px) {
+  .header-inner {justify-content:center}
+  .brand {width:100%;justify-content:center}
+  nav {justify-content:center}
+  .hero {grid-template-columns:1fr;text-align:center;padding:23px}
+  .hero-mascot {max-width:170px;grid-row:1}
+  main {padding:15px}
 }
-@media(max-width:560px){
-  header{gap:12px}
-  .brand{min-width:0}
-  .brand-name{font-size:14px}
-  nav{gap:18px}
-  nav a{font-size:11px}
-  .hero{min-height:390px;padding:38px 5%}
-  .hero h1{font-size:40px;max-width:390px}
-  .hero p{max-width:340px;font-size:13px}
-  .hero-mascot{right:-18%;width:75%;opacity:.2}
-  .promo-wrap{padding:15px 4% 0}
-  .promo{padding:20px}
-  .promo h3{font-size:18px}
-  main{padding:20px 4% 55px}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
-  .heading h2{font-size:17px}
-  .heading small{font-size:10px}
-  #playerArea{padding:12px}
-  .player-head{align-items:flex-start}
-  .close{padding:9px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{
-    scroll-behavior:auto!important;
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
-  }
+@media(max-width:430px) {
+  .header-inner {padding:12px}
+  nav a {padding:8px;font-size:12px}
+  .install-btn {width:100%}
+  .hero {padding:19px}
+  .catalog {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .movie-details {padding:9px}
+  .movie-details h3 {font-size:12px}
+  .player-info {align-items:flex-start}
+  .player-actions {width:100%}
+  .player-actions button {flex:1}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <a class="brand" href="#inicio" aria-label="Intercontinental Play - início">
-    <div class="logo">
-      <img src="mascote-intercontinental.png"
-           alt="Mascote Intercontinental"
-           onerror="this.style.display='none'">
+  <div class="header-inner">
+    <div class="brand">
+      <img src="./mascote-intercontinental.png" alt="Mascote Intercontinental" onerror="this.style.display='none'">
+      <div>
+        <h1>INTERCONTINENTAL PLAY</h1>
+        <small>ENTROU, CLICOU, ASSISTIU!</small>
+      </div>
     </div>
-    <div class="brand-name">
-      INTERCONTINENTAL <span>PLAY</span>
-      <small>CINEMA DIGITAL</small>
-    </div>
-  </a>
-
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#catalogo">Catálogo</a>
-    <a href="#favoritos">Minha Lista</a>
-    <a href="#recentes">Histórico</a>
-  </nav>
-
-  <div class="search-wrap">
-    <input class="search" id="search"
-           type="search"
-           placeholder="⌕  Buscar no catálogo..."
-           autocomplete="off">
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#minhalista" id="navFavorites">Minha lista</a>
+      <a href="#recentes" id="navRecent">Recentes</a>
+    </nav>
+    <button class="install-btn" id="installButton">⬇ INSTALAR APP</button>
   </div>
 </header>
 
-<section class="hero" id="inicio">
-  <div class="hero-content">
-    <div class="kicker">✦ SEU CINEMA DIGITAL</div>
-    <h1>O cinema em uma nova dimensão.</h1>
-    <p>
-      Histórias, aventuras e grandes descobertas.
-      Escolha um título, prepare a pipoca e aproveite
-      a experiência Intercontinental.
-    </p>
-    <div class="hero-buttons">
-      <button class="btn btn-primary" onclick="irCatalogo()">
-        ▶ EXPLORAR CATÁLOGO
-      </button>
-      <button class="btn btn-outline" onclick="mostrarFavoritos()">
-        ♥ MINHA LISTA
-      </button>
+<main id="inicio">
+  <section class="hero">
+    <div>
+      <span class="hero-tag">SEU CINEMA DIGITAL</span>
+      <h2>O entretenimento está <span>aqui!</span></h2>
+      <p>Filmes, documentários e produções para assistir diretamente no Intercontinental Play. Escolha um título e aproveite!</p>
+      <button class="primary-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">EXPLORAR CATÁLOGO</button>
     </div>
-  </div>
-
-  <img class="hero-mascot"
-       src="mascote-intercontinental.png"
-       alt="Mascote da Intercontinental Play"
-       onerror="this.style.display='none'">
-</section>
-
-<div class="promo-wrap">
-  <section class="promo" id="promoBanner">
-    <div class="promo-content">
-      <div class="promo-label" id="promoLabel">
-        ✦ INTERCONTINENTAL EM DESTAQUE
-      </div>
-      <h3 id="promoTitle">Sua próxima sessão começa aqui</h3>
-      <p id="promoText">
-        Descubra o catálogo e escolha seu próximo filme.
-      </p>
-      <div class="promo-dots" id="promoDots"></div>
-    </div>
-    <button class="promo-button" id="promoButton" onclick="tocarPromo()">
-      ▶ VER DESTAQUE
-    </button>
+    <img class="hero-mascot" src="./mascote-intercontinental.png" alt="Mascote Intercontinental Play" onerror="this.style.visibility='hidden'">
   </section>
-</div>
 
-<main>
-
-  <section id="playerArea">
-    <div class="player-head">
-      <div>
-        <div class="player-label">✦ INTERCONTINENTAL CYBER TELÃO</div>
-        <h2 id="playerTitle">Selecione um filme</h2>
-      </div>
-      <button class="close" onclick="closePlayer()">✕ FECHAR</button>
+  <section class="player-section" id="player">
+    <div class="section-title">
+      <h2>▶ Player Intercontinental</h2>
+      <span style="color:var(--cyan);font-size:12px">ÁREA DE EXIBIÇÃO</span>
     </div>
-
-    <div class="screen">
-      <div class="screen-inner">
-        <iframe id="video"
-          src=""
-          title="Intercontinental Play"
-          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+    <div class="player-box">
+      <div class="player-screen" id="playerScreen">
+        <div class="player-placeholder">
+          <div class="play-symbol">▶</div>
+          <h3>Bem-vindo ao Intercontinental Play</h3>
+          <p>Escolha um vídeo no catálogo para começar a assistir.</p>
+        </div>
+      </div>
+      <div class="player-info">
+        <div>
+          <h3 id="nowPlaying">Nenhum título selecionado</h3>
+          <p id="playerStatus">Selecione um título no catálogo abaixo.</p>
+        </div>
+        <div class="player-actions">
+          <button class="action-btn" id="favoriteCurrent">♡ Favoritar</button>
+          <button class="action-btn" id="fullscreenButton">⛶ Tela cheia</button>
+        </div>
       </div>
     </div>
-
-    <div class="player-info">
-      <span id="playerInfo">Escolha um título do catálogo.</span>
-      <span class="live">TELÃO ATIVO</span>
-    </div>
   </section>
 
-  <section class="section" id="recommendedSection">
-    <div class="heading">
-      <h2>✦ Mais do catálogo</h2>
-      <small>Outras opções</small>
+  <section class="promo">
+    <div>
+      <h2>INTERCONTINENTAL PLAY</h2>
+      <p>Um catálogo em crescimento, com 68 vídeos disponíveis para explorar.</p>
     </div>
-    <div class="grid" id="recommendedGrid"></div>
+    <button class="primary-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">VER CATÁLOGO</button>
   </section>
 
-  <section class="section" id="catalogo">
-    <div class="heading">
-      <h2>🎬 Catálogo Intercontinental</h2>
-      <small id="count">35 títulos</small>
+  <section id="catalogo">
+    <div class="section-title">
+      <h2>🎬 Catálogo de vídeos</h2>
+      <span id="catalogCount" style="color:var(--muted);font-size:13px"></span>
     </div>
-
-    <div class="note">
-      <strong>Versão de testes:</strong> os títulos e gêneros ainda
-      estão provisórios. Os vídeos foram mantidos, mas não receberam
-      classificações inventadas. A identificação será feita em uma
-      próxima atualização.
+    <div class="search-row">
+      <input id="searchInput" type="search" placeholder="🔎 Pesquisar título ou número..." aria-label="Pesquisar no catálogo">
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="favorites">Minha lista</button>
+        <button class="filter-btn" data-filter="recent">Recentes</button>
+      </div>
     </div>
-
-    <div class="filters" id="filters"></div>
-    <div class="grid" id="movieGrid"></div>
+    <div class="catalog" id="catalogGrid"></div>
+    <p class="empty" id="emptyMessage" hidden>Nenhum vídeo encontrado.</p>
   </section>
 
-  <section class="section" id="favoritos">
-    <div class="heading">
-      <h2>💗 Minha Lista</h2>
-      <small>Seus favoritos</small>
-    </div>
-    <div class="grid" id="favoriteGrid"></div>
-  </section>
-
-  <section class="section" id="recentes">
-    <div class="heading">
-      <h2>▶ Continue Assistindo</h2>
-      <small>Histórico deste navegador</small>
-    </div>
-    <div class="grid" id="recentGrid"></div>
-  </section>
-
+  <section id="minhalista"></section>
+  <section id="recentes"></section>
 </main>
 
 <footer>
-  <strong>INTERCONTINENTAL PLAY</strong><br>
-  O seu universo de entretenimento.<br>
-  Uma realização Intercontinental.
-  <br>
-  <span class="footer-mark">VERSÃO DE TESTES • 2026</span>
+  <strong style="color:var(--gold)">INTERCONTINENTAL PLAY</strong><br>
+  Entrou, clicou, assistiu!<br>
+  Plataforma de entretenimento Intercontinental.<br>
+  <span>Os vídeos são reproduzidos através do YouTube. A disponibilidade depende dos respectivos canais e proprietários.</span>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast"></div>
 
 <script>
-"use strict";
-
-/*
-  INTERCONTINENTAL PLAY
-  Versão de testes.
-
-  36 links originais recebidos.
-  Vídeo de propaganda y4vjhgcXbqg removido.
-  Total: 35 vídeos únicos.
-
-  Títulos e gêneros ainda provisórios.
-  Não atribuir gêneros sem confirmar o conteúdo.
-*/
-
-const filmes = [
-  {t:"Filme 01",id:"KSA8LJBcuBw"},
-  {t:"Filme 02",id:"cez-y17Uppc"},
-  {t:"Filme 03",id:"QmiE91_ah0M"},
-  {t:"Filme 04",id:"-50azQcgQcU"},
-  {t:"Filme 05",id:"yf0Ri0mWBkE"},
-  {t:"Filme 06",id:"27eKL7NsD6k"},
-  {t:"Filme 07",id:"ZvP5vxfOYOI"},
-  {t:"Filme 08",id:"yDbfHukTCyI"},
-  {t:"Filme 09",id:"wBAqZwNiIBM"},
-  {t:"Filme 10",id:"JkDhDTK_WpA"},
-  {t:"Filme 11",id:"AUqSf8WhcMw"},
-  {t:"Filme 12",id:"1TVosYYuS7k"},
-  {t:"Filme 13",id:"--N62ZpSx-s"},
-  {t:"Filme 14",id:"C3b3LDh_3iM"},
-  {t:"Filme 15",id:"MabGOA9jmjA"},
-  {t:"Filme 16",id:"iboykN3HbvY"},
-  {t:"Filme 17",id:"GouLfRUG3Xw"},
-  {t:"Filme 18",id:"tYge0CkIjC4"},
-  {t:"Filme 19",id:"O2PuqhLmNfo"},
-  {t:"Filme 20",id:"8-7P91yx3FA"},
-  {t:"Filme 21",id:"Id1lRcaZwiw"},
-
-  /* O vídeo 22 y4vjhgcXbqg foi retirado: propaganda. */
-
-  {t:"Filme 22",id:"aLM_L7kpfQw"},
-  {t:"Filme 23",id:"mh7eKtOBGow"},
-  {t:"Filme 24",id:"v37QjyIXXrg"},
-  {t:"Filme 25",id:"LCwhpZvNmwI"},
-  {t:"Filme 26",id:"-KhV4UBkD5w"},
-  {t:"Filme 27",id:"vFsuvXoRjL8"},
-  {t:"Filme 28",id:"B6URc8AEJ4I"},
-  {t:"Filme 29",id:"3Cotd0Ljqu0"},
-  {t:"Filme 30",id:"vUtmQH5o5KE"},
-  {t:"Filme 31",id:"J658w9YBHgE"},
-  {t:"Filme 32",id:"SuZW5Tn5vwU"},
-  {t:"Filme 33",id:"1bWBw4ehgVs"},
-  {t:"Filme 34",id:"nF1m74ZTbDQ"},
-  {t:"Filme 35",id:"yPdylO9yCLw"}
+const videoIds = [
+"KSA8LJBcuBw","cez-y17Uppc","QmiE91_ah0M","-50azQcgQcU","yf0Ri0mWBkE",
+"27eKL7NsD6k","ZvP5vxfOYOI","yDbfHukTCyI","wBAqZwNiIBM","JkDhDTK_WpA",
+"AUqSf8WhcMw","1TVosYYuS7k","--N62ZpSx-s","C3b3LDh_3iM","MabGOA9jmjA",
+"iboykN3HbvY","GouLfRUG3Xw","tYge0CkIjC4","O2PuqhLmNfo","8-7P91yx3FA",
+"Id1lRcaZwiw","aLM_L7kpfQw","mh7eKtOBGow","v37QjyIXXrg","LCwhpZvNmwI",
+"-KhV4UBkD5w","vFsuvXoRjL8","B6URc8AEJ4I","3Cotd0Ljqu0","vUtmQH5o5KE",
+"J658w9YBHgE","SuZW5Tn5vwU","1bWBw4ehgVs","nF1m74ZTbDQ","yPdylO9yCLw",
+"T40-Wu6fZwM","2G6Z4B3DqjM","4hiStiT6D8Q","mr7Bpyhu4tg","V4vakP26V0Y",
+"lxwvDg_QdrY","nkLf8oAEm9s","4c_yiwDkNOQ","FHIHCtc0xQI","swjerYktyr8",
+"5pLposHGNmw","d0vwGt_Fr7I","rNBojhayj-A","60R2Tbf9o6s","l3tIpFtM58Y",
+"lKf9wFE5PBY","gENMUeKPWJM","cTzbN16N9iA","72uoI3_QDg0","gc8i0gNjqms",
+"5fY2HW8ItS0","mp5FEDffH7Y","4-rEUkG9XCo","ml9s_ikCM8o","aiD2x76gZyU",
+"jT60asBuU1k","hqoRGV9uZeM","IJbPg8AxRtA","h5YFNAuzqDo","9TqK1oZZ1w4",
+"-imSUhbD--w","yZqakD5BYLg","xlgTC0fWNQw"
 ];
 
-const categorias = ["Todos","Minha Lista","Recentes"];
+const movies = videoIds.map((id,index)=>({
+  id,
+  title:`Filme ${String(index+1).padStart(2,"0")}`,
+  number:index+1
+}));
 
-let categoriaAtual = "Todos";
-let promoAtual = 0;
+let favorites = JSON.parse(localStorage.getItem("icp_favorites") || "[]");
+let recent = JSON.parse(localStorage.getItem("icp_recent") || "[]");
+let currentId = null;
+let activeFilter = "all";
 
-function lerStorage(chave){
-  try{
-    const valor = JSON.parse(localStorage.getItem(chave) || "[]");
-    return Array.isArray(valor)
-      ? valor.filter(x => typeof x === "string")
-      : [];
-  }catch(e){
-    return [];
-  }
+const grid = document.getElementById("catalogGrid");
+const search = document.getElementById("searchInput");
+const emptyMessage = document.getElementById("emptyMessage");
+
+function saveData(){
+  localStorage.setItem("icp_favorites",JSON.stringify(favorites));
+  localStorage.setItem("icp_recent",JSON.stringify(recent));
 }
 
-let favoritos = lerStorage("icp_favoritos");
-let recentes = lerStorage("icp_recentes");
-
-function salvarStorage(chave,valor){
-  try{
-    localStorage.setItem(chave,JSON.stringify(valor));
-  }catch(e){
-    console.warn("Não foi possível salvar os dados neste navegador.");
-  }
+function toast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.style.display="block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>el.style.display="none",2600);
 }
-
-function filmePorId(id){
-  return filmes.find(f => f.id === id);
-}
-
-/* CARTÃO */
-
-function card(f){
-  const fav = favoritos.includes(f.id);
-  const numero = String(filmes.indexOf(f) + 1).padStart(2,"0");
-
-  return `
-    <article class="movie" onclick="playMovie('${f.id}')">
-      <button class="fav ${fav ? "on" : ""}"
-        aria-label="${fav ? "Remover dos favoritos" : "Adicionar aos favoritos"}"
-        onclick="toggleFav(event,'${f.id}')">
-        ${fav ? "♥" : "♡"}
-      </button>
-
-      <div class="poster">
-        <img
-          src="https://img.youtube.com/vi/${f.id}/hqdefault.jpg"
-          alt="${f.t}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.id}/0.jpg'">
-
-        <div class="poster-overlay">
-          <div class="play-circle">▶</div>
-        </div>
-
-        <span class="poster-number">IC PLAY • ${numero}</span>
-      </div>
-
-      <h3>${f.t}</h3>
-      <p class="genre">Conteúdo em identificação</p>
-      <span class="status-tag">EM TESTE</span>
-    </article>
-  `;
-}
-
-/* FILTROS */
-
-function renderFilters(){
-  document.getElementById("filters").innerHTML =
-    categorias.map(c => `
-      <button class="filter ${categoriaAtual === c ? "active" : ""}"
-        onclick="setCategory('${c}')">${c}</button>
-    `).join("");
-}
-
-function setCategory(c){
-  categoriaAtual = c;
-  render();
-}
-
-/* RENDERIZAÇÃO */
 
 function render(){
-  const q = document.getElementById("search").value
-    .toLowerCase()
-    .trim();
+  const term=search.value.trim().toLowerCase();
+  let list=movies.filter(movie=>{
+    if(activeFilter==="favorites" && !favorites.includes(movie.id)) return false;
+    if(activeFilter==="recent" && !recent.includes(movie.id)) return false;
+    return movie.title.toLowerCase().includes(term) ||
+      String(movie.number).includes(term) ||
+      movie.id.toLowerCase().includes(term);
+  });
 
-  let lista = filmes.filter(f =>
-    f.t.toLowerCase().includes(q)
-  );
+  grid.innerHTML="";
+  document.getElementById("catalogCount").textContent=
+    `${list.length} de ${movies.length} vídeos`;
 
-  if(categoriaAtual === "Minha Lista"){
-    lista = lista.filter(f => favoritos.includes(f.id));
-  }
-
-  if(categoriaAtual === "Recentes"){
-    lista = recentes
-      .map(id => filmePorId(id))
-      .filter(Boolean)
-      .filter(f => f.t.toLowerCase().includes(q));
-  }
-
-  document.getElementById("movieGrid").innerHTML =
-    lista.length
-      ? lista.map(card).join("")
-      : '<div class="empty">Nenhum título encontrado nesta seleção.</div>';
-
-  document.getElementById("count").textContent =
-    lista.length + (lista.length === 1 ? " título" : " títulos");
-
-  const listaFav = filmes.filter(f => favoritos.includes(f.id));
-
-  document.getElementById("favoriteGrid").innerHTML =
-    listaFav.length
-      ? listaFav.map(card).join("")
-      : '<div class="empty">Sua lista está vazia. Use o coração nas capas para guardar seus favoritos.</div>';
-
-  const listaRecentes = recentes
-    .map(id => filmePorId(id))
-    .filter(Boolean);
-
-  document.getElementById("recentGrid").innerHTML =
-    listaRecentes.length
-      ? listaRecentes.map(card).join("")
-      : '<div class="empty">Os títulos que você assistir aparecerão aqui.</div>';
-
-  renderFilters();
+  list.forEach(movie=>{
+    const card=document.createElement("article");
+    card.className="movie-card"+(movie.id===currentId?" selected":"");
+    card.innerHTML=`
+      <div class="poster">
+        <img src="https://img.youtube.com/vi/${movie.id}/hqdefault.jpg"
+             alt="${movie.title}" loading="lazy"
+             onerror="this.src='https://img.youtube.com/vi/${movie.id}/mqdefault.jpg'">
+        <span class="poster-number">#${String(movie.number).padStart(2,"0")}</span>
+      </div>
+      <div class="movie-details">
+        <h3>${movie.title}</h3>
+        <button type="button" class="watch-button">▶ ASSISTIR</button>
+        <button type="button" class="heart-button" aria-label="Favoritar">${favorites.includes(movie.id)?"♥":"♡"}</button>
+      </div>`;
+    card.querySelector(".watch-button").addEventListener("click",()=>playMovie(movie.id));
+    card.querySelector(".heart-button").addEventListener("click",()=>{
+      toggleFavorite(movie.id);
+    });
+    card.addEventListener("dblclick",()=>playMovie(movie.id));
+    grid.appendChild(card);
+  });
+  emptyMessage.hidden=list.length!==0;
 }
-
-/* PLAYER */
 
 function playMovie(id){
-  const f = filmePorId(id);
-  if(!f) return;
+  const movie=movies.find(item=>item.id===id);
+  if(!movie)return;
 
-  const iframe = document.getElementById("video");
+  currentId=id;
+  recent=[id,...recent.filter(item=>item!==id)].slice(0,20);
+  saveData();
 
-  iframe.src =
-    "https://www.youtube-nocookie.com/embed/" +
-    encodeURIComponent(id) +
-    "?autoplay=1&rel=0";
+  document.getElementById("playerScreen").innerHTML=`
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
+      title="${movie.title}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>`;
 
-  document.getElementById("playerTitle").textContent = f.t;
-  document.getElementById("playerInfo").textContent =
-    "Intercontinental Play • " + f.t;
-
-  document.getElementById("playerArea").style.display = "block";
-
-  recentes = [id,...recentes.filter(x => x !== id)].slice(0,10);
-  salvarStorage("icp_recentes",recentes);
-
-  const recomendados = filmes
-    .filter(x => x.id !== id)
-    .slice(0,4);
-
-  document.getElementById("recommendedGrid").innerHTML =
-    recomendados.map(card).join("");
-
-  document.getElementById("recommendedSection").style.display =
-    recomendados.length ? "block" : "none";
-
+  document.getElementById("nowPlaying").textContent=movie.title;
+  document.getElementById("playerStatus").textContent="Reprodução selecionada no catálogo.";
+  updateFavoriteButton();
   render();
-
-  document.getElementById("playerArea").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+  document.getElementById("player").scrollIntoView({behavior:"smooth"});
 }
 
-function closePlayer(){
-  document.getElementById("video").src = "";
-  document.getElementById("playerArea").style.display = "none";
-  document.getElementById("recommendedSection").style.display = "none";
-}
-
-/* FAVORITOS */
-
-function toggleFav(event,id){
-  event.stopPropagation();
-
-  favoritos = favoritos.includes(id)
-    ? favoritos.filter(x => x !== id)
-    : [id,...favoritos];
-
-  salvarStorage("icp_favoritos",favoritos);
-  render();
-
-  aviso(favoritos.includes(id)
-    ? "Adicionado à Minha Lista ♥"
-    : "Removido da Minha Lista");
-}
-
-/* DESTAQUES */
-
-const promocoes = [
-  {
-    titulo:"Sua próxima sessão começa aqui",
-    texto:"O universo Intercontinental está esperando por você.",
-    filme:0,
-    botao:"▶ VER FILME"
-  },
-  {
-    titulo:"Uma nova experiência de cinema",
-    texto:"Escolha um título e aproveite o nosso telão digital.",
-    filme:4,
-    botao:"▶ EXPLORAR"
-  },
-  {
-    titulo:"Prepare a pipoca!",
-    texto:"São 35 vídeos no catálogo de testes Intercontinental.",
-    filme:10,
-    botao:"▶ CONFERIR"
-  },
-  {
-    titulo:"O seu cinema, do seu jeito",
-    texto:"Monte sua lista de favoritos e continue de onde parou.",
-    filme:20,
-    botao:"▶ COMEÇAR"
+function toggleFavorite(id){
+  if(favorites.includes(id)){
+    favorites=favorites.filter(item=>item!==id);
+    toast("Removido da sua lista.");
+  }else{
+    favorites.push(id);
+    toast("Adicionado à sua lista!");
   }
-];
-
-function mostrarPromo(){
-  const p = promocoes[promoAtual];
-
-  document.getElementById("promoTitle").textContent = p.titulo;
-  document.getElementById("promoText").textContent = p.texto;
-  document.getElementById("promoButton").textContent = p.botao;
-
-  document.getElementById("promoDots").innerHTML =
-    promocoes.map((x,i) =>
-      `<span class="promo-dot ${i === promoAtual ? "active" : ""}"></span>`
-    ).join("");
+  saveData();
+  updateFavoriteButton();
+  render();
 }
 
-function tocarPromo(){
-  const p = promocoes[promoAtual];
-  const f = filmes[p.filme];
-  if(f) playMovie(f.id);
+function updateFavoriteButton(){
+  const button=document.getElementById("favoriteCurrent");
+  if(!currentId){
+    button.textContent="♡ Favoritar";
+    return;
+  }
+  button.textContent=favorites.includes(currentId)?"♥ Favoritado":"♡ Favoritar";
 }
 
-/* NAVEGAÇÃO */
+document.getElementById("favoriteCurrent").addEventListener("click",()=>{
+  if(currentId)toggleFavorite(currentId);
+  else toast("Escolha um vídeo primeiro.");
+});
 
-function irCatalogo(){
-  document.getElementById("catalogo").scrollIntoView({
-    behavior:"smooth"
+document.getElementById("fullscreenButton").addEventListener("click",()=>{
+  const frame=document.querySelector("#playerScreen iframe");
+  if(frame){
+    if(frame.requestFullscreen)frame.requestFullscreen();
+    else toast("Tela cheia não disponível neste navegador.");
+  }else{
+    toast("Escolha um vídeo primeiro.");
+  }
+});
+
+search.addEventListener("input",render);
+
+document.querySelectorAll(".filter-btn").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    button.classList.add("active");
+    activeFilter=button.dataset.filter;
+    render();
+  });
+});
+
+document.getElementById("navFavorites").addEventListener("click",()=>{
+  activeFilter="favorites";
+  updateFilters();
+  render();
+});
+
+document.getElementById("navRecent").addEventListener("click",()=>{
+  activeFilter="recent";
+  updateFilters();
+  render();
+});
+
+function updateFilters(){
+  document.querySelectorAll(".filter-btn").forEach(button=>{
+    button.classList.toggle("active",button.dataset.filter===activeFilter);
   });
 }
 
-function mostrarFavoritos(){
-  document.getElementById("favoritos").scrollIntoView({
-    behavior:"smooth"
-  });
-}
-
-/* AVISOS */
-
-function aviso(msg){
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.style.display = "block";
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer = setTimeout(() => {
-    el.style.display = "none";
-  },2200);
-}
-
-/* INICIALIZAÇÃO */
-
-document.getElementById("search").addEventListener("input",render);
-
-mostrarPromo();
 render();
+updateFavoriteButton();
 
-/* Troca os destaques sem interromper o player. */
-setInterval(() => {
-  promoAtual = (promoAtual + 1) % promocoes.length;
-  mostrarPromo();
-},9000);
+/* Instalação do aplicativo */
+let installPrompt=null;
+const installButton=document.getElementById("installButton");
 
+window.addEventListener("beforeinstallprompt",event=>{
+  event.preventDefault();
+  installPrompt=event;
+  installButton.style.display="inline-block";
+});
+
+installButton.addEventListener("click",async()=>{
+  if(installPrompt){
+    installPrompt.prompt();
+    const result=await installPrompt.userChoice;
+    if(result.outcome==="accepted")toast("Instalação iniciada!");
+    installPrompt=null;
+  }else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+    toast("No Safari: toque em Compartilhar e depois em Adicionar à Tela de Início.");
+  }else{
+    toast("Procure a opção Instalar aplicativo ou Adicionar à tela inicial no menu do navegador.");
+  }
+});
+
+window.addEventListener("appinstalled",()=>{
+  toast("Intercontinental Play instalado com sucesso!");
+  installButton.style.display="none";
+});
+
+/* Registro do service worker */
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./service-worker.js")
+      .catch(error=>console.log("Service Worker:",error));
+  });
+}
 </script>
 </body>
 </html>
