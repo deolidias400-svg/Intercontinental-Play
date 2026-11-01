@@ -4,85 +4,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a12">
 <title>Intercontinental Play</title>
-<meta name="theme-color" content="#08090e">
 
 <style>
-:root {
-  --gold:#e6bd62;
-  --gold2:#ffe6a3;
-  --bg:#08090e;
-  --panel:#12141d;
-  --muted:#a5a7b2;
+:root{
+  --gold:#e8c36b;
+  --gold2:#ffe8a7;
+  --bg:#080a12;
+  --panel:#141824;
+  --muted:#a8adbb;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--bg);color:#fff;
+  margin:0;background:var(--bg);color:white;
   font-family:Arial,Helvetica,sans-serif;
 }
 header{
-  height:76px;display:flex;align-items:center;
-  justify-content:space-between;padding:0 5%;
-  background:rgba(7,8,13,.96);
-  border-bottom:1px solid #29251d;
-  position:sticky;top:0;z-index:20;
+  position:sticky;top:0;z-index:30;
+  min-height:78px;padding:10px 4%;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;background:rgba(7,9,16,.97);
+  border-bottom:1px solid #40351f;
+  backdrop-filter:blur(15px);
 }
-.logo{
-  font-size:25px;font-weight:900;letter-spacing:1px;
-  color:var(--gold);text-transform:uppercase;
+.brand{display:flex;align-items:center;gap:12px;min-width:230px}
+.brand img{
+  width:55px;height:55px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--gold);
+  box-shadow:0 0 17px #e8c36b55;
 }
-.logo span{color:white}
-nav{display:flex;gap:22px;align-items:center}
-nav a{color:#ddd;text-decoration:none;font-size:14px}
+.brand-name{
+  font-size:21px;font-weight:900;letter-spacing:1px;
+  color:var(--gold);line-height:1.1;
+}
+.brand-name span{color:white}
+.brand small{display:block;color:#aaa;font-size:9px;letter-spacing:3px;margin-top:5px}
+nav{display:flex;gap:20px}
+nav a{color:#ddd;text-decoration:none;font-size:13px}
 nav a:hover{color:var(--gold)}
 .search{
-  background:#191b25;border:1px solid #343644;
-  border-radius:22px;padding:10px 15px;color:white;
-  width:220px;outline:none;
+  width:210px;padding:11px 15px;border-radius:25px;
+  border:1px solid #454858;background:#171b27;
+  color:white;outline:none;
 }
 .search:focus{border-color:var(--gold)}
 .hero{
-  min-height:440px;position:relative;display:flex;
-  align-items:center;padding:55px 7%;
-  background:
-  linear-gradient(90deg,#08090e 2%,rgba(8,9,14,.92) 35%,rgba(8,9,14,.2) 100%),
-  linear-gradient(0deg,#08090e 0%,transparent 65%),
-  url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85')
-  center/cover;
+  min-height:440px;position:relative;overflow:hidden;
+  display:flex;align-items:center;padding:55px 7%;
+  background:linear-gradient(90deg,#080a12 5%,#080a12e8 45%,#080a1260 100%);
 }
-.hero-content{max-width:580px;position:relative;z-index:2}
-.kicker{
-  color:var(--gold);font-size:12px;letter-spacing:4px;
-  font-weight:bold;text-transform:uppercase;
+.hero:before{
+  content:"";position:absolute;right:0;top:0;width:65%;height:100%;
+  background:linear-gradient(90deg,#080a12,transparent 65%),
+  url("logo-intercontinental.png") center 35%/cover no-repeat;
+  opacity:.38;filter:saturate(1.1);
 }
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,var(--bg),transparent 35%);
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.kicker{color:var(--gold);font-size:12px;letter-spacing:4px;font-weight:bold}
 .hero h1{
-  font-size:clamp(36px,6vw,65px);margin:15px 0;
-  line-height:1.04;text-transform:uppercase;
+  font-size:clamp(38px,6vw,68px);line-height:1.02;
+  margin:16px 0;text-transform:uppercase;
 }
-.hero p{color:#d0d0d5;line-height:1.6;max-width:480px}
-.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.hero p{color:#d1d2d8;line-height:1.7;max-width:490px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
 .btn{
-  padding:13px 23px;border:0;border-radius:5px;
-  cursor:pointer;font-weight:bold;font-size:14px;
+  padding:13px 22px;border:0;border-radius:5px;
+  font-weight:bold;cursor:pointer;transition:.2s;
 }
-.btn-gold{background:var(--gold);color:#17130b}
-.btn-dark{background:#34343b;color:white}
-.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.gold{background:var(--gold);color:#17130b}
+.dark{background:#303442;color:white}
 main{padding:10px 5% 60px}
-.section{margin:30px 0 38px}
-.section-title{
+.section{margin:32px 0 42px}
+.section-heading{
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:16px;gap:10px;
+  gap:12px;margin-bottom:17px;
 }
-.section-title h2{font-size:21px;margin:0}
-.section-title small{color:var(--gold)}
+.section-heading h2{font-size:21px;margin:0}
+.section-heading small{color:var(--gold)}
 .filters{
-  display:flex;gap:9px;overflow-x:auto;padding:5px 0 15px;
+  display:flex;gap:9px;overflow-x:auto;padding:4px 0 16px;
   scrollbar-width:thin;
 }
 .filter{
-  flex-shrink:0;background:#191b24;color:#ddd;
-  border:1px solid #333644;border-radius:20px;
+  flex-shrink:0;background:#191e2b;color:#ddd;
+  border:1px solid #343b4b;border-radius:22px;
   padding:9px 17px;cursor:pointer;
 }
 .filter.active,.filter:hover{
@@ -91,86 +104,119 @@ main{padding:10px 5% 60px}
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
-  gap:22px 15px;
+  gap:25px 16px;
 }
 .movie{min-width:0;cursor:pointer;position:relative}
 .poster{
-  width:100%;aspect-ratio:2/3;position:relative;
-  background:#1c1e28;border-radius:7px;overflow:hidden;
-  border:1px solid #292b35;transition:.25s;
+  aspect-ratio:2/3;width:100%;overflow:hidden;
+  position:relative;border-radius:8px;
+  background:linear-gradient(145deg,#252c3b,#111520);
+  border:1px solid #333849;
+  box-shadow:0 8px 18px #0008;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
 }
 .poster img{
   width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .35s;
+  transition:transform .45s;
 }
-.movie:hover .poster{border-color:var(--gold);transform:translateY(-5px)}
-.movie:hover .poster img{transform:scale(1.06)}
+.movie:hover .poster{
+  transform:translateY(-8px) scale(1.035);
+  border-color:var(--gold);
+  box-shadow:0 15px 30px #000c,0 0 15px #e8c36b30;
+}
+.movie:hover .poster img{transform:scale(1.09)}
+.poster:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,#000b,transparent 50%);
+  pointer-events:none;
+}
 .poster-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 55%);
-  display:flex;align-items:flex-end;justify-content:center;
-  padding:12px;opacity:0;transition:.2s;
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:.25s;
 }
 .movie:hover .poster-overlay{opacity:1}
 .play-circle{
-  background:var(--gold);color:#111;border-radius:50%;
-  width:48px;height:48px;display:grid;place-items:center;
-  font-size:21px;
+  width:54px;height:54px;border-radius:50%;
+  display:grid;place-items:center;background:var(--gold);
+  color:#111;font-size:23px;box-shadow:0 0 25px #e8c36b88;
 }
-.movie h3{font-size:14px;margin:10px 2px 5px;line-height:1.3}
-.movie .genre{font-size:11px;color:var(--muted);margin:0 2px}
-.movie .fav{
-  position:absolute;top:8px;right:8px;z-index:3;
-  border:0;border-radius:50%;width:32px;height:32px;
-  background:#08090dcc;color:white;cursor:pointer;font-size:17px;
+.movie h3{font-size:14px;margin:11px 2px 5px;line-height:1.35}
+.genre{font-size:11px;color:var(--muted);margin:0 2px}
+.fav{
+  position:absolute;top:9px;right:9px;z-index:4;
+  width:34px;height:34px;border:0;border-radius:50%;
+  background:#090b12dc;color:white;font-size:19px;cursor:pointer;
 }
-.movie .fav.on{color:#ffcc63}
+.fav.on{color:#ffcf69}
 .empty{
-  padding:35px;text-align:center;color:var(--muted);
+  padding:30px;text-align:center;color:var(--muted);
   background:var(--panel);border-radius:10px;
+  grid-column:1/-1;
 }
+
+/* TELÃO LCD */
 #playerArea{
-  display:none;background:#10121a;border:1px solid #34303a;
-  border-radius:12px;padding:18px;margin:25px 0 35px;
+  display:none;margin:28px 0 42px;padding:18px;
+  background:linear-gradient(145deg,#202637,#090d17);
+  border:1px solid #9d824b;border-radius:14px;
+  box-shadow:0 0 35px #000,0 0 18px #d5a94322;
 }
 .player-head{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:15px;
 }
-.player-head h2{margin:0;color:var(--gold)}
+.player-head h2{margin:0;color:var(--gold2);font-size:22px}
+.lcd-label{font-size:10px;letter-spacing:3px;color:#a8b5c8}
 .close{
-  border:0;background:#292b35;color:white;border-radius:6px;
-  padding:9px 13px;cursor:pointer;
+  border:1px solid #555b6b;background:#292f3e;
+  color:white;padding:10px 14px;border-radius:5px;cursor:pointer;
+}
+.screen{
+  position:relative;padding:8px;border-radius:10px;
+  background:linear-gradient(145deg,#a68b52,#242a36 25%,#07090e 70%);
+  box-shadow:inset 0 0 15px #000;
+}
+.screen:after{
+  content:"";position:absolute;inset:8px;z-index:2;
+  pointer-events:none;border-radius:5px;
+  background:repeating-linear-gradient(
+    0deg,transparent 0px,transparent 3px,#ffffff08 4px
+  );
 }
 .video-frame{
-  position:relative;padding-bottom:56.25%;height:0;
-  overflow:hidden;border-radius:8px;background:#000;
+  position:relative;height:0;padding-bottom:56.25%;
+  overflow:hidden;border-radius:5px;background:#000;
 }
 .video-frame iframe{
   position:absolute;inset:0;width:100%;height:100%;border:0;
 }
-.player-info{color:#bbb;line-height:1.5}
+.player-info{
+  color:#c1c6d2;display:flex;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;font-size:13px;margin:14px 2px 3px;
+}
+.lcd-status{color:#75e5b0}
 footer{
-  text-align:center;padding:35px 15px;border-top:1px solid #282832;
-  color:#888;font-size:13px;
+  text-align:center;padding:35px 15px;
+  border-top:1px solid #34303a;color:#888;font-size:13px;
 }
 footer strong{color:var(--gold)}
 .toast{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:#242631;color:white;padding:12px 20px;
-  border-radius:8px;z-index:50;display:none;
-  box-shadow:0 5px 25px #0009;
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  z-index:60;background:#242a38;color:white;
+  padding:13px 20px;border:1px solid #74613b;
+  border-radius:8px;display:none;box-shadow:0 5px 25px #000b;
 }
-@media(max-width:700px){
-  header{height:auto;min-height:70px;padding:14px 4%;flex-wrap:wrap;gap:12px}
-  .logo{font-size:20px}
-  nav{gap:12px}
-  nav a{font-size:12px}
-  .search{width:100%;order:3}
-  .hero{min-height:380px;padding:40px 6%}
+@media(max-width:760px){
+  header{flex-wrap:wrap;padding:12px 4%;gap:12px}
+  .brand{min-width:0}
+  .brand-name{font-size:17px}
+  nav{order:3;width:100%;justify-content:center;gap:20px}
+  .search{width:100%;order:4}
+  .hero{min-height:390px;padding:40px 6%}
+  .hero:before{width:100%;opacity:.24}
   main{padding-left:4%;padding-right:4%}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
-  .section-title h2{font-size:18px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 12px}
 }
 </style>
 </head>
@@ -178,7 +224,12 @@ footer strong{color:var(--gold)}
 <body>
 
 <header>
-  <div class="logo">INTERCONTINENTAL <span>PLAY</span></div>
+  <div class="brand">
+    <img src="logo-intercontinental.png" alt="Mascote Intercontinental">
+    <div class="brand-name">INTERCONTINENTAL <span>PLAY</span>
+      <small>CINEMA E ENTRETENIMENTO</small>
+    </div>
+  </div>
   <nav>
     <a href="#inicio">Início</a>
     <a href="#catalogo">Filmes</a>
@@ -189,12 +240,12 @@ footer strong{color:var(--gold)}
 
 <section class="hero" id="inicio">
   <div class="hero-content">
-    <div class="kicker">Seu cinema, em qualquer lugar</div>
-    <h1>O mundo do cinema está aqui.</h1>
-    <p>Prepare a pipoca. Descubra aventuras, ação, ficção científica, terror e muito mais. Uma experiência de entretenimento da família Intercontinental.</p>
-    <div class="hero-buttons">
-      <button class="btn btn-gold" onclick="playMovie('WPwFEzaogdM')">▶ EXPLORAR FILMES</button>
-      <button class="btn btn-dark" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">VER CATÁLOGO</button>
+    <div class="kicker">UMA EXPERIÊNCIA INTERCONTINENTAL</div>
+    <h1>Seu próximo filme começa aqui.</h1>
+    <p>Entre em um universo de grandes aventuras, ação, ficção científica, suspense e entretenimento. Escolha seu filme e aproveite o cinema.</p>
+    <div class="buttons">
+      <button class="btn gold" onclick="irCatalogo()">▶ EXPLORAR FILMES</button>
+      <button class="btn dark" onclick="mostrarFavoritos()">♥ MINHA LISTA</button>
     </div>
   </div>
 </section>
@@ -202,36 +253,44 @@ footer strong{color:var(--gold)}
 <main>
   <section id="playerArea">
     <div class="player-head">
-      <h2 id="playerTitle">Assistindo agora</h2>
+      <div>
+        <div class="lcd-label">INTERCONTINENTAL CINEMA • TELA LCD</div>
+        <h2 id="playerTitle">Assistindo agora</h2>
+      </div>
       <button class="close" onclick="closePlayer()">✕ Fechar</button>
     </div>
-    <div class="video-frame">
-      <iframe id="video" src="" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    <div class="screen">
+      <div class="video-frame">
+        <iframe id="video" src=""
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowfullscreen></iframe>
+      </div>
     </div>
-    <p class="player-info" id="playerInfo"></p>
+    <div class="player-info">
+      <span id="playerInfo">Selecione seu filme.</span>
+      <span class="lcd-status">● SISTEMA ATIVO</span>
+    </div>
   </section>
 
   <section class="section" id="catalogo">
-    <div class="section-title">
-      <h2>Explore nosso catálogo</h2>
-      <small id="count">Filmes disponíveis</small>
+    <div class="section-heading">
+      <h2>Filmes para assistir</h2>
+      <small id="count">Catálogo Intercontinental</small>
     </div>
     <div class="filters" id="filters"></div>
     <div class="grid" id="movieGrid"></div>
   </section>
 
   <section class="section" id="favoritos">
-    <div class="section-title">
-      <h2>♥ Minha lista</h2>
-      <small>Seus favoritos</small>
+    <div class="section-heading">
+      <h2>♥ Minha lista</h2><small>Seus filmes favoritos</small>
     </div>
     <div class="grid" id="favoriteGrid"></div>
   </section>
 
   <section class="section" id="recentes">
-    <div class="section-title">
-      <h2>◷ Continue assistindo</h2>
-      <small>Reproduzidos neste navegador</small>
+    <div class="section-heading">
+      <h2>◷ Continue assistindo</h2><small>Histórico deste navegador</small>
     </div>
     <div class="grid" id="recentGrid"></div>
   </section>
@@ -239,8 +298,8 @@ footer strong{color:var(--gold)}
 
 <footer>
   <strong>INTERCONTINENTAL PLAY</strong><br>
-  O seu universo de entretenimento.<br><br>
-  © 2026 Intercontinental — Todos os direitos reservados.
+  O seu universo de cinema e entretenimento.<br><br>
+  Uma realização Intercontinental • 2026
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -263,16 +322,6 @@ const filmes = [
  {t:"Os Supremos Vingadores",id:"mDC-D0XXNFo",g:["Animação","Ação"]},
  {t:"O Retorno do Dragão",id:"pbL8v0ZdcgQ",g:["Ação","Artes marciais"]},
  {t:"Terra Dominada por Vampiros",id:"p44rJuFgyE4",g:["Terror"]},
-
- {t:"Filme reservado 1",id:"6PHiBzRmqYw",g:["Em breve"]},
- {t:"Filme reservado 2",id:"qxZ0yCI3nUA",g:["Em breve"]},
- {t:"Filme reservado 3",id:"USm8wEvEUPE",g:["Em breve"]},
- {t:"Filme reservado 4",id:"vGLJDVR5nsQ",g:["Em breve"]},
- {t:"Filme reservado 5",id:"Pz2k2M6AuBQ",g:["Em breve"]},
- {t:"Filme reservado 6",id:"iuPkoDN6X7Y",g:["Em breve"]},
- {t:"Filme reservado 7",id:"Ew5Y_48TVEs",g:["Em breve"]},
- {t:"Filme reservado 8",id:"ZgfxkF5ty4M",g:["Em breve"]},
- {t:"Filme reservado 9",id:"FYtclgRaZME",g:["Em breve"]},
 
  {t:"Filme adicional 1",id:"9srn6o8vlnY",g:["A identificar"]},
  {t:"Filme adicional 2",id:"DvIwiNc8LF0",g:["A identificar"]},
@@ -300,13 +349,56 @@ const filmes = [
  {t:"Filme adicional 24",id:"rqTACZ663h4",g:["A identificar"]}
 ];
 
+const categorias=[
+ "Todos","Ação","Aventura","Romance","Terror",
+ "Ficção científica","Fantasia","Comédia","Faroeste",
+ "Animação","Drama histórico","Artes marciais","A identificar"
+];
+
 let categoria="Todos";
 let favoritos=JSON.parse(localStorage.getItem("icp_favoritos")||"[]");
 let recentes=JSON.parse(localStorage.getItem("icp_recentes")||"[]");
+let audioContext=null;
 
-const categorias=["Todos","Ação","Aventura","Romance","Terror",
-"Ficção científica","Fantasia","Comédia","Faroeste",
-"Animação","Drama histórico","Artes marciais","Em breve","A identificar"];
+function iniciarAudio(){
+ const AudioCtx=window.AudioContext||window.webkitAudioContext;
+ if(!AudioCtx)return null;
+ if(!audioContext)audioContext=new AudioCtx();
+ if(audioContext.state==="suspended")audioContext.resume();
+ return audioContext;
+}
+
+function somToque(){
+ const ctx=iniciarAudio();if(!ctx)return;
+ const agora=ctx.currentTime;
+ const osc=ctx.createOscillator();
+ const ganho=ctx.createGain();
+ osc.type="sine";
+ osc.frequency.setValueAtTime(720,agora);
+ osc.frequency.exponentialRampToValueAtTime(480,agora+.07);
+ ganho.gain.setValueAtTime(.045,agora);
+ ganho.gain.exponentialRampToValueAtTime(.001,agora+.09);
+ osc.connect(ganho);ganho.connect(ctx.destination);
+ osc.start(agora);osc.stop(agora+.1);
+}
+
+function somEscolha(){
+ const ctx=iniciarAudio();if(!ctx)return;
+ const agora=ctx.currentTime;
+ [220,330,440].forEach((freq,i)=>{
+  const osc=ctx.createOscillator();
+  const ganho=ctx.createGain();
+  const inicio=agora+i*.11;
+  osc.type="triangle";
+  osc.frequency.setValueAtTime(freq,inicio);
+  osc.frequency.exponentialRampToValueAtTime(freq*1.35,inicio+.18);
+  ganho.gain.setValueAtTime(.001,inicio);
+  ganho.gain.linearRampToValueAtTime(.12,inicio+.025);
+  ganho.gain.exponentialRampToValueAtTime(.001,inicio+.28);
+  osc.connect(ganho);ganho.connect(ctx.destination);
+  osc.start(inicio);osc.stop(inicio+.3);
+ });
+}
 
 function posterUrl(id){
  return "https://img.youtube.com/vi/"+id+"/hqdefault.jpg";
@@ -315,9 +407,11 @@ function posterUrl(id){
 function card(f){
  const fav=favoritos.includes(f.id);
  return `
- <article class="movie">
-  <button class="fav ${fav?'on':''}" onclick="toggleFav(event,'${f.id}')" title="Adicionar aos favoritos">${fav?'♥':'♡'}</button>
-  <div class="poster" onclick="playMovie('${f.id}')">
+ <article class="movie" onclick="playMovie('${f.id}')">
+  <button class="fav ${fav?'on':''}"
+    onclick="toggleFav(event,'${f.id}')"
+    title="Adicionar aos favoritos">${fav?'♥':'♡'}</button>
+  <div class="poster">
    <img src="${posterUrl(f.id)}" alt="Cartaz de ${f.t}"
     loading="lazy"
     onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.id}/0.jpg'">
@@ -330,38 +424,37 @@ function card(f){
 
 function renderFilters(){
  document.getElementById("filters").innerHTML=categorias.map(c=>
- `<button class="filter ${categoria===c?'active':''}" onclick="setCategory('${c}')">${c}</button>`
- ).join("");
+ `<button class="filter ${categoria===c?'active':''}"
+ onclick="setCategory('${c}')">${c}</button>`).join("");
 }
 
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim();
  const lista=filmes.filter(f=>{
   const busca=(f.t+" "+f.g.join(" ")).toLowerCase().includes(q);
-  const cat=categoria==="Todos"||f.g.includes(categoria);
-  return busca&&cat;
+  return busca&&(categoria==="Todos"||f.g.includes(categoria));
  });
  document.getElementById("movieGrid").innerHTML=
- lista.length?lista.map(card).join(""):'<div class="empty">Nenhum filme encontrado. Tente outro título ou gênero.</div>';
- document.getElementById("count").textContent=lista.length+" títulos";
+ lista.length?lista.map(card).join(""):'<div class="empty">Nenhum filme encontrado.</div>';
+ document.getElementById("count").textContent=lista.length+" filmes no catálogo";
  document.getElementById("favoriteGrid").innerHTML=
- favoritos.length?filmes.filter(f=>favoritos.includes(f.id)).map(card).join(""):'<div class="empty">Sua lista de favoritos está vazia. Clique no coração de um filme para guardá-lo aqui.</div>';
+ favoritos.length?filmes.filter(f=>favoritos.includes(f.id)).map(card).join("")
+ :'<div class="empty">Sua lista está vazia. Marque o coração de um filme para guardá-lo.</div>';
  document.getElementById("recentGrid").innerHTML=
- recentes.length?filmes.filter(f=>recentes.includes(f.id)).map(card).join(""):'<div class="empty">Os filmes que você assistir aparecerão aqui.</div>';
+ recentes.length?filmes.filter(f=>recentes.includes(f.id)).map(card).join("")
+ :'<div class="empty">Seus filmes reproduzidos aparecerão aqui.</div>';
  renderFilters();
 }
 
-function setCategory(c){
- categoria=c;render();
-}
+function setCategory(c){somToque();categoria=c;render()}
 
 function playMovie(id){
- const f=filmes.find(x=>x.id===id);
- if(!f)return;
+ const f=filmes.find(x=>x.id===id);if(!f)return;
+ somEscolha();
  document.getElementById("video").src=
  "https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
  document.getElementById("playerTitle").textContent=f.t;
- document.getElementById("playerInfo").textContent="Categoria: "+f.g.join(" • ");
+ document.getElementById("playerInfo").textContent="Gênero: "+f.g.join(" • ");
  document.getElementById("playerArea").style.display="block";
  recentes=[id,...recentes.filter(x=>x!==id)].slice(0,10);
  localStorage.setItem("icp_recentes",JSON.stringify(recentes));
@@ -370,12 +463,13 @@ function playMovie(id){
 }
 
 function closePlayer(){
+ somToque();
  document.getElementById("video").src="";
  document.getElementById("playerArea").style.display="none";
 }
 
 function toggleFav(event,id){
- event.stopPropagation();
+ event.stopPropagation();somToque();
  favoritos=favoritos.includes(id)?
  favoritos.filter(x=>x!==id):[id,...favoritos];
  localStorage.setItem("icp_favoritos",JSON.stringify(favoritos));
@@ -383,12 +477,25 @@ function toggleFav(event,id){
  showToast(favoritos.includes(id)?"Adicionado à sua lista ♥":"Removido da sua lista");
 }
 
+function irCatalogo(){
+ somToque();
+ document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
+}
+function mostrarFavoritos(){
+ somToque();
+ document.getElementById("favoritos").scrollIntoView({behavior:"smooth"});
+}
 function showToast(msg){
  const el=document.getElementById("toast");
  el.textContent=msg;el.style.display="block";
  clearTimeout(window.toastTimer);
  window.toastTimer=setTimeout(()=>el.style.display="none",2200);
 }
+
+/* Som discreto nos demais botões e links */
+document.addEventListener("click",e=>{
+ if(e.target.closest("button,a")&&!e.target.closest(".movie"))somToque();
+});
 
 render();
 </script>
