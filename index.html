@@ -1,14 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080d19">
+
 <title>Intercontinental Play | Seu cinema. Seu mundo.</title>
+
 <meta name="description" content="Intercontinental Play — filmes, documentários e entretenimento em um só lugar.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -21,9 +24,13 @@
   --muted: #a7adba;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -32,6 +39,8 @@ body {
   font-family: 'Rajdhani', sans-serif;
   overflow-x: hidden;
 }
+
+/* CABEÇALHO */
 
 header {
   min-height: 88px;
@@ -80,6 +89,8 @@ header {
   margin-top: 4px;
 }
 
+/* PESQUISA */
+
 .search {
   width: min(360px, 42vw);
   position: relative;
@@ -102,6 +113,8 @@ header {
   box-shadow: 0 0 12px rgba(216,180,91,.15);
 }
 
+/* DESTAQUE PRINCIPAL */
+
 .hero {
   min-height: 430px;
   padding: 65px 7%;
@@ -109,9 +122,21 @@ header {
   align-items: center;
   position: relative;
   overflow: hidden;
+
   background:
-    linear-gradient(90deg, rgba(5,9,18,.98) 0%, rgba(5,9,18,.82) 48%, rgba(5,9,18,.2) 100%),
-    radial-gradient(ellipse at 78% 45%, #76562a 0%, #26334b 27%, #10182a 58%, #080d19 100%);
+    linear-gradient(
+      90deg,
+      rgba(5,9,18,.98) 0%,
+      rgba(5,9,18,.82) 48%,
+      rgba(5,9,18,.2) 100%
+    ),
+    radial-gradient(
+      ellipse at 78% 45%,
+      #76562a 0%,
+      #26334b 27%,
+      #10182a 58%,
+      #080d19 100%
+    );
 }
 
 .hero::after {
@@ -166,7 +191,12 @@ header {
   transition: .2s;
 }
 
-.hero-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.hero-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* SLOGAN */
 
 .tagline {
   text-align: center;
@@ -177,7 +207,11 @@ header {
   font-size: 14px;
 }
 
-main { padding: 8px 0 55px; }
+main {
+  padding: 8px 0 55px;
+}
+
+/* CATEGORIAS */
 
 .category {
   margin: 25px 0 35px;
@@ -210,7 +244,10 @@ main { padding: 8px 0 55px; }
   vertical-align: -3px;
 }
 
-.controls { display: flex; gap: 8px; }
+.controls {
+  display: flex;
+  gap: 8px;
+}
 
 .controls button {
   width: 35px;
@@ -223,7 +260,11 @@ main { padding: 8px 0 55px; }
   cursor: pointer;
 }
 
-.controls button:hover { background: #344057; }
+.controls button:hover {
+  background: #344057;
+}
+
+/* FILEIRAS DE FILMES */
 
 .rail {
   display: flex;
@@ -242,15 +283,28 @@ main { padding: 8px 0 55px; }
   transition: transform .22s;
 }
 
-.movie:hover { transform: translateY(-5px); }
+.movie:hover {
+  transform: translateY(-5px);
+}
 
 .poster {
   height: 220px;
   border-radius: 7px;
   border: 1px solid rgba(216,180,91,.35);
+
   background:
-    radial-gradient(circle at 50% 30%, rgba(244,220,148,.24), transparent 35%),
-    linear-gradient(145deg, #34425a, #111827 60%, #5d4524);
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(244,220,148,.24),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #34425a,
+      #111827 60%,
+      #5d4524
+    );
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -295,7 +349,36 @@ main { padding: 8px 0 55px; }
   text-align: center;
 }
 
-.movie.hidden { display: none; }
+.movie.hidden {
+  display: none;
+}
+
+.movie.featured .poster {
+  border: 2px solid var(--gold);
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(244,220,148,.3),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      #493b28,
+      #171421 55%,
+      #754b27
+    );
+}
+
+.movie.featured .movie-name {
+  color: var(--gold-light);
+}
+
+.movie.featured .poster::after {
+  content: "TESTE • YOUTUBE";
+  letter-spacing: 1px;
+}
+
+/* MENSAGEM DE PESQUISA */
 
 .empty {
   display: none;
@@ -304,6 +387,8 @@ main { padding: 8px 0 55px; }
   padding: 35px;
   font-size: 19px;
 }
+
+/* RODAPÉ */
 
 footer {
   text-align: center;
@@ -322,39 +407,89 @@ footer strong {
   margin-bottom: 9px;
 }
 
+/* JANELA DO FILME */
+
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.82);
+  background: rgba(0,0,0,.88);
   z-index: 20;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
 
-.modal.open { display: flex; }
+.modal.open {
+  display: flex;
+}
 
 .modal-box {
-  max-width: 440px;
+  max-width: 900px;
   width: 100%;
-  padding: 30px;
+  padding: 25px;
   background: #111a2b;
   border: 1px solid var(--gold);
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 15px 50px #000;
+  max-height: 95vh;
+  overflow-y: auto;
 }
 
 .modal-box h2 {
   font-family: Cinzel, serif;
   color: var(--gold-light);
+  margin-top: 5px;
 }
 
-.modal-box p { color: #d3d7df; font-size: 18px; }
+.modal-box p {
+  color: #d3d7df;
+  font-size: 18px;
+}
+
+/* PLAYER RESPONSIVO */
+
+.video-container {
+  display: none;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  margin-top: 20px;
+  border: 1px solid rgba(216,180,91,.4);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.video-container.active {
+  display: block;
+}
+
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-note {
+  font-size: 14px !important;
+  color: #b9bdc7 !important;
+  margin-top: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
 
 .close {
-  margin-top: 12px;
   padding: 10px 25px;
   background: var(--gold);
   color: #15110a;
@@ -364,186 +499,733 @@ footer strong {
   cursor: pointer;
 }
 
-@media(max-width:650px) {
-  header { flex-wrap: wrap; padding: 13px 5%; }
-  .brand { min-width: 0; }
-  .brand-name { font-size: 14px; }
-  .brand-sub { font-size: 10px; letter-spacing: 2px; }
-  .brand-symbol { width: 43px; height: 43px; font-size: 22px; }
-  .search { width: 100%; }
-  .hero { min-height: 370px; padding: 48px 6%; }
-  .hero::after { right: -7%; opacity: .7; }
-  .hero p { font-size: 18px; }
-  .category { padding-left: 5%; }
-  .category h2 { font-size: 17px; }
-  .movie { flex-basis: 130px; }
-  .poster { height: 190px; }
-  .poster-title { font-size: 15px; }
-  .controls button { width: 31px; height: 31px; }
+.youtube-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #26334b;
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  text-decoration: none;
+  font: 700 17px Rajdhani, sans-serif;
 }
+
+/* CELULARES */
+
+@media(max-width:650px) {
+
+  header {
+    flex-wrap: wrap;
+    padding: 13px 5%;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: 14px;
+  }
+
+  .brand-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .brand-symbol {
+    width: 43px;
+    height: 43px;
+    font-size: 22px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .hero {
+    min-height: 370px;
+    padding: 48px 6%;
+  }
+
+  .hero::after {
+    right: -7%;
+    opacity: .7;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .category {
+    padding-left: 5%;
+  }
+
+  .category h2 {
+    font-size: 17px;
+  }
+
+  .movie {
+    flex-basis: 130px;
+  }
+
+  .poster {
+    height: 190px;
+  }
+
+  .poster-title {
+    font-size: 15px;
+  }
+
+  .controls button {
+    width: 31px;
+    height: 31px;
+  }
+
+  .modal-box {
+    padding: 17px;
+  }
+
+  .modal-box h2 {
+    font-size: 19px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- CABEÇALHO -->
+
 <header>
+
   <div class="brand">
+
     <div class="brand-symbol">▶</div>
+
     <div>
-      <div class="brand-name">INTERCONTINENTAL PLAY</div>
-      <div class="brand-sub">SEU CINEMA. SEU MUNDO.</div>
+      <div class="brand-name">
+        INTERCONTINENTAL PLAY
+      </div>
+
+      <div class="brand-sub">
+        SEU CINEMA. SEU MUNDO.
+      </div>
     </div>
+
   </div>
 
   <div class="search">
-    <input id="searchInput" type="search" placeholder="Pesquisar filmes e categorias..." aria-label="Pesquisar filmes e categorias">
+
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Pesquisar filmes e categorias..."
+      aria-label="Pesquisar filmes e categorias"
+    >
+
   </div>
+
 </header>
 
+<!-- DESTAQUE -->
+
 <section class="hero">
+
   <div class="hero-content">
-    <div class="eyebrow">UM UNIVERSO DE ENTRETENIMENTO</div>
-    <h1>O mundo do cinema ao seu alcance.</h1>
-    <p>Filmes, histórias, aventuras e grandes emoções. Descubra um novo universo de entretenimento.</p>
-    <button class="hero-button" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+
+    <div class="eyebrow">
+      UM UNIVERSO DE ENTRETENIMENTO
+    </div>
+
+    <h1>
+      O mundo do cinema ao seu alcance.
+    </h1>
+
+    <p>
+      Filmes, histórias, aventuras e grandes emoções.
+      Descubra um novo universo de entretenimento.
+    </p>
+
+    <button
+      class="hero-button"
+      onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})"
+    >
       EXPLORAR CATÁLOGO ▶
     </button>
+
   </div>
+
 </section>
 
-<div class="tagline">ENTROU &nbsp; • &nbsp; CLICOU &nbsp; • &nbsp; ASSISTIU</div>
+<div class="tagline">
+  ENTROU &nbsp; • &nbsp; CLICOU &nbsp; • &nbsp; ASSISTIU
+</div>
+
+<!-- CATÁLOGO -->
 
 <main id="catalogo">
+
   <div id="categories"></div>
-  <div class="empty" id="emptyMessage">Nenhuma categoria encontrada. Tente outra pesquisa.</div>
+
+  <div class="empty" id="emptyMessage">
+    Nenhuma categoria encontrada. Tente outra pesquisa.
+  </div>
+
 </main>
 
+<!-- RODAPÉ -->
+
 <footer>
+
   <strong>INTERCONTINENTAL PLAY</strong>
+
   ENTROU • CLICOU • ASSISTIU.
+
   <p>Seu cinema. Seu mundo.</p>
-  <small>© 2026 Intercontinental Play. Projeto em desenvolvimento.</small>
+
+  <small>
+    © 2026 Intercontinental Play. Projeto em desenvolvimento.
+  </small>
+
 </footer>
 
-<div class="modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<!-- JANELA DE REPRODUÇÃO -->
+
+<div
+  class="modal"
+  id="infoModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
+
   <div class="modal-box">
-    <h2 id="modalTitle">INTERCONTINENTAL PLAY</h2>
-    <p id="modalText">Estamos preparando nosso catálogo de filmes.</p>
-    <button class="close" onclick="closeModal()">FECHAR</button>
+
+    <h2 id="modalTitle">
+      INTERCONTINENTAL PLAY
+    </h2>
+
+    <p id="modalText">
+      Estamos preparando nosso catálogo de filmes.
+    </p>
+
+    <div
+      class="video-container"
+      id="videoContainer"
+    ></div>
+
+    <p
+      class="video-note"
+      id="videoNote"
+      style="display:none"
+    >
+      Teste de reprodução incorporada do YouTube.
+      A inclusão definitiva no catálogo depende da confirmação
+      dos direitos de exibição.
+    </p>
+
+    <div class="modal-actions">
+
+      <a
+        id="youtubeLink"
+        class="youtube-link"
+        href="https://youtu.be/H3HGDTDAPoM"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="display:none"
+      >
+        ABRIR NO YOUTUBE
+      </a>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        FECHAR
+      </button>
+
+    </div>
+
   </div>
+
 </div>
 
 <script>
+
+/* =========================================
+   CONFIGURAÇÃO DO FILME DE TESTE
+========================================= */
+
+const filmeTeste = {
+  titulo: "A Primeira Lua | Filme Completo | Fantasia de Lobisomem",
+  videoId: "H3HGDTDAPoM",
+  categoria: "Terror"
+};
+
+/* =========================================
+   CATEGORIAS DO INTERCONTINENTAL PLAY
+========================================= */
+
 const categorias = [
-  { nome: "Ação", filmes: ["Missão Especial", "Operação Mundial", "Zona de Perigo", "O Último Combate", "Código Secreto", "Resgate Final"] },
-  { nome: "Aventura", filmes: ["Além do Horizonte", "A Ilha Perdida", "Jornada Infinita", "O Grande Desafio", "Terra Misteriosa", "A Última Fronteira"] },
-  { nome: "Ficção científica", filmes: ["Mundos do Futuro", "Além das Estrelas", "O Planeta Azul", "Código Galáctico", "Tempo Zero", "Nova Dimensão"] },
-  { nome: "Romance", filmes: ["Amor Sem Fronteiras", "Um Novo Amanhã", "Encontro Marcado", "Cartas do Coração", "Nosso Destino", "Sempre Você"] },
-  { nome: "Suspense", filmes: ["O Segredo da Noite", "A Última Pista", "Jogo Perigoso", "A Casa Misteriosa", "O Desaparecimento", "Silêncio Mortal"] },
-  { nome: "Comédia", filmes: ["Rindo à Toa", "Uma Confusão Total", "Férias Inesquecíveis", "O Plano Perfeito", "Amigos em Apuros", "Risadas e Surpresas"] },
-  { nome: "Terror", filmes: ["A Noite Sombria", "A Porta Proibida", "Sombras na Casa", "O Visitante", "Depois da Meia-Noite", "O Último Grito"] },
-  { nome: "Documentários", filmes: ["Nosso Planeta", "Mistérios do Universo", "A História do Mundo", "Vida Selvagem", "Oceanos", "Grandes Civilizações"] },
-  { nome: "Desenhos e animações", filmes: ["A Grande Aventura", "Reino Encantado", "Pequenos Heróis", "O Mundo Mágico", "Amigos para Sempre", "Viagem Fantástica"] },
-  { nome: "Drama", filmes: ["Caminhos da Vida", "O Recomeço", "Uma História Real", "Laços Eternos", "A Escolha", "Dias de Esperança"] },
-  { nome: "Clássicos do cinema", filmes: ["Grandes Clássicos", "Memórias do Cinema", "A Era de Ouro", "Histórias Eternas", "Cinema Mundial", "Obras Imortais"] },
-  { nome: "Filmes brasileiros", filmes: ["Brasil em Cena", "Histórias Brasileiras", "Caminhos do Brasil", "Nossa Cultura", "Retratos do País", "Cinema Nacional"] }
+
+  {
+    nome: "Ação",
+    filmes: [
+      "Missão Especial",
+      "Operação Mundial",
+      "Zona de Perigo",
+      "O Último Combate",
+      "Código Secreto",
+      "Resgate Final"
+    ]
+  },
+
+  {
+    nome: "Aventura",
+    filmes: [
+      "Além do Horizonte",
+      "A Ilha Perdida",
+      "Jornada Infinita",
+      "O Grande Desafio",
+      "Terra Misteriosa",
+      "A Última Fronteira"
+    ]
+  },
+
+  {
+    nome: "Ficção científica",
+    filmes: [
+      "Mundos do Futuro",
+      "Além das Estrelas",
+      "O Planeta Azul",
+      "Código Galáctico",
+      "Tempo Zero",
+      "Nova Dimensão"
+    ]
+  },
+
+  {
+    nome: "Romance",
+    filmes: [
+      "Amor Sem Fronteiras",
+      "Um Novo Amanhã",
+      "Encontro Marcado",
+      "Cartas do Coração",
+      "Nosso Destino",
+      "Sempre Você"
+    ]
+  },
+
+  {
+    nome: "Suspense",
+    filmes: [
+      "O Segredo da Noite",
+      "A Última Pista",
+      "Jogo Perigoso",
+      "A Casa Misteriosa",
+      "O Desaparecimento",
+      "Silêncio Mortal"
+    ]
+  },
+
+  {
+    nome: "Comédia",
+    filmes: [
+      "Rindo à Toa",
+      "Uma Confusão Total",
+      "Férias Inesquecíveis",
+      "O Plano Perfeito",
+      "Amigos em Apuros",
+      "Risadas e Surpresas"
+    ]
+  },
+
+  {
+    nome: "Terror",
+    filmes: [
+      filmeTeste.titulo,
+      "A Noite Sombria",
+      "A Porta Proibida",
+      "Sombras na Casa",
+      "O Visitante",
+      "Depois da Meia-Noite",
+      "O Último Grito"
+    ]
+  },
+
+  {
+    nome: "Documentários",
+    filmes: [
+      "Nosso Planeta",
+      "Mistérios do Universo",
+      "A História do Mundo",
+      "Vida Selvagem",
+      "Oceanos",
+      "Grandes Civilizações"
+    ]
+  },
+
+  {
+    nome: "Desenhos e animações",
+    filmes: [
+      "A Grande Aventura",
+      "Reino Encantado",
+      "Pequenos Heróis",
+      "O Mundo Mágico",
+      "Amigos para Sempre",
+      "Viagem Fantástica"
+    ]
+  },
+
+  {
+    nome: "Drama",
+    filmes: [
+      "Caminhos da Vida",
+      "O Recomeço",
+      "Uma História Real",
+      "Laços Eternos",
+      "A Escolha",
+      "Dias de Esperança"
+    ]
+  },
+
+  {
+    nome: "Clássicos do cinema",
+    filmes: [
+      "Grandes Clássicos",
+      "Memórias do Cinema",
+      "A Era de Ouro",
+      "Histórias Eternas",
+      "Cinema Mundial",
+      "Obras Imortais"
+    ]
+  },
+
+  {
+    nome: "Filmes brasileiros",
+    filmes: [
+      "Brasil em Cena",
+      "Histórias Brasileiras",
+      "Caminhos do Brasil",
+      "Nossa Cultura",
+      "Retratos do País",
+      "Cinema Nacional"
+    ]
+  }
+
 ];
+
+/* =========================================
+   MONTAGEM DO CATÁLOGO
+========================================= */
 
 const container = document.getElementById("categories");
 
 categorias.forEach((categoria, index) => {
+
   const id = "rail-" + index;
 
   const section = document.createElement("section");
+
   section.className = "category";
+
   section.dataset.category = categoria.nome.toLowerCase();
 
   section.innerHTML = `
+
     <div class="category-heading">
+
       <h2>${categoria.nome}</h2>
+
       <div class="controls">
-        <button aria-label="Rolar para a esquerda" onclick="scrollRail('${id}', -1)">‹</button>
-        <button aria-label="Rolar para a direita" onclick="scrollRail('${id}', 1)">›</button>
+
+        <button
+          aria-label="Rolar para a esquerda"
+          onclick="scrollRail('${id}', -1)"
+        >
+          ‹
+        </button>
+
+        <button
+          aria-label="Rolar para a direita"
+          onclick="scrollRail('${id}', 1)"
+        >
+          ›
+        </button>
+
       </div>
+
     </div>
+
     <div class="rail" id="${id}"></div>
+
   `;
 
   const rail = section.querySelector(".rail");
 
-  categoria.filmes.forEach((filme, movieIndex) => {
+  categoria.filmes.forEach((filme) => {
+
     const card = document.createElement("article");
+
     card.className = "movie";
+
     card.dataset.title = filme.toLowerCase();
 
     const poster = document.createElement("div");
+
     poster.className = "poster";
 
     const title = document.createElement("div");
+
     title.className = "poster-title";
+
     title.textContent = filme;
 
     poster.appendChild(title);
 
     const name = document.createElement("div");
+
     name.className = "movie-name";
+
     name.textContent = filme;
 
     card.appendChild(poster);
+
     card.appendChild(name);
 
-    card.addEventListener("click", () => {
-      openModal(filme);
-    });
+    /* IDENTIFICA O FILME REAL */
+
+    if (filme === filmeTeste.titulo) {
+
+      card.classList.add("featured");
+
+      card.title = "Clique para testar a reprodução";
+
+      card.addEventListener("click", () => {
+
+        openFilm(
+          filmeTeste.titulo,
+          filmeTeste.videoId
+        );
+
+      });
+
+    } else {
+
+      card.addEventListener("click", () => {
+
+        openModal(filme);
+
+      });
+
+    }
 
     rail.appendChild(card);
+
   });
 
   container.appendChild(section);
+
 });
+
+/* =========================================
+   ROLAGEM DAS CATEGORIAS
+========================================= */
 
 function scrollRail(id, direction) {
+
   const rail = document.getElementById(id);
-  rail.scrollBy({ left: direction * 520, behavior: "smooth" });
+
+  rail.scrollBy({
+    left: direction * 520,
+    behavior: "smooth"
+  });
+
 }
+
+/* =========================================
+   ABRIR CARTAZ DEMONSTRATIVO
+========================================= */
 
 function openModal(filme) {
+
+  stopVideo();
+
   document.getElementById("modalTitle").textContent = filme;
+
   document.getElementById("modalText").textContent =
     "Este cartaz é demonstrativo. Estamos preparando o catálogo com filmes completos, gratuitos e disponibilizados por fontes autorizadas.";
+
+  document.getElementById("videoNote").style.display = "none";
+
+  document.getElementById("youtubeLink").style.display = "none";
+
   document.getElementById("infoModal").classList.add("open");
+
 }
+
+/* =========================================
+   ABRIR O FILME A PRIMEIRA LUA
+========================================= */
+
+function openFilm(titulo, videoId) {
+
+  const modal = document.getElementById("infoModal");
+
+  const videoContainer = document.getElementById("videoContainer");
+
+  const videoNote = document.getElementById("videoNote");
+
+  const youtubeLink = document.getElementById("youtubeLink");
+
+  document.getElementById("modalTitle").textContent = titulo;
+
+  document.getElementById("modalText").textContent =
+    "Teste de reprodução do filme no Intercontinental Play.";
+
+  videoContainer.classList.add("active");
+
+  videoNote.style.display = "block";
+
+  youtubeLink.href = "https://youtu.be/" + videoId;
+
+  youtubeLink.style.display = "inline-block";
+
+  /*
+    O vídeo é carregado somente quando o visitante
+    clica no cartaz do filme.
+  */
+
+  videoContainer.innerHTML = `
+
+    <iframe
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
+      title="${titulo}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+
+  `;
+
+  modal.classList.add("open");
+
+}
+
+/* =========================================
+   PARAR O VÍDEO
+========================================= */
+
+function stopVideo() {
+
+  const videoContainer = document.getElementById("videoContainer");
+
+  /*
+    Retirar o iframe interrompe a reprodução.
+  */
+
+  videoContainer.innerHTML = "";
+
+  videoContainer.classList.remove("active");
+
+}
+
+/* =========================================
+   FECHAR A JANELA
+========================================= */
 
 function closeModal() {
+
+  stopVideo();
+
   document.getElementById("infoModal").classList.remove("open");
+
+  document.getElementById("videoNote").style.display = "none";
+
+  document.getElementById("youtubeLink").style.display = "none";
+
 }
 
+/* FECHAR CLICANDO FORA DA JANELA */
+
 document.getElementById("infoModal").addEventListener("click", event => {
-  if (event.target.id === "infoModal") closeModal();
+
+  if (event.target.id === "infoModal") {
+
+    closeModal();
+
+  }
+
 });
 
+/* =========================================
+   PESQUISA DE FILMES E CATEGORIAS
+========================================= */
+
 document.getElementById("searchInput").addEventListener("input", event => {
+
   const query = event.target.value.trim().toLowerCase();
+
   let visibleCategories = 0;
 
   document.querySelectorAll(".category").forEach(section => {
+
     const categoryMatch = section.dataset.category.includes(query);
+
     let visibleMovies = 0;
 
     section.querySelectorAll(".movie").forEach(movie => {
-      const match = !query || categoryMatch || movie.dataset.title.includes(query);
+
+      const match =
+        !query ||
+        categoryMatch ||
+        movie.dataset.title.includes(query);
+
       movie.classList.toggle("hidden", !match);
-      if (match) visibleMovies++;
+
+      if (match) {
+
+        visibleMovies++;
+
+      }
+
     });
 
-    const visible = !query || categoryMatch || visibleMovies > 0;
+    const visible =
+      !query ||
+      categoryMatch ||
+      visibleMovies > 0;
+
     section.style.display = visible ? "" : "none";
-    if (visible) visibleCategories++;
+
+    if (visible) {
+
+      visibleCategories++;
+
+    }
+
   });
 
   document.getElementById("emptyMessage").style.display =
     visibleCategories ? "none" : "block";
+
 });
+
+/* =========================================
+   FECHAR COM A TECLA ESC
+========================================= */
+
+document.addEventListener("keydown", event => {
+
+  if (event.key === "Escape") {
+
+    closeModal();
+
+  }
+
+});
+
 </script>
 
 </body>
