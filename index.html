@@ -1,511 +1,906 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090d20">
-<title>Intercontinental Play</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#060919">
+  <title>Intercontinental Play - Cyber Cinema</title>
 
-<style>
-:root{
- --bg:#090d20;
- --panel:#141c35;
- --blue:#31baff;
- --purple:#a66bff;
- --gold:#f4cb70;
- --cyan:#55f1df;
- --pink:#ff79bb;
- --text:#f5f7ff;
- --muted:#aab4ce;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;background:var(--bg);color:var(--text);
- font-family:Arial,Helvetica,sans-serif;
-}
-header{
- position:sticky;top:0;z-index:30;
- display:flex;align-items:center;justify-content:space-between;
- gap:15px;padding:10px 4%;
- background:rgba(9,13,32,.96);
- border-bottom:1px solid #35446b;
- backdrop-filter:blur(18px);
-}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{
- width:58px;height:58px;object-fit:cover;
- border-radius:50%;border:2px solid var(--gold);
- box-shadow:0 0 20px #31baff66,0 0 12px #f4cb7066;
-}
-.brand-name{
- font-size:20px;font-weight:900;letter-spacing:1px;
- color:var(--gold);line-height:1.1;
-}
-.brand-name span{color:white}
-.brand small{
- display:block;font-size:9px;color:var(--cyan);
- letter-spacing:3px;margin-top:5px;
-}
-nav{display:flex;gap:20px}
-nav a{color:#dce5ff;text-decoration:none;font-size:13px}
-nav a:hover{color:var(--cyan)}
-.search{
- width:210px;padding:11px 15px;border-radius:25px;
- border:1px solid #43527c;background:#17213e;
- color:white;outline:none;
-}
-.search:focus{border-color:var(--cyan)}
-.hero{
- position:relative;min-height:460px;overflow:hidden;
- display:flex;align-items:center;padding:55px 7%;
- background:
- radial-gradient(ellipse at 80% 50%,#43317b 0%,transparent 45%),
- linear-gradient(110deg,#101a40,#11122b 55%,#20204a);
-}
-.hero:before{
- content:"";position:absolute;inset:0;
- background:
- radial-gradient(circle at 15% 20%,#31baff25,transparent 25%),
- radial-gradient(circle at 70% 80%,#ff79bb20,transparent 25%);
-}
-.hero-content{position:relative;z-index:3;max-width:570px}
-.kicker{
- color:var(--cyan);font-size:12px;
- letter-spacing:4px;font-weight:bold;
-}
-.hero h1{
- font-size:clamp(38px,6vw,68px);
- line-height:1.02;margin:17px 0;
- text-shadow:0 5px 25px #0008;
-}
-.hero p{color:#d4dcf4;line-height:1.7;max-width:480px}
-.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.btn{
- border:0;border-radius:7px;padding:14px 23px;
- font-weight:bold;cursor:pointer;transition:.2s;
-}
-.btn:hover{transform:translateY(-3px);filter:brightness(1.15)}
-.btn-main{
- background:linear-gradient(100deg,var(--gold),#fff0b5);
- color:#181326;box-shadow:0 5px 20px #f4cb7040;
-}
-.btn-secondary{
- color:white;background:#ffffff18;border:1px solid #ffffff40;
-}
-.hero-mascot{
- position:absolute;right:7%;bottom:0;
- width:min(36%,390px);height:95%;
- object-fit:contain;object-position:center bottom;
- filter:drop-shadow(0 0 28px #31baff77);
- z-index:2;
-}
-main{padding:10px 5% 60px}
-.section{margin:34px 0 42px}
-.section-heading{
- display:flex;justify-content:space-between;
- align-items:center;gap:12px;margin-bottom:17px;
-}
-.section-heading h2{font-size:21px;margin:0}
-.section-heading small{color:var(--cyan)}
-.filters{
- display:flex;gap:9px;overflow-x:auto;
- padding:5px 0 16px;scrollbar-width:thin;
-}
-.filter{
- flex-shrink:0;border:1px solid #3b4b75;
- background:#17213e;color:#e5eaff;
- border-radius:22px;padding:9px 17px;cursor:pointer;
- transition:.2s;
-}
-.filter:hover,.filter.active{
- background:linear-gradient(100deg,#237ec8,#7b55d9);
- border-color:var(--cyan);color:white;
- box-shadow:0 0 15px #31baff33;
-}
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
- gap:25px 17px;
-}
-.movie{min-width:0;cursor:pointer;position:relative}
-.poster{
- width:100%;aspect-ratio:2/3;overflow:hidden;
- position:relative;border-radius:10px;
- background:linear-gradient(145deg,#273b65,#17152e);
- border:1px solid #42517b;
- box-shadow:0 8px 20px #0008;
- transition:transform .3s,box-shadow .3s;
-}
-.poster img{
- width:100%;height:100%;object-fit:cover;
- display:block;transition:transform .45s;
-}
-.movie:hover .poster{
- transform:translateY(-9px) scale(1.045);
- border-color:var(--cyan);
- box-shadow:0 15px 32px #000b,0 0 20px #31baff44;
-}
-.movie:hover .poster img{transform:scale(1.1)}
-.poster:after{
- content:"";position:absolute;inset:0;
- background:linear-gradient(0deg,#000b,transparent 55%);
- pointer-events:none;
-}
-.poster-overlay{
- position:absolute;inset:0;z-index:2;
- display:grid;place-items:center;opacity:0;transition:.25s;
-}
-.movie:hover .poster-overlay{opacity:1}
-.play-circle{
- width:55px;height:55px;border-radius:50%;
- display:grid;place-items:center;
- background:linear-gradient(135deg,var(--gold),#fff1b8);
- color:#171326;font-size:23px;
- box-shadow:0 0 25px #f4cb70aa;
-}
-.movie h3{font-size:14px;margin:11px 2px 5px;line-height:1.35}
-.genre{font-size:11px;color:var(--muted);margin:0 2px}
-.fav{
- position:absolute;top:9px;right:9px;z-index:4;
- width:34px;height:34px;border:0;border-radius:50%;
- background:#090d20dd;color:white;font-size:19px;cursor:pointer;
-}
-.fav.on{color:var(--pink)}
-.empty{
- padding:30px;text-align:center;color:var(--muted);
- background:var(--panel);border-radius:10px;grid-column:1/-1;
-}
+  <style>
+    :root {
+      --bg: #060919;
+      --panel: #0d1326;
+      --panel-glow: rgba(0, 243, 255, 0.15);
+      --cyan: #00f3ff;
+      --purple: #a66bff;
+      --pink: #ff007f;
+      --gold: #f4cb70;
+      --text: #f5f7ff;
+      --muted: #8e9bbd;
+      --cyber-border: rgba(0, 243, 255, 0.3);
+    }
 
-/* CINEMA LCD */
-#playerArea{
- display:none;margin:30px 0 45px;padding:20px;
- border-radius:17px;
- background:
- radial-gradient(ellipse at top left,#293b70,#12172e 60%,#101225);
- border:1px solid #6574a5;
- box-shadow:0 15px 40px #0009,0 0 25px #31baff22;
-}
-.player-head{
- display:flex;justify-content:space-between;
- align-items:center;gap:12px;margin-bottom:17px;
-}
-.player-head h2{
- margin:5px 0;color:var(--gold);font-size:25px;
-}
-.lcd-label{
- color:var(--cyan);font-size:10px;
- letter-spacing:3px;font-weight:bold;
-}
-.close{
- border:1px solid #66749d;background:#293552;
- color:white;padding:10px 15px;border-radius:7px;cursor:pointer;
-}
-.screen{
- position:relative;padding:9px;border-radius:13px;
- background:linear-gradient(135deg,#c8a95c,#344b81,#9e70d4,#26395f);
- box-shadow:0 0 22px #31baff33,inset 0 0 12px #000;
-}
-.screen-inner{
- position:relative;padding-bottom:56.25%;
- height:0;background:#000;border-radius:7px;overflow:hidden;
-}
-.screen-inner iframe{
- position:absolute;inset:0;width:100%;height:100%;border:0;
-}
-.player-info{
- display:flex;justify-content:space-between;
- flex-wrap:wrap;gap:10px;color:#d6def4;
- font-size:13px;margin-top:15px;
-}
-.lcd-status{color:var(--cyan)}
-.player-decoration{
- height:4px;margin-top:15px;border-radius:5px;
- background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink),var(--gold));
- box-shadow:0 0 12px #a66bff66;
-}
-footer{
- text-align:center;padding:35px 15px;
- border-top:1px solid #344064;color:#aab4ce;font-size:13px;
-}
-footer strong{color:var(--gold)}
-.toast{
- position:fixed;bottom:22px;left:50%;
- transform:translateX(-50%);z-index:60;
- background:#202d50;color:white;padding:13px 20px;
- border:1px solid var(--cyan);border-radius:8px;
- display:none;box-shadow:0 5px 25px #000b;
-}
-@media(max-width:760px){
- header{flex-wrap:wrap;padding:12px 4%;gap:12px}
- .brand-name{font-size:17px}
- .brand img{width:48px;height:48px}
- nav{order:3;width:100%;justify-content:center;gap:20px}
- .search{width:100%;order:4}
- .hero{min-height:430px;padding:35px 6%}
- .hero-mascot{width:55%;height:70%;right:-5%;opacity:.55}
- .hero-content{max-width:100%}
- .hero h1{font-size:42px;max-width:380px}
- main{padding-left:4%;padding-right:4%}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 12px}
-}
-</style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(166, 107, 255, 0.12), transparent 50%),
+        radial-gradient(circle at 100% 50%, rgba(0, 243, 255, 0.08), transparent 40%);
+    }
+
+    /* BARRA DE ROLAGEM FUTURISTA */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #1f2b4d; border-radius: 4px; border: 1px solid var(--cyber-border); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+    /* HEADER HOLOGRÁFICO */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 5%;
+      background: rgba(6, 9, 25, 0.85);
+      border-bottom: 1px solid var(--cyber-border);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0, 243, 255, 0.05);
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    
+    .brand-logo-wrap {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      padding: 2px;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+    }
+
+    .brand img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--text);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand-name span {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 9px;
+      color: var(--cyan);
+      letter-spacing: 3px;
+      margin-top: 4px;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+    }
+
+    nav { display: flex; gap: 24px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    nav a:hover, nav a.active {
+      color: var(--cyan);
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+    }
+
+    .search-box {
+      position: relative;
+      width: 240px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--cyber-border);
+      background: rgba(13, 19, 38, 0.8);
+      color: white;
+      outline: none;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .search:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+      background: #141d38;
+    }
+
+    /* HERO SECTION FUTURISTA */
+    .hero {
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 60px 7%;
+      background: 
+        radial-gradient(ellipse at 75% 50%, rgba(166, 107, 255, 0.25) 0%, transparent 55%),
+        linear-gradient(110deg, #090e24, #060919 60%, #12102b);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg), transparent 30%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 3; max-width: 600px; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 800;
+      background: rgba(0, 243, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 62px);
+      line-height: 1.05;
+      margin: 10px 0 18px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff 40%, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      color: #a0aec0;
+      line-height: 1.7;
+      font-size: 15px;
+      max-width: 500px;
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+
+    .btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 14px 28px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 243, 255, 0.4);
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, var(--cyan), #00a8ff);
+      color: #040714;
+      box-shadow: 0 4px 20px rgba(0, 243, 255, 0.3);
+    }
+
+    .btn-secondary {
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--cyber-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--purple);
+      box-shadow: 0 10px 25px rgba(166, 107, 255, 0.3);
+    }
+
+    .hero-mascot {
+      position: absolute;
+      right: 5%;
+      bottom: -10px;
+      width: min(38%, 420px);
+      height: 95%;
+      object-fit: contain;
+      object-position: center bottom;
+      filter: drop-shadow(0 0 35px rgba(0, 243, 255, 0.4));
+      z-index: 2;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    main { padding: 20px 5% 80px; }
+
+    .section { margin: 40px 0 50px; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--cyan);
+      padding-left: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .section-heading small {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* FILTROS CYBER */
+    .filters {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 5px 2px 18px;
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter {
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(13, 19, 38, 0.6);
+      color: var(--muted);
+      border-radius: 30px;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter:hover, .filter.active {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(166, 107, 255, 0.2));
+      border-color: var(--cyan);
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    }
+
+    /* GRID DE POSTERS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 28px 18px;
+    }
+
+    .movie { min-width: 0; cursor: pointer; position: relative; }
+
+    .poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      position: relative;
+      border-radius: 12px;
+      background: #0b1021;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .movie:hover .poster {
+      transform: translateY(-8px) scale(1.03);
+      border-color: var(--cyan);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 20px rgba(0, 243, 255, 0.3);
+    }
+
+    .movie:hover .poster img { transform: scale(1.1); }
+
+    .poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(6, 9, 25, 0.95) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .poster-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transition: 0.3s;
+      background: rgba(6, 9, 25, 0.4);
+      backdrop-filter: blur(2px);
+    }
+
+    .movie:hover .poster-overlay { opacity: 1; }
+
+    .play-circle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: #040714;
+      font-size: 22px;
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.8);
+      transform: scale(0.8);
+      transition: transform 0.3s;
+    }
+
+    .movie:hover .play-circle { transform: scale(1); }
+
+    .movie h3 {
+      font-size: 14px;
+      margin: 12px 2px 4px;
+      line-height: 1.3;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .genre {
+      font-size: 11px;
+      color: var(--muted);
+      margin: 0 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .fav {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 4;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      background: rgba(6, 9, 25, 0.7);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: grid;
+      place-items: center;
+    }
+
+    .fav:hover { transform: scale(1.15); border-color: var(--pink); }
+    .fav.on { color: var(--pink); border-color: var(--pink); box-shadow: 0 0 12px rgba(255, 0, 127, 0.5); }
+
+    .empty {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(13, 19, 38, 0.4);
+      border: 1px dashed var(--cyber-border);
+      border-radius: 12px;
+      grid-column: 1 / -1;
+    }
+
+    /* PLAYER DE CINEMA CYBERPUNK */
+    #playerArea {
+      display: none;
+      margin: 20px 0 50px;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #0d142b, #070a17);
+      border: 1px solid var(--cyber-border);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(0, 243, 255, 0.15);
+    }
+
+    .player-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .player-head h2 {
+      margin: 4px 0 0;
+      color: var(--cyan);
+      font-size: 24px;
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+    }
+
+    .lcd-label {
+      color: var(--purple);
+      font-size: 10px;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
+
+    .close {
+      border: 1px solid var(--cyber-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .close:hover { background: var(--pink); border-color: var(--pink); }
+
+    .screen {
+      position: relative;
+      padding: 6px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    }
+
+    .screen-inner {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .screen-inner iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .player-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: #d6def4;
+      font-size: 14px;
+      margin-top: 18px;
+    }
+
+    .lcd-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .lcd-status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--cyan);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer strong { color: var(--cyan); }
+
+    /* TOAST NEON */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(13, 19, 38, 0.95);
+      color: white;
+      padding: 14px 28px;
+      border: 1px solid var(--cyan);
+      border-radius: 30px;
+      display: none;
+      box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+      backdrop-filter: blur(10px);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    @media(max-width: 760px) {
+      header { flex-wrap: wrap; padding: 12px 4%; }
+      nav { order: 3; width: 100%; justify-content: center; gap: 15px; margin-top: 5px; }
+      .search-box { width: 100%; order: 4; }
+      .hero { min-height: 420px; padding: 35px 5%; }
+      .hero-mascot { width: 60%; right: -10%; opacity: 0.35; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+    }
+  </style>
 </head>
 
 <body>
+
 <header>
- <div class="brand">
-  <img src="mascote-intercontinental.png" alt="Mascote Intercontinental"
-   onerror="this.style.display='none'">
-  <div class="brand-name">INTERCONTINENTAL <span>PLAY</span>
-   <small>CINEMA E ENTRETENIMENTO</small>
+  <div class="brand">
+    <div class="brand-logo-wrap">
+      <img src="mascote-intercontinental.png" alt="Logo" onerror="this.src='https://via.placeholder.com/50/00f3ff/000000?text=IP'">
+    </div>
+    <div class="brand-name">
+      INTERCONTINENTAL <span>PLAY</span>
+      <small>CINEMA & EXPERIÊNCIA</small>
+    </div>
   </div>
- </div>
- <nav>
-  <a href="#inicio">Início</a>
-  <a href="#catalogo">Filmes</a>
-  <a href="#favoritos">Minha lista</a>
- </nav>
- <input class="search" id="search" placeholder="⌕ Buscar filmes..." oninput="render()">
+  
+  <nav>
+    <a href="#inicio" class="active">Início</a>
+    <a href="#catalogo">Filmes</a>
+    <a href="#favoritos">Minha Lista</a>
+  </nav>
+
+  <div class="search-box">
+    <input class="search" id="search" placeholder="⌕ Buscar no catálogo..." oninput="render()">
+  </div>
 </header>
 
 <section class="hero" id="inicio">
- <div class="hero-content">
-  <div class="kicker">UMA EXPERIÊNCIA INTERCONTINENTAL</div>
-  <h1>O cinema ganha uma nova dimensão.</h1>
-  <p>Grandes aventuras, ação, suspense, ficção científica e entretenimento. Escolha seu filme e entre nessa experiência.</p>
-  <div class="hero-buttons">
-   <button class="btn btn-main" onclick="irCatalogo()">▶ EXPLORAR FILMES</button>
-   <button class="btn btn-secondary" onclick="mostrarFavoritos()">♥ MINHA LISTA</button>
+  <div class="hero-content">
+    <div class="kicker">⚡ STREAMING FUTURISTA</div>
+    <h1>O cinema em uma nova dimensão.</h1>
+    <p>Explore um catálogo selecionado de grandes sucessos, ficção científica, ação e suspense. Assista em alta definição instantaneamente.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-main" onclick="irCatalogo()">▶ EXPLORAR CATÁLOGO</button>
+      <button class="btn btn-secondary" onclick="mostrarFavoritos()">♥ MINHA LISTA</button>
+    </div>
   </div>
- </div>
- <img class="hero-mascot" src="mascote-intercontinental.png"
-  alt="Androide Intercontinental"
-  onerror="this.style.display='none'">
+  <img class="hero-mascot" src="mascote-intercontinental.png" alt="Mascote Intercontinental" onerror="this.style.display='none'">
 </section>
 
 <main>
- <section id="playerArea">
-  <div class="player-head">
-   <div>
-    <div class="lcd-label">INTERCONTINENTAL CINEMA • TELA LCD</div>
-    <h2 id="playerTitle">Assistindo agora</h2>
-   </div>
-   <button class="close" onclick="closePlayer()">✕ Fechar</button>
-  </div>
-  <div class="screen">
-   <div class="screen-inner">
-    <iframe id="video" src=""
-     allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-     allowfullscreen></iframe>
-   </div>
-  </div>
-  <div class="player-info">
-   <span id="playerInfo">Selecione seu filme.</span>
-   <span class="lcd-status">● SISTEMA ATIVO</span>
-  </div>
-  <div class="player-decoration"></div>
- </section>
+  <!-- PLAYER CINEMA -->
+  <section id="playerArea">
+    <div class="player-head">
+      <div>
+        <div class="lcd-label">INTERCONTINENTAL CYBER PLAYER • ONLINE</div>
+        <h2 id="playerTitle">Assistindo agora</h2>
+      </div>
+      <button class="close" onclick="closePlayer()">✕ FECHAR PLAYER</button>
+    </div>
+    
+    <div class="screen">
+      <div class="screen-inner">
+        <iframe id="video" src="" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+    </div>
+    
+    <div class="player-info">
+      <span id="playerInfo">Selecione seu filme.</span>
+      <span class="lcd-status">SISTEMA ATIVO & TRANSMITINDO</span>
+    </div>
+  </section>
 
- <section class="section" id="catalogo">
-  <div class="section-heading">
-   <h2>🎬 Descubra seus filmes</h2>
-   <small id="count">Catálogo Intercontinental</small>
-  </div>
-  <div class="filters" id="filters"></div>
-  <div class="grid" id="movieGrid"></div>
- </section>
+  <!-- SEÇÃO RECOMENDADOS INTELIGENTES (Aparece ao reproduzir) -->
+  <section class="section" id="recomendadosSection" style="display: none;">
+    <div class="section-heading">
+      <h2>💡 Recomendados para Você</h2>
+      <small>Com base no seu interesse</small>
+    </div>
+    <div class="grid" id="recommendedGrid"></div>
+  </section>
 
- <section class="section" id="favoritos">
-  <div class="section-heading">
-   <h2>💗 Minha lista</h2><small>Seus favoritos</small>
-  </div>
-  <div class="grid" id="favoriteGrid"></div>
- </section>
+  <!-- CATÁLOGO GERAL -->
+  <section class="section" id="catalogo">
+    <div class="section-heading">
+      <h2>🎬 Catálogo de Filmes</h2>
+      <small id="count">Carregando catálogo...</small>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="movieGrid"></div>
+  </section>
 
- <section class="section" id="recentes">
-  <div class="section-heading">
-   <h2>▶ Continue assistindo</h2><small>Histórico deste navegador</small>
-  </div>
-  <div class="grid" id="recentGrid"></div>
- </section>
+  <!-- FAVORITOS -->
+  <section class="section" id="favoritos">
+    <div class="section-heading">
+      <h2>💗 Minha Lista</h2>
+      <small>Seus filmes favoritados</small>
+    </div>
+    <div class="grid" id="favoriteGrid"></div>
+  </section>
+
+  <!-- CONTINUE ASSISTINDO -->
+  <section class="section" id="recentes">
+    <div class="section-heading">
+      <h2>▶ Continue Assistindo</h2>
+      <small>Histórico recente</small>
+    </div>
+    <div class="grid" id="recentGrid"></div>
+  </section>
 </main>
 
 <footer>
- <strong>INTERCONTINENTAL PLAY</strong><br>
- O seu universo de cinema e entretenimento.<br><br>
- Uma realização Intercontinental • 2026
+  <strong>INTERCONTINENTAL PLAY</strong> • Plataforma de Entretenimento Futurista<br>
+  Uma realização Intercontinental • 2026
 </footer>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const filmes=[
- {t:"Planeta Perdido",id:"WPwFEzaogdM",g:["Aventura","Ficção científica"]},
- {t:"Os Guardiões",id:"nr6v8Geo2yU",g:["Aventura","Ação"]},
- {t:"Motoqueiro Fantasma",id:"MhWb5fa1nGM",g:["Ação","Fantasia"]},
- {t:"Macaco vs Máquina",id:"vDbcJ_x9EMA",g:["Ficção científica"]},
- {t:"RoboCop",id:"02WlSQrVuJ8",g:["Ação","Ficção científica"]},
- {t:"O Quinto Elemento",id:"DwOzp7DlqsI",g:["Ficção científica","Aventura"]},
- {t:"Inferno de Dante",id:"2iI73lSFdVk",g:["Aventura","Ação"]},
- {t:"Django",id:"ytv4xwbvlX0",g:["Faroeste","Ação"]},
- {t:"Trinity é o Meu Nome",id:"F7I4qS9nZiY",g:["Faroeste","Comédia"]},
- {t:"O Grande Dragão Branco",id:"CwSqAfzCU4w",g:["Ação","Artes marciais"]},
- {t:"Julius Caesar",id:"Yp1gDQF6GRQ",g:["Drama histórico"]},
- {t:"A Hora do Terror",id:"3Qfil2fapjE",g:["Terror"]},
- {t:"Os Supremos Vingadores",id:"mDC-D0XXNFo",g:["Animação","Ação"]},
- {t:"O Retorno do Dragão",id:"pbL8v0ZdcgQ",g:["Ação","Artes marciais"]},
- {t:"Terra Dominada por Vampiros",id:"p44rJuFgyE4",g:["Terror"]},
+// LISTA DE FILMES COM O FILME ADICIONAL 22 DEVIDAMENTE REMOVIDO
+const filmes = [
+  {t:"Planeta Perdido", id:"WPwFEzaogdM", g:["Aventura","Ficção científica"]},
+  {t:"Os Guardiões", id:"nr6v8Geo2yU", g:["Aventura","Ação"]},
+  {t:"Motoqueiro Fantasma", id:"MhWb5fa1nGM", g:["Ação","Fantasia"]},
+  {t:"Macaco vs Máquina", id:"vDbcJ_x9EMA", g:["Ficção científica"]},
+  {t:"RoboCop", id:"02WlSQrVuJ8", g:["Ação","Ficção científica"]},
+  {t:"O Quinto Elemento", id:"DwOzp7DlqsI", g:["Ficção científica","Aventura"]},
+  {t:"Inferno de Dante", id:"2iI73lSFdVk", g:["Aventura","Ação"]},
+  {t:"Django", id:"ytv4xwbvlX0", g:["Faroeste","Ação"]},
+  {t:"Trinity é o Meu Nome", id:"F7I4qS9nZiY", g:["Faroeste","Comédia"]},
+  {t:"O Grande Dragão Branco", id:"CwSqAfzCU4w", g:["Ação","Artes marciais"]},
+  {t:"Julius Caesar", id:"Yp1gDQF6GRQ", g:["Drama histórico"]},
+  {t:"A Hora do Terror", id:"3Qfil2fapjE", g:["Terror"]},
+  {t:"Os Supremos Vingadores", id:"mDC-D0XXNFo", g:["Animação","Ação"]},
+  {t:"O Retorno do Dragão", id:"pbL8v0ZdcgQ", g:["Ação","Artes marciais"]},
+  {t:"Terra Dominada por Vampiros", id:"p44rJuFgyE4", g:["Terror"]},
 
- {t:"Filme adicional 1",id:"9srn6o8vlnY",g:["A identificar"]},
- {t:"Filme adicional 2",id:"DvIwiNc8LF0",g:["A identificar"]},
- {t:"Filme adicional 3",id:"p9a_hUWJzQ4",g:["A identificar"]},
- {t:"Filme adicional 4",id:"z6da8rYUvI8",g:["A identificar"]},
- {t:"Filme adicional 5",id:"SEHe-2tJa1Y",g:["A identificar"]},
- {t:"Filme adicional 6",id:"aSyas1scBXc",g:["A identificar"]},
- {t:"Filme adicional 7",id:"XV-gTgahpOo",g:["A identificar"]},
- {t:"Filme adicional 8",id:"Qzrm4PRIyVs",g:["A identificar"]},
- {t:"Filme adicional 9",id:"vqxR_WWnO0s",g:["A identificar"]},
- {t:"Filme adicional 10",id:"qA0h3FHLbck",g:["A identificar"]},
- {t:"Filme adicional 11",id:"YRwxYKIMpfE",g:["A identificar"]},
- {t:"Filme adicional 12",id:"F2SEH2Ir8XI",g:["A identificar"]},
- {t:"Filme adicional 13",id:"amBFwma3SoI",g:["A identificar"]},
- {t:"Filme adicional 14",id:"q8BrBn_scKY",g:["A identificar"]},
- {t:"Filme adicional 15",id:"tZCWUqCLEjI",g:["A identificar"]},
- {t:"Filme adicional 16",id:"FDNdCDT0Ssc",g:["A identificar"]},
- {t:"Filme adicional 17",id:"wR9LLSfDHEQ",g:["A identificar"]},
- {t:"Filme adicional 18",id:"QFeOXzlU-a8",g:["A identificar"]},
- {t:"Filme adicional 19",id:"a-_bykTwrlg",g:["A identificar"]},
- {t:"Filme adicional 20",id:"yZqakD5BYLg",g:["A identificar"]},
- {t:"Filme adicional 21",id:"vWLNSVi3k5U",g:["A identificar"]},
- {t:"Filme adicional 22",id:"c9SaXrQx7V0",g:["A identificar"]},
- {t:"Filme adicional 23",id:"35_yxPjdfoM",g:["A identificar"]},
- {t:"Filme adicional 24",id:"rqTACZ663h4",g:["A identificar"]}
+  {t:"Filme adicional 1", id:"9srn6o8vlnY", g:["A identificar"]},
+  {t:"Filme adicional 2", id:"DvIwiNc8LF0", g:["A identificar"]},
+  {t:"Filme adicional 3", id:"p9a_hUWJzQ4", g:["A identificar"]},
+  {t:"Filme adicional 4", id:"z6da8rYUvI8", g:["A identificar"]},
+  {t:"Filme adicional 5", id:"SEHe-2tJa1Y", g:["A identificar"]},
+  {t:"Filme adicional 6", id:"aSyas1scBXc", g:["A identificar"]},
+  {t:"Filme adicional 7", id:"XV-gTgahpOo", g:["A identificar"]},
+  {t:"Filme adicional 8", id:"Qzrm4PRIyVs", g:["A identificar"]},
+  {t:"Filme adicional 9", id:"vqxR_WWnO0s", g:["A identificar"]},
+  {t:"Filme adicional 10", id:"qA0h3FHLbck", g:["A identificar"]},
+  {t:"Filme adicional 11", id:"YRwxYKIMpfE", g:["A identificar"]},
+  {t:"Filme adicional 12", id:"F2SEH2Ir8XI", g:["A identificar"]},
+  {t:"Filme adicional 13", id:"amBFwma3SoI", g:["A identificar"]},
+  {t:"Filme adicional 14", id:"q8BrBn_scKY", g:["A identificar"]},
+  {t:"Filme adicional 15", id:"tZCWUqCLEjI", g:["A identificar"]},
+  {t:"Filme adicional 16", id:"FDNdCDT0Ssc", g:["A identificar"]},
+  {t:"Filme adicional 17", id:"wR9LLSfDHEQ", g:["A identificar"]},
+  {t:"Filme adicional 18", id:"QFeOXzlU-a8", g:["A identificar"]},
+  {t:"Filme adicional 19", id:"a-_bykTwrlg", g:["A identificar"]},
+  {t:"Filme adicional 20", id:"yZqakD5BYLg", g:["A identificar"]},
+  {t:"Filme adicional 21", id:"vWLNSVi3k5U", g:["A identificar"]},
+  // Filme adicional 22 (c9SaXrQx7V0) REMOVIDO!
+  {t:"Filme adicional 23", id:"35_yxPjdfoM", g:["A identificar"]},
+  {t:"Filme adicional 24", id:"rqTACZ663h4", g:["A identificar"]}
 ];
 
-const categorias=[
- "Todos","Ação","Aventura","Romance","Terror",
- "Ficção científica","Fantasia","Comédia","Faroeste",
- "Animação","Drama histórico","Artes marciais","A identificar"
+const categorias = [
+  "Todos", "Ação", "Aventura", "Ficção científica", "Fantasia", 
+  "Terror", "Comédia", "Faroeste", "Animação", "Drama histórico", 
+  "Artes marciais", "A identificar"
 ];
 
-let categoria="Todos";
-let favoritos=JSON.parse(localStorage.getItem("icp_favoritos")||"[]");
-let recentes=JSON.parse(localStorage.getItem("icp_recentes")||"[]");
-let audioContext=null;
+let categoria = "Todos";
+let favoritos = JSON.parse(localStorage.getItem("icp_favoritos") || "[]");
+let recentes = JSON.parse(localStorage.getItem("icp_recentes") || "[]");
+let audioContext = null;
 
-function iniciarAudio(){
- const AudioCtx=window.AudioContext||window.webkitAudioContext;
- if(!AudioCtx)return null;
- if(!audioContext)audioContext=new AudioCtx();
- if(audioContext.state==="suspended")audioContext.resume();
- return audioContext;
+// ÁUDIO SINTETIZADO FUTURISTA
+function iniciarAudio() {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return null;
+  if (!audioContext) audioContext = new AudioCtx();
+  if (audioContext.state === "suspended") audioContext.resume();
+  return audioContext;
 }
-function somToque(){
- const ctx=iniciarAudio();if(!ctx)return;
- const now=ctx.currentTime;
- const osc=ctx.createOscillator(),gain=ctx.createGain();
- osc.type="sine";
- osc.frequency.setValueAtTime(720,now);
- osc.frequency.exponentialRampToValueAtTime(480,now+.07);
- gain.gain.setValueAtTime(.045,now);
- gain.gain.exponentialRampToValueAtTime(.001,now+.1);
- osc.connect(gain);gain.connect(ctx.destination);
- osc.start(now);osc.stop(now+.11);
+
+function somToque() {
+  const ctx = iniciarAudio(); if (!ctx) return;
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator(), gain = ctx.createGain();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(800, now);
+  osc.frequency.exponentialRampToValueAtTime(400, now + 0.06);
+  gain.gain.setValueAtTime(0.03, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(now); osc.stop(now + 0.09);
 }
-function somEscolha(){
- const ctx=iniciarAudio();if(!ctx)return;
- const now=ctx.currentTime;
- [220,330,440].forEach((freq,i)=>{
-  const osc=ctx.createOscillator(),gain=ctx.createGain();
-  const start=now+i*.11;
-  osc.type="triangle";
-  osc.frequency.setValueAtTime(freq,start);
-  osc.frequency.exponentialRampToValueAtTime(freq*1.35,start+.18);
-  gain.gain.setValueAtTime(.001,start);
-  gain.gain.linearRampToValueAtTime(.12,start+.025);
-  gain.gain.exponentialRampToValueAtTime(.001,start+.28);
-  osc.connect(gain);gain.connect(ctx.destination);
-  osc.start(start);osc.stop(start+.3);
- });
+
+function somEscolha() {
+  const ctx = iniciarAudio(); if (!ctx) return;
+  const now = ctx.currentTime;
+  [261.63, 329.63, 392.00, 523.25].forEach((freq, i) => {
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    const start = now + i * 0.06;
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(freq, start);
+    gain.gain.setValueAtTime(0.001, start);
+    gain.gain.linearRampToValueAtTime(0.08, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + 0.2);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(start); osc.stop(start + 0.22);
+  });
 }
-function card(f){
- const fav=favoritos.includes(f.id);
- return `<article class="movie" onclick="playMovie('${f.id}')">
- <button class="fav ${fav?'on':''}" onclick="toggleFav(event,'${f.id}')">${fav?'♥':'♡'}</button>
- <div class="poster">
- <img src="https://img.youtube.com/vi/${f.id}/hqdefault.jpg"
- alt="${f.t}" loading="lazy"
- onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.id}/0.jpg'">
- <div class="poster-overlay"><div class="play-circle">▶</div></div>
- </div>
- <h3>${f.t}</h3><p class="genre">${f.g.join(" • ")}</p>
- </article>`;
+
+function card(f) {
+  const fav = favoritos.includes(f.id);
+  return `
+    <article class="movie" onclick="playMovie('${f.id}')">
+      <button class="fav ${fav ? 'on' : ''}" onclick="toggleFav(event, '${f.id}')">${fav ? '♥' : '♡'}</button>
+      <div class="poster">
+        <img src="https://img.youtube.com/vi/${f.id}/hqdefault.jpg" alt="${f.t}" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.id}/0.jpg'">
+        <div class="poster-overlay">
+          <div class="play-circle">▶</div>
+        </div>
+      </div>
+      <h3>${f.t}</h3>
+      <p class="genre">${f.g.join(" • ")}</p>
+    </article>
+  `;
 }
-function renderFilters(){
- document.getElementById("filters").innerHTML=categorias.map(c=>
- `<button class="filter ${categoria===c?'active':''}" onclick="setCategory('${c}')">${c}</button>`
- ).join("");
+
+function renderFilters() {
+  document.getElementById("filters").innerHTML = categorias.map(c =>
+    `<button class="filter ${categoria === c ? 'active' : ''}" onclick="setCategory('${c}')">${c}</button>`
+  ).join("");
 }
-function render(){
- const q=document.getElementById("search").value.toLowerCase().trim();
- const lista=filmes.filter(f=>
- (f.t+" "+f.g.join(" ")).toLowerCase().includes(q)&&
- (categoria==="Todos"||f.g.includes(categoria))
- );
- document.getElementById("movieGrid").innerHTML=lista.length?
- lista.map(card).join(""):'<div class="empty">Nenhum filme encontrado.</div>';
- document.getElementById("count").textContent=lista.length+" filmes no catálogo";
- document.getElementById("favoriteGrid").innerHTML=favoritos.length?
- filmes.filter(f=>favoritos.includes(f.id)).map(card).join("")
- :'<div class="empty">Sua lista ainda está vazia. Marque o coração de um filme.</div>';
- document.getElementById("recentGrid").innerHTML=recentes.length?
- filmes.filter(f=>recentes.includes(f.id)).map(card).join("")
- :'<div class="empty">Os filmes assistidos aparecerão aqui.</div>';
- renderFilters();
+
+function render() {
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const lista = filmes.filter(f =>
+    (f.t + " " + f.g.join(" ")).toLowerCase().includes(q) &&
+    (categoria === "Todos" || f.g.includes(categoria))
+  );
+
+  document.getElementById("movieGrid").innerHTML = lista.length ?
+    lista.map(card).join("") : '<div class="empty">Nenhum filme encontrado.</div>';
+
+  document.getElementById("count").textContent = lista.length + " filmes disponíveis";
+
+  document.getElementById("favoriteGrid").innerHTML = favoritos.length ?
+    filmes.filter(f => favoritos.includes(f.id)).map(card).join("") :
+    '<div class="empty">Sua lista está vazia. Clique no coração de um filme para favoritá-lo.</div>';
+
+  document.getElementById("recentGrid").innerHTML = recentes.length ?
+    filmes.filter(f => recentes.includes(f.id)).map(card).join("") :
+    '<div class="empty">Seus filmes assistidos recentemente aparecerão aqui.</div>';
+
+  renderFilters();
 }
-function setCategory(c){categoria=c;render()}
-function playMovie(id){
- const f=filmes.find(x=>x.id===id);if(!f)return;
- somEscolha();
- document.getElementById("video").src=
- "https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
- document.getElementById("playerTitle").textContent=f.t;
- document.getElementById("playerInfo").textContent="Gênero: "+f.g.join(" • ");
- document.getElementById("playerArea").style.display="block";
- recentes=[id,...recentes.filter(x=>x!==id)].slice(0,10);
- localStorage.setItem("icp_recentes",JSON.stringify(recentes));
- render();
- document.getElementById("playerArea").scrollIntoView({behavior:"smooth"});
+
+function setCategory(c) {
+  categoria = c;
+  render();
 }
-function closePlayer(){
- somToque();
- document.getElementById("video").src="";
- document.getElementById("playerArea").style.display="none";
+
+function playMovie(id) {
+  const f = filmes.find(x => x.id === id); if (!f) return;
+  somEscolha();
+
+  document.getElementById("video").src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+  document.getElementById("playerTitle").textContent = f.t;
+  document.getElementById("playerInfo").textContent = "Gênero: " + f.g.join(" • ");
+  document.getElementById("playerArea").style.display = "block";
+
+  // Recomendações Inteligentes com base nos gêneros do filme atual
+  const recs = filmes.filter(x => x.id !== id && x.g.some(g => f.g.includes(g))).slice(0, 4);
+  const recSection = document.getElementById("recomendadosSection");
+  
+  if (recs.length) {
+    document.getElementById("recommendedGrid").innerHTML = recs.map(card).join("");
+    recSection.style.display = "block";
+  } else {
+    recSection.style.display = "none";
+  }
+
+  recentes = [id, ...recentes.filter(x => x !== id)].slice(0, 10);
+  localStorage.setItem("icp_recentes", JSON.stringify(recentes));
+  
+  render();
+  document.getElementById("playerArea").scrollIntoView({ behavior: "smooth" });
 }
-function toggleFav(event,id){
- event.stopPropagation();somToque();
- favoritos=favoritos.includes(id)?
- favoritos.filter(x=>x!==id):[id,...favoritos];
- localStorage.setItem("icp_favoritos",JSON.stringify(favoritos));
- render();
- aviso(favoritos.includes(id)?"Adicionado à sua lista ♥":"Removido da sua lista");
+
+function closePlayer() {
+  somToque();
+  document.getElementById("video").src = "";
+  document.getElementById("playerArea").style.display = "none";
+  document.getElementById("recomendadosSection").style.display = "none";
 }
-function irCatalogo(){
- somToque();document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
+
+function toggleFav(event, id) {
+  event.stopPropagation();
+  somToque();
+  favoritos = favoritos.includes(id) ? favoritos.filter(x => x !== id) : [id, ...favoritos];
+  localStorage.setItem("icp_favoritos", JSON.stringify(favoritos));
+  render();
+  aviso(favoritos.includes(id) ? "Adicionado aos Favoritos ♥" : "Removido dos Favoritos");
 }
-function mostrarFavoritos(){
- somToque();document.getElementById("favoritos").scrollIntoView({behavior:"smooth"});
+
+function irCatalogo() {
+  somToque();
+  document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" });
 }
-function aviso(msg){
- const el=document.getElementById("toast");
- el.textContent=msg;el.style.display="block";
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>el.style.display="none",2200);
+
+function mostrarFavoritos() {
+  somToque();
+  document.getElementById("favoritos").scrollIntoView({ behavior: "smooth" });
 }
-document.addEventListener("click",e=>{
- if(e.target.closest("button,a")&&!e.target.closest(".movie"))somToque();
+
+function aviso(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => el.style.display = "none", 2200);
+}
+
+document.addEventListener("click", e => {
+  if (e.target.closest("button, a") && !e.target.closest(".movie")) somToque();
 });
+
 render();
 </script>
 </body>
