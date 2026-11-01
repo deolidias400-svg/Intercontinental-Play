@@ -316,4 +316,304 @@ footer strong{color:var(--cyan)}
   <div class="hero-content">
     <div class="kicker">⚡ STREAMING FUTURISTA & INTERATIVO</div>
     <h1>O cinema em uma nova dimensão.</h1>
-    <p>Explore o catálogo completo de super
+    <p>Explore o catálogo completo de super produções, ação, suspense e ficção científica. Assista instantaneamente em alta qualidade.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-main" onclick="irCatalogo()">▶ EXPLORAR CATÁLOGO</button>
+      <button class="btn btn-secondary" onclick="mostrarFavoritos()">♥ MINHA LISTA</button>
+    </div>
+  </div>
+  <img class="hero-mascot" src="mascote-intercontinental.png" alt="Mascote" onerror="this.style.display='none'">
+</section>
+
+<!-- BANNER DE PROPAGANDAS / EVENTOS EM DESTAQUE -->
+<div class="promo-banner" id="promoBanner">
+  <div class="promo-info">
+    <h3>🔥 Evento em Destaque: Sessão Especial Intercontinental</h3>
+    <p id="promoText">Descubra novos lançamentos e trailers exclusivos em alta definição agora mesmo!</p>
+  </div>
+  <button class="promo-btn" onclick="tocarPromo()">▶ Assistir Trailer</button>
+</div>
+
+<main>
+  <!-- PLAYER DE CINEMA COLORIDO -->
+  <section id="playerArea">
+    <div class="player-head">
+      <div>
+        <div class="lcd-label">INTERCONTINENTAL CYBER TELÃO • HD LIVE</div>
+        <h2 id="playerTitle">Assistindo agora</h2>
+      </div>
+      <button class="close" onclick="closePlayer()">✕ FECHAR PLAYER</button>
+    </div>
+    
+    <div class="screen">
+      <div class="screen-inner">
+        <iframe id="video" src="" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+    </div>
+    
+    <div class="player-info">
+      <span id="playerInfo">Selecione seu filme.</span>
+      <span class="lcd-status">SISTEMA ATIVO & TRANSMITINDO</span>
+    </div>
+  </section>
+
+  <!-- RECOMENDADOS INTELIGENTES -->
+  <section class="section" id="recomendadosSection" style="display: none;">
+    <div class="section-heading">
+      <h2>💡 Recomendados para Você</h2>
+      <small>Filmes relacionados</small>
+    </div>
+    <div class="grid" id="recommendedGrid"></div>
+  </section>
+
+  <!-- CATÁLOGO GERAL (COM TODOS OS 36 FILMES) -->
+  <section class="section" id="catalogo">
+    <div class="section-heading">
+      <h2>🎬 Catálogo Expandido</h2>
+      <small id="count">Carregando catálogo...</small>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="movieGrid"></div>
+  </section>
+
+  <!-- FAVORITOS -->
+  <section class="section" id="favoritos">
+    <div class="section-heading">
+      <h2>💗 Minha Lista</h2>
+      <small>Seus favoritos</small>
+    </div>
+    <div class="grid" id="favoriteGrid"></div>
+  </section>
+
+  <!-- HISTÓRICO RECENTE -->
+  <section class="section" id="recentes">
+    <div class="section-heading">
+      <h2>▶ Continue Assistindo</h2>
+      <small>Histórico deste navegador</small>
+    </div>
+    <div class="grid" id="recentGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <strong>INTERCONTINENTAL PLAY</strong> • O seu universo de entretenimento futurista.<br>
+  Uma realização Intercontinental • 2026
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// LISTA COMPLETA COM TODOS OS 36 LINKS FORNECIDOS (FILME 22 REMOVIDO)
+const filmes = [
+  {t:"A Lenda de Grendel", id:"KSA8LJBcuBw", g:["Ação","Aventura"]},
+  {t:"Trailer Especial 2", id:"cez-y17Uppc", g:["Ação","Suspense"]},
+  {t:"Cine Destaque 3", id:"QmiE91_ah0M", g:["Ficção científica","Aventura"]},
+  {t:"Especial Cinema 4", id:"-50azQcgQcU", g:["Ação","Fantasia"]},
+  {t:"Super Produção 5", id:"yf0Ri0mWBkE", g:["Ficção científica"]},
+  {t:"Sessão Premier 6", id:"27eKL7NsD6k", g:["Ação","Aventura"]},
+  {t:"Lançamento Cyber 7", id:"ZvP5vxfOYOI", g:["Terror","Suspense"]},
+  {t:"Filme em Destaque 8", id:"yDbfHukTCyI", g:["Comédia","Aventura"]},
+  {t:"Sessão Especial 9", id:"wBAqZwNiIBM", g:["Faroeste","Ação"]},
+  {t:"Bloco de Ação 10", id:"JkDhDTK_WpA", g:["Artes marciais","Ação"]},
+  {t:"Destaque Histórico 11", id:"AUqSf8WhcMw", g:["Drama histórico"]},
+  {t:"Sessão Terror 12", id:"1TVosYYuS7k", g:["Terror"]},
+  {t:"Animação Cyber 13", id:"--N62ZpSx-s", g:["Animação","Ação"]},
+  {t:"Artes Marciais 14", id:"C3b3LDh_3iM", g:["Artes marciais"]},
+  {t:"Especial Vampiros 15", id:"MabGOA9jmjA", g:["Terror","Fantasia"]},
+
+  {t:"Filme Adicional 1", id:"iboykN3HbvY", g:["A identificar"]},
+  {t:"Filme Adicional 2", id:"GouLfRUG3Xw", g:["A identificar"]},
+  {t:"Filme Adicional 3", id:"tYge0CkIjC4", g:["A identificar"]},
+  {t:"Filme Adicional 4", id:"O2PuqhLmNfo", g:["A identificar"]},
+  {t:"Filme Adicional 5", id:"8-7P91yx3FA", g:["A identificar"]},
+  {t:"Filme Adicional 6", id:"Id1lRcaZwiw", g:["A identificar"]},
+  {t:"Filme Adicional 7", id:"y4vjhgcXbqg", g:["A identificar"]},
+  {t:"Filme Adicional 8", id:"aLM_L7kpfQw", g:["A identificar"]},
+  {t:"Filme Adicional 9", id:"mh7eKtOBGow", g:["A identificar"]},
+  {t:"Filme Adicional 10", id:"v37QjyIXXrg", g:["A identificar"]},
+  {t:"Filme Adicional 11", id:"LCwhpZvNmwI", g:["A identificar"]},
+  {t:"Filme Adicional 12", id:"-KhV4UBkD5w", g:["A identificar"]},
+  {t:"Filme Adicional 13", id:"vFsuvXoRjL8", g:["A identificar"]},
+  {t:"Filme Adicional 14", id:"B6URc8AEJ4I", g:["A identificar"]},
+  {t:"Filme Adicional 15", id:"3Cotd0Ljqu0", g:["A identificar"]},
+  {t:"Filme Adicional 16", id:"vUtmQH5o5KE", g:["A identificar"]},
+  {t:"Filme Adicional 17", id:"J658w9YBHgE", g:["A identificar"]},
+  {t:"Filme Adicional 18", id:"SuZW5Tn5vwU", g:["A identificar"]},
+  {t:"Filme Adicional 19", id:"1bWBw4ehgVs", g:["A identificar"]},
+  {t:"Filme Adicional 20", id:"nF1m74ZTbDQ", g:["A identificar"]},
+  {t:"Filme Adicional 21", id:"yPdylO9yCLw", g:["A identificar"]}
+];
+
+const categorias = [
+  "Todos", "Ação", "Aventura", "Ficção científica", "Fantasia", 
+  "Terror", "Comédia", "Faroeste", "Animação", "Drama histórico", 
+  "Artes marciais", "A identificar"
+];
+
+let categoria = "Todos";
+let favoritos = JSON.parse(localStorage.getItem("icp_favoritos") || "[]");
+let recentes = JSON.parse(localStorage.getItem("icp_recentes") || "[]");
+let audioContext = null;
+
+// ÁUDIO SINTETIZADO FUTURISTA
+function iniciarAudio() {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return null;
+  if (!audioContext) audioContext = new AudioCtx();
+  if (audioContext.state === "suspended") audioContext.resume();
+  return audioContext;
+}
+
+function somToque() {
+  const ctx = iniciarAudio(); if (!ctx) return;
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator(), gain = ctx.createGain();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(800, now);
+  osc.frequency.exponentialRampToValueAtTime(400, now + 0.06);
+  gain.gain.setValueAtTime(0.03, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(now); osc.stop(now + 0.09);
+}
+
+function somEscolha() {
+  const ctx = iniciarAudio(); if (!ctx) return;
+  const now = ctx.currentTime;
+  [261.63, 329.63, 392.00, 523.25].forEach((freq, i) => {
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    const start = now + i * 0.06;
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(freq, start);
+    gain.gain.setValueAtTime(0.001, start);
+    gain.gain.linearRampToValueAtTime(0.08, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + 0.2);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(start); osc.stop(start + 0.22);
+  });
+}
+
+function card(f) {
+  const fav = favoritos.includes(f.id);
+  return `
+    <article class="movie" onclick="playMovie('${f.id}')">
+      <button class="fav ${fav ? 'on' : ''}" onclick="toggleFav(event, '${f.id}')">${fav ? '♥' : '♡'}</button>
+      <div class="poster">
+        <img src="https://img.youtube.com/vi/${f.id}/hqdefault.jpg" alt="${f.t}" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${f.id}/0.jpg'">
+        <div class="poster-overlay">
+          <div class="play-circle">▶</div>
+        </div>
+      </div>
+      <h3>${f.t}</h3>
+      <p class="genre">${f.g.join(" • ")}</p>
+    </article>
+  `;
+}
+
+function renderFilters() {
+  document.getElementById("filters").innerHTML = categorias.map(c =>
+    `<button class="filter ${categoria === c ? 'active' : ''}" onclick="setCategory('${c}')">${c}</button>`
+  ).join("");
+}
+
+function render() {
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const lista = filmes.filter(f =>
+    (f.t + " " + f.g.join(" ")).toLowerCase().includes(q) &&
+    (categoria === "Todos" || f.g.includes(categoria))
+  );
+
+  document.getElementById("movieGrid").innerHTML = lista.length ?
+    lista.map(card).join("") : '<div class="empty">Nenhum filme encontrado.</div>';
+
+  document.getElementById("count").textContent = lista.length + " filmes no catálogo";
+
+  document.getElementById("favoriteGrid").innerHTML = favoritos.length ?
+    filmes.filter(f => favoritos.includes(f.id)).map(card).join("") :
+    '<div class="empty">Sua lista está vazia. Clique no coração de um filme para favoritá-lo.</div>';
+
+  document.getElementById("recentGrid").innerHTML = recentes.length ?
+    filmes.filter(f => recentes.includes(f.id)).map(card).join("") :
+    '<div class="empty">Seus filmes assistidos recentemente aparecerão aqui.</div>';
+
+  renderFilters();
+}
+
+function setCategory(c) {
+  categoria = c;
+  render();
+}
+
+function playMovie(id) {
+  const f = filmes.find(x => x.id === id); if (!f) return;
+  somEscolha();
+
+  document.getElementById("video").src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+  document.getElementById("playerTitle").textContent = f.t;
+  document.getElementById("playerInfo").textContent = "Gênero: " + f.g.join(" • ");
+  document.getElementById("playerArea").style.display = "block";
+
+  // Recomendações inteligentes
+  const recs = filmes.filter(x => x.id !== id && x.g.some(g => f.g.includes(g))).slice(0, 4);
+  const recSection = document.getElementById("recomendadosSection");
+  if (recs.length) {
+    document.getElementById("recommendedGrid").innerHTML = recs.map(card).join("");
+    recSection.style.display = "block";
+  } else {
+    recSection.style.display = "none";
+  }
+
+  recentes = [id, ...recentes.filter(x => x !== id)].slice(0, 10);
+  localStorage.setItem("icp_recentes", JSON.stringify(recentes));
+  
+  render();
+  document.getElementById("playerArea").scrollIntoView({ behavior: "smooth" });
+}
+
+function tocarPromo() {
+  // Toca o primeiro filme do catálogo como propaganda/evento em destaque
+  playMovie(filmes[0].id);
+}
+
+function closePlayer() {
+  somToque();
+  document.getElementById("video").src = "";
+  document.getElementById("playerArea").style.display = "none";
+  document.getElementById("recomendadosSection").style.display = "none";
+}
+
+function toggleFav(event, id) {
+  event.stopPropagation();
+  somToque();
+  favoritos = favoritos.includes(id) ? favoritos.filter(x => x !== id) : [id, ...favoritos];
+  localStorage.setItem("icp_favoritos", JSON.stringify(favoritos));
+  render();
+  aviso(favoritos.includes(id) ? "Adicionado aos Favoritos ♥" : "Removido dos Favoritos");
+}
+
+function irCatalogo() {
+  somToque();
+  document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" });
+}
+
+function mostrarFavoritos() {
+  somToque();
+  document.getElementById("favoritos").scrollIntoView({ behavior: "smooth" });
+}
+
+function aviso(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => el.style.display = "none", 2200);
+}
+
+document.addEventListener("click", e => {
+  if (e.target.closest("button, a") && !e.target.closest(".movie")) somToque();
+});
+
+render();
+</script>
+</body>
+</html>
