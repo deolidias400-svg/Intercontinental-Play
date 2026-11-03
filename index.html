@@ -73,7 +73,6 @@ header {
   overflow-wrap:anywhere;
 }
 .brand small {color:var(--muted);font-size:11px}
-
 nav {
   display:flex;
   gap:8px;
@@ -88,7 +87,6 @@ nav a {
   font-size:13px;
 }
 nav a:hover {background:#263858;color:var(--gold)}
-
 .install-btn,.primary-btn {
   border:0;
   border-radius:22px;
@@ -98,7 +96,6 @@ nav a:hover {background:#263858;color:var(--gold)}
   font-weight:bold;
 }
 .install-btn:hover,.primary-btn:hover {filter:brightness(1.1)}
-
 main {max-width:1400px;margin:auto;padding:22px}
 
 .hero {
@@ -138,7 +135,6 @@ main {max-width:1400px;margin:auto;padding:22px}
   font-weight:bold;
   margin-bottom:12px;
 }
-
 .player-section {margin-top:28px}
 .section-title {
   display:flex;
@@ -149,7 +145,6 @@ main {max-width:1400px;margin:auto;padding:22px}
   margin:25px 0 14px;
 }
 .section-title h2 {margin:0;font-size:22px}
-
 .player-box {
   background:#050812;
   border:1px solid #34466a;
@@ -174,7 +169,6 @@ main {max-width:1400px;margin:auto;padding:22px}
   color:#b9c5dc;
 }
 .play-symbol {font-size:55px;color:var(--gold)}
-
 .player-info {
   padding:15px 18px;
   display:flex;
@@ -213,7 +207,6 @@ main {max-width:1400px;margin:auto;padding:22px}
   outline:none;
 }
 .search-row input:focus {border-color:var(--cyan)}
-
 .filters {display:flex;gap:8px;flex-wrap:wrap}
 .filter-btn {
   padding:9px 15px;
@@ -228,7 +221,6 @@ main {max-width:1400px;margin:auto;padding:22px}
   border-color:var(--gold);
   font-weight:bold;
 }
-
 .catalog {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(min(170px,100%),1fr));
@@ -249,7 +241,6 @@ main {max-width:1400px;margin:auto;padding:22px}
   box-shadow:0 12px 25px #0007;
 }
 .movie-card.selected {border:2px solid var(--cyan)}
-
 .poster {
   aspect-ratio:16/10;
   position:relative;
@@ -284,7 +275,6 @@ main {max-width:1400px;margin:auto;padding:22px}
 }
 .movie-details button:hover {background:#3c5b89}
 .empty {color:var(--muted);padding:25px 0}
-
 .promo {
   margin:30px 0;
   border:1px solid #6a5833;
@@ -299,7 +289,6 @@ main {max-width:1400px;margin:auto;padding:22px}
 }
 .promo h2 {margin:0 0 6px;color:var(--gold)}
 .promo p {margin:0;color:#e0e6f3;line-height:1.5}
-
 footer {
   text-align:center;
   padding:30px 18px;
@@ -347,12 +336,8 @@ footer {
   .player-actions button {flex:1}
 }
 
-/* =========================================
-   ABERTURA CINEMATOGRÁFICA
-========================================= */
-
+/* ABERTURA CINEMATOGRÁFICA */
 body.intro-active {overflow:hidden}
-
 .intro-screen {
   position:fixed;
   inset:0;
@@ -367,7 +352,6 @@ body.intro-active {overflow:hidden}
     linear-gradient(135deg,#050812,#101b35 55%,#090b18);
   transition:opacity 1s ease,visibility 1s ease;
 }
-
 .intro-screen::before,.intro-screen::after {
   content:"";
   position:absolute;
@@ -380,7 +364,6 @@ body.intro-active {overflow:hidden}
   box-shadow:0 0 80px rgba(255,190,80,.08),inset 0 0 80px rgba(50,190,230,.06);
   animation:introOrbit 12s linear infinite;
 }
-
 .intro-screen::after {
   width:82vw;
   height:82vw;
@@ -388,11 +371,7 @@ body.intro-active {overflow:hidden}
   animation-duration:20s;
   border-color:rgba(56,210,232,.12);
 }
-
-@keyframes introOrbit {
-  to {transform:rotate(360deg)}
-}
-
+@keyframes introOrbit {to{transform:rotate(360deg)}}
 .intro-content {
   position:relative;
   z-index:2;
@@ -400,12 +379,10 @@ body.intro-active {overflow:hidden}
   width:min(680px,100%);
   animation:introAppear 1.4s ease both;
 }
-
 @keyframes introAppear {
-  from {opacity:0;transform:translateY(22px) scale(.97)}
-  to {opacity:1;transform:none}
+  from{opacity:0;transform:translateY(22px) scale(.97)}
+  to{opacity:1;transform:none}
 }
-
 .intro-logo {
   width:clamp(100px,20vw,170px);
   height:clamp(100px,20vw,170px);
@@ -414,18 +391,15 @@ body.intro-active {overflow:hidden}
   filter:drop-shadow(0 0 24px rgba(255,193,75,.4));
   animation:introGlow 3s ease-in-out infinite alternate;
 }
-
 @keyframes introGlow {
-  to {filter:drop-shadow(0 0 42px rgba(255,193,75,.8))}
+  to{filter:drop-shadow(0 0 42px rgba(255,193,75,.8))}
 }
-
 .intro-kicker {
   color:#53d9e8;
   letter-spacing:5px;
   font-size:11px;
   font-weight:bold;
 }
-
 .intro-title {
   margin:14px 0 8px;
   font-size:clamp(27px,6vw,55px);
@@ -438,14 +412,12 @@ body.intro-active {overflow:hidden}
   color:transparent;
   text-shadow:0 8px 35px rgba(255,190,70,.12);
 }
-
 .intro-slogan {
   color:#e3e9f6;
   letter-spacing:3px;
   font-size:clamp(11px,2vw,15px);
   margin:12px 0 30px;
 }
-
 .intro-enter {
   border:1px solid rgba(255,225,160,.8);
   border-radius:30px;
@@ -457,12 +429,10 @@ body.intro-active {overflow:hidden}
   box-shadow:0 0 30px rgba(255,190,70,.2);
   transition:.25s;
 }
-
 .intro-enter:hover {
   transform:scale(1.05);
   box-shadow:0 0 45px rgba(255,190,70,.5);
 }
-
 .intro-note {
   display:block;
   margin-top:17px;
@@ -470,13 +440,11 @@ body.intro-active {overflow:hidden}
   font-size:11px;
   letter-spacing:1px;
 }
-
 .intro-screen.leaving {
   opacity:0;
   visibility:hidden;
   pointer-events:none;
 }
-
 .sound-toggle {
   position:absolute;
   z-index:3;
@@ -489,7 +457,6 @@ body.intro-active {overflow:hidden}
   padding:9px 13px;
   font-size:12px;
 }
-
 @media(prefers-reduced-motion:reduce) {
   .intro-screen::before,.intro-screen::after,.intro-logo,.intro-content {
     animation:none;
@@ -505,26 +472,36 @@ body.intro-active {overflow:hidden}
   <button class="sound-toggle" id="soundToggle" type="button">♫ SOM LIGADO</button>
 
   <div class="intro-content">
-    <img class="intro-logo" src="./mascote-intercontinental.png" alt="Intercontinental Play" onerror="this.style.display='none'">
+    <img class="intro-logo"
+         src="./mascote-intercontinental.png"
+         alt="Intercontinental Play"
+         onerror="this.style.display='none'">
 
     <div class="intro-kicker">APRESENTA</div>
 
-    <div class="intro-title">INTERCONTINENTAL<br>PLAY</div>
+    <div class="intro-title">
+      INTERCONTINENTAL<br>PLAY
+    </div>
 
     <div class="intro-slogan">SEU CINEMA. SEU MUNDO.</div>
 
     <button class="intro-enter" id="enterPlay" type="button">
-      ▶ &nbsp; ENTRAR
+      ♫ &nbsp; ATIVAR SOM E ENTRAR
     </button>
 
-    <span class="intro-note">UMA NOVA EXPERIÊNCIA DE ENTRETENIMENTO</span>
+    <span class="intro-note">
+      UMA NOVA EXPERIÊNCIA DE ENTRETENIMENTO
+    </span>
   </div>
 </div>
 
 <header>
   <div class="header-inner">
     <div class="brand">
-      <img src="./mascote-intercontinental.png" alt="Mascote Intercontinental" onerror="this.style.display='none'">
+      <img src="./mascote-intercontinental.png"
+           alt="Mascote Intercontinental"
+           onerror="this.style.display='none'">
+
       <div>
         <h1>INTERCONTINENTAL PLAY</h1>
         <small>ENTROU, CLICOU, ASSISTIU!</small>
@@ -538,7 +515,9 @@ body.intro-active {overflow:hidden}
       <a href="#recentes" id="navRecent">Recentes</a>
     </nav>
 
-    <button class="install-btn" id="installButton">⬇ INSTALAR APP</button>
+    <button class="install-btn" id="installButton">
+      ⬇ INSTALAR APP
+    </button>
   </div>
 </header>
 
@@ -547,28 +526,37 @@ body.intro-active {overflow:hidden}
   <section class="hero">
     <div>
       <span class="hero-tag">SEU CINEMA DIGITAL</span>
+
       <h2>O entretenimento está <span>aqui!</span></h2>
+
       <p>
         Filmes, documentários e produções para assistir diretamente
         no Intercontinental Play. Escolha um título e aproveite!
       </p>
-      <button class="primary-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+
+      <button class="primary-btn"
+        onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
         EXPLORAR CATÁLOGO
       </button>
     </div>
 
-    <img class="hero-mascot" src="./mascote-intercontinental.png"
+    <img class="hero-mascot"
+         src="./mascote-intercontinental.png"
          alt="Mascote Intercontinental Play"
          onerror="this.style.visibility='hidden'">
   </section>
 
   <section class="player-section" id="player">
+
     <div class="section-title">
       <h2>▶ Player Intercontinental</h2>
-      <span style="color:var(--cyan);font-size:12px">ÁREA DE EXIBIÇÃO</span>
+      <span style="color:var(--cyan);font-size:12px">
+        ÁREA DE EXIBIÇÃO
+      </span>
     </div>
 
     <div class="player-box">
+
       <div class="player-screen" id="playerScreen">
         <div class="player-placeholder">
           <div class="play-symbol">▶</div>
@@ -584,10 +572,16 @@ body.intro-active {overflow:hidden}
         </div>
 
         <div class="player-actions">
-          <button class="action-btn" id="favoriteCurrent">♡ Favoritar</button>
-          <button class="action-btn" id="fullscreenButton">⛶ Tela cheia</button>
+          <button class="action-btn" id="favoriteCurrent">
+            ♡ Favoritar
+          </button>
+
+          <button class="action-btn" id="fullscreenButton">
+            ⛶ Tela cheia
+          </button>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -597,7 +591,8 @@ body.intro-active {overflow:hidden}
       <p>Um catálogo em crescimento, com 102 vídeos disponíveis para explorar.</p>
     </div>
 
-    <button class="primary-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+    <button class="primary-btn"
+      onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
       VER CATÁLOGO
     </button>
   </section>
@@ -609,7 +604,8 @@ body.intro-active {overflow:hidden}
     </div>
 
     <div class="search-row">
-      <input id="searchInput" type="search"
+      <input id="searchInput"
+             type="search"
              placeholder="🔎 Pesquisar título ou número..."
              aria-label="Pesquisar no catálogo">
 
@@ -621,7 +617,10 @@ body.intro-active {overflow:hidden}
     </div>
 
     <div class="catalog" id="catalogGrid"></div>
-    <p class="empty" id="emptyMessage" hidden>Nenhum vídeo encontrado.</p>
+
+    <p class="empty" id="emptyMessage" hidden>
+      Nenhum vídeo encontrado.
+    </p>
   </section>
 
   <section id="minhalista"></section>
@@ -643,35 +642,55 @@ body.intro-active {overflow:hidden}
 
 <script>
 
-/* =========================================
+/* ==========================================
    ABERTURA SONORA ORIGINAL
-   Criada pelo navegador, sem arquivo externo
-========================================= */
+   Música sintetizada pelo próprio navegador
+   ========================================== */
 
 let introSoundEnabled = true;
 let introAudioContext = null;
 
 function playIntroSoundtrack() {
+
   if (!introSoundEnabled) return;
 
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
+
   if (!AudioCtx) return;
 
   try {
-    const ctx = new AudioCtx();
-    introAudioContext = ctx;
+
+    introAudioContext = new AudioCtx();
+
+    const ctx = introAudioContext;
 
     if (ctx.state === "suspended") {
-      ctx.resume();
+      ctx.resume().catch(()=>{});
     }
 
     const master = ctx.createGain();
+
     master.gain.setValueAtTime(0.0001,ctx.currentTime);
-    master.gain.exponentialRampToValueAtTime(0.18,ctx.currentTime+0.4);
-    master.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+5.8);
+
+    master.gain.exponentialRampToValueAtTime(
+      0.16,
+      ctx.currentTime+0.35
+    );
+
+    master.gain.setValueAtTime(
+      0.16,
+      ctx.currentTime+3.2
+    );
+
+    master.gain.exponentialRampToValueAtTime(
+      0.0001,
+      ctx.currentTime+5.2
+    );
+
     master.connect(ctx.destination);
 
     const notes = [
+      {f:130.81,t:0,d:2.8,type:"sine",v:.35},
       {f:196.00,t:.25,d:3.1,type:"sine",v:.22},
       {f:261.63,t:.65,d:2.8,type:"triangle",v:.16},
       {f:392.00,t:1.25,d:2.5,type:"sine",v:.12},
@@ -680,26 +699,49 @@ function playIntroSoundtrack() {
     ];
 
     notes.forEach(n=>{
+
       const osc=ctx.createOscillator();
       const gain=ctx.createGain();
 
       osc.type=n.type;
-      osc.frequency.setValueAtTime(n.f,ctx.currentTime+n.t);
 
-      gain.gain.setValueAtTime(.0001,ctx.currentTime+n.t);
-      gain.gain.exponentialRampToValueAtTime(n.v,ctx.currentTime+n.t+.18);
-      gain.gain.setValueAtTime(n.v,ctx.currentTime+n.t+n.d-.35);
-      gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+n.t+n.d);
+      osc.frequency.setValueAtTime(
+        n.f,
+        ctx.currentTime+n.t
+      );
+
+      gain.gain.setValueAtTime(
+        .0001,
+        ctx.currentTime+n.t
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        n.v,
+        ctx.currentTime+n.t+.18
+      );
+
+      gain.gain.setValueAtTime(
+        n.v,
+        ctx.currentTime+n.t+n.d-.35
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        .0001,
+        ctx.currentTime+n.t+n.d
+      );
 
       osc.connect(gain);
       gain.connect(master);
 
       osc.start(ctx.currentTime+n.t);
       osc.stop(ctx.currentTime+n.t+n.d);
+
     });
 
-    // Brilho final suave, como assinatura sonora de cinema.
+    /* Brilho final da assinatura sonora */
+
     [783.99,1046.5].forEach((freq,i)=>{
+
       const osc=ctx.createOscillator();
       const gain=ctx.createGain();
 
@@ -709,18 +751,29 @@ function playIntroSoundtrack() {
       const start=ctx.currentTime+3.55+i*.12;
 
       gain.gain.setValueAtTime(.0001,start);
-      gain.gain.exponentialRampToValueAtTime(.055,start+.12);
-      gain.gain.exponentialRampToValueAtTime(.0001,start+1.25);
+
+      gain.gain.exponentialRampToValueAtTime(
+        .055,
+        start+.12
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        .0001,
+        start+1.25
+      );
 
       osc.connect(gain);
       gain.connect(master);
 
       osc.start(start);
       osc.stop(start+1.3);
+
     });
 
     setTimeout(()=>{
-      if(ctx.state!=="closed") ctx.close().catch(()=>{});
+      if(ctx.state!=="closed") {
+        ctx.close().catch(()=>{});
+      }
     },6500);
 
   } catch(err) {
@@ -728,32 +781,65 @@ function playIntroSoundtrack() {
   }
 }
 
+let introIsPlaying = false;
+
 function enterStreaming() {
-  const intro=document.getElementById("introScreen");
+
+  if (introIsPlaying) return;
+
+  introIsPlaying = true;
+
+  const intro = document.getElementById("introScreen");
+  const enterButton = document.getElementById("enterPlay");
+
+  enterButton.disabled = true;
+
+  enterButton.textContent = introSoundEnabled
+    ? "♫ TOCANDO VINHETA..."
+    : "▶ ENTRANDO...";
+
+  enterButton.style.opacity = ".8";
+  enterButton.style.cursor = "wait";
+
+  /* A vinheta começa após o clique */
 
   playIntroSoundtrack();
 
-  intro.classList.add("leaving");
-  document.body.classList.remove("intro-active");
+  const waitTime = introSoundEnabled ? 5500 : 250;
 
-  setTimeout(()=>intro.remove(),1100);
+  setTimeout(() => {
+
+    intro.classList.add("leaving");
+
+    document.body.classList.remove("intro-active");
+
+    setTimeout(() => intro.remove(),1100);
+
+  },waitTime);
 }
 
-document.getElementById("enterPlay").addEventListener("click",enterStreaming);
+document.getElementById("enterPlay")
+  .addEventListener("click",enterStreaming);
 
-document.getElementById("soundToggle").addEventListener("click",()=>{
-  introSoundEnabled=!introSoundEnabled;
+document.getElementById("soundToggle")
+  .addEventListener("click",()=>{
 
-  document.getElementById("soundToggle").textContent=
-    introSoundEnabled ? "♫ SOM LIGADO" : "♫ SOM DESLIGADO";
-});
+    introSoundEnabled=!introSoundEnabled;
+
+    document.getElementById("soundToggle").textContent =
+      introSoundEnabled
+        ? "♫ SOM LIGADO"
+        : "♫ SOM DESLIGADO";
+
+  });
 
 
-/* =========================================
+/* ==========================================
    CATÁLOGO — 102 VÍDEOS
-========================================= */
+   ========================================== */
 
 const videoIds = [
+
   "KSA8LJBcuBw", "cez-y17Uppc", "QmiE91_ah0M", "-50azQcgQcU", "yf0Ri0mWBkE",
   "27eKL7NsD6k", "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
   "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
@@ -775,16 +861,32 @@ const videoIds = [
   "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk", "-dgoUnvq_Ms", "fUtAamtCBew",
   "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU", "it3LSaCmJ2c", "RfL2OW8ez6c",
   "0kMJW7jT8Tg", "v_dbp_iTOqM"
+
 ];
 
 const movies = videoIds.map((id,index)=>({
+
   id,
+
   title:`Filme ${String(index+1).padStart(2,"0")}`,
+
   number:index+1
+
 }));
 
-let favorites = JSON.parse(localStorage.getItem("icp_favorites") || "[]");
-let recent = JSON.parse(localStorage.getItem("icp_recent") || "[]");
+
+/* ==========================================
+   FAVORITOS E HISTÓRICO
+   ========================================== */
+
+let favorites = JSON.parse(
+  localStorage.getItem("icp_favorites") || "[]"
+);
+
+let recent = JSON.parse(
+  localStorage.getItem("icp_recent") || "[]"
+);
+
 let currentId = null;
 let activeFilter = "all";
 
@@ -793,16 +895,23 @@ const search = document.getElementById("searchInput");
 const emptyMessage = document.getElementById("emptyMessage");
 
 
-/* =========================================
-   FAVORITOS E HISTÓRICO
-========================================= */
-
 function saveData(){
-  localStorage.setItem("icp_favorites",JSON.stringify(favorites));
-  localStorage.setItem("icp_recent",JSON.stringify(recent));
+
+  localStorage.setItem(
+    "icp_favorites",
+    JSON.stringify(favorites)
+  );
+
+  localStorage.setItem(
+    "icp_recent",
+    JSON.stringify(recent)
+  );
+
 }
 
+
 function toast(message){
+
   const el=document.getElementById("toast");
 
   el.textContent=message;
@@ -813,94 +922,116 @@ function toast(message){
   window.toastTimer=setTimeout(()=>{
     el.style.display="none";
   },2600);
+
 }
 
 
-/* =========================================
-   MONTAGEM DO CATÁLOGO
-========================================= */
+/* ==========================================
+   DESENHO DO CATÁLOGO
+   ========================================== */
 
 function render(){
+
   const term=search.value.trim().toLowerCase();
 
   let list=movies.filter(movie=>{
 
-    if(activeFilter==="favorites" && !favorites.includes(movie.id)) {
-      return false;
-    }
+    if(
+      activeFilter==="favorites" &&
+      !favorites.includes(movie.id)
+    ) return false;
 
-    if(activeFilter==="recent" && !recent.includes(movie.id)) {
-      return false;
-    }
+    if(
+      activeFilter==="recent" &&
+      !recent.includes(movie.id)
+    ) return false;
 
     return movie.title.toLowerCase().includes(term) ||
       String(movie.number).includes(term) ||
       movie.id.toLowerCase().includes(term);
+
   });
 
   grid.innerHTML="";
 
-  document.getElementById("catalogCount").textContent=
+  document.getElementById("catalogCount").textContent =
     `${list.length} de ${movies.length} vídeos`;
 
   list.forEach(movie=>{
 
     const card=document.createElement("article");
 
-    card.className="movie-card"+(movie.id===currentId?" selected":"");
+    card.className =
+      "movie-card" +
+      (movie.id===currentId?" selected":"");
 
     card.innerHTML=`
+
       <div class="poster">
+
         <img
           src="https://img.youtube.com/vi/${movie.id}/hqdefault.jpg"
           alt="${movie.title}"
           loading="lazy"
-          onerror="this.src='https://img.youtube.com/vi/${movie.id}/mqdefault.jpg'">
+          onerror="this.src='https://img.youtube.com/vi/${movie.id}/mqdefault.jpg'"
+        >
 
         <span class="poster-number">
           #${String(movie.number).padStart(2,"0")}
         </span>
+
       </div>
 
       <div class="movie-details">
+
         <h3>${movie.title}</h3>
 
         <button type="button" class="watch-button">
           ▶ ASSISTIR
         </button>
 
-        <button type="button" class="heart-button" aria-label="Favoritar">
+        <button
+          type="button"
+          class="heart-button"
+          aria-label="Favoritar">
           ${favorites.includes(movie.id)?"♥":"♡"}
         </button>
+
       </div>
+
     `;
 
-    card.querySelector(".watch-button").addEventListener("click",()=>{
-      playMovie(movie.id);
-    });
+    card.querySelector(".watch-button")
+      .addEventListener("click",()=>{
+        playMovie(movie.id);
+      });
 
-    card.querySelector(".heart-button").addEventListener("click",()=>{
-      toggleFavorite(movie.id);
-    });
+    card.querySelector(".heart-button")
+      .addEventListener("click",()=>{
+        toggleFavorite(movie.id);
+      });
 
     card.addEventListener("dblclick",()=>{
       playMovie(movie.id);
     });
 
     grid.appendChild(card);
+
   });
 
   emptyMessage.hidden=list.length!==0;
+
 }
 
 
-/* =========================================
-   REPRODUÇÃO
-========================================= */
+/* ==========================================
+   REPRODUÇÃO DOS VÍDEOS
+   ========================================== */
 
 function playMovie(id){
 
   const movie=movies.find(item=>item.id===id);
+
   if(!movie)return;
 
   currentId=id;
@@ -913,161 +1044,209 @@ function playMovie(id){
   saveData();
 
   document.getElementById("playerScreen").innerHTML=`
+
     <iframe
+
       src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
+
       title="${movie.title}"
+
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
       referrerpolicy="strict-origin-when-cross-origin"
+
       allowfullscreen>
+
     </iframe>
+
   `;
 
   document.getElementById("nowPlaying").textContent=movie.title;
 
-  document.getElementById("playerStatus").textContent=
+  document.getElementById("playerStatus").textContent =
     "Reprodução selecionada no catálogo.";
 
   updateFavoriteButton();
+
   render();
 
-  document.getElementById("player").scrollIntoView({
-    behavior:"smooth"
-  });
+  document.getElementById("player")
+    .scrollIntoView({behavior:"smooth"});
+
 }
 
 
-/* =========================================
-   CONTROLE DE FAVORITOS
-========================================= */
+/* ==========================================
+   SISTEMA DE FAVORITOS
+   ========================================== */
 
 function toggleFavorite(id){
 
   if(favorites.includes(id)){
 
     favorites=favorites.filter(item=>item!==id);
+
     toast("Removido da sua lista.");
 
-  } else {
+  }else{
 
     favorites.push(id);
+
     toast("Adicionado à sua lista!");
 
   }
 
   saveData();
+
   updateFavoriteButton();
+
   render();
+
 }
+
 
 function updateFavoriteButton(){
 
   const button=document.getElementById("favoriteCurrent");
 
   if(!currentId){
+
     button.textContent="♡ Favoritar";
+
     return;
+
   }
 
-  button.textContent=
-    favorites.includes(currentId) ? "♥ Favoritado" : "♡ Favoritar";
+  button.textContent =
+    favorites.includes(currentId)
+      ? "♥ Favoritado"
+      : "♡ Favoritar";
+
 }
 
-document.getElementById("favoriteCurrent").addEventListener("click",()=>{
 
-  if(currentId) {
-    toggleFavorite(currentId);
-  } else {
-    toast("Escolha um vídeo primeiro.");
-  }
+document.getElementById("favoriteCurrent")
+  .addEventListener("click",()=>{
 
-});
+    if(currentId) {
 
+      toggleFavorite(currentId);
 
-/* =========================================
-   TELA CHEIA
-========================================= */
-
-document.getElementById("fullscreenButton").addEventListener("click",()=>{
-
-  const frame=document.querySelector("#playerScreen iframe");
-
-  if(frame){
-
-    if(frame.requestFullscreen) {
-      frame.requestFullscreen();
     } else {
-      toast("Tela cheia não disponível neste navegador.");
+
+      toast("Escolha um vídeo primeiro.");
+
     }
 
-  } else {
-
-    toast("Escolha um vídeo primeiro.");
-
-  }
-
-});
+  });
 
 
-/* =========================================
+/* ==========================================
+   TELA CHEIA
+   ========================================== */
+
+document.getElementById("fullscreenButton")
+  .addEventListener("click",()=>{
+
+    const frame=document.querySelector("#playerScreen iframe");
+
+    if(frame){
+
+      if(frame.requestFullscreen){
+
+        frame.requestFullscreen();
+
+      }else{
+
+        toast("Tela cheia não disponível neste navegador.");
+
+      }
+
+    }else{
+
+      toast("Escolha um vídeo primeiro.");
+
+    }
+
+  });
+
+
+/* ==========================================
    PESQUISA E FILTROS
-========================================= */
+   ========================================== */
 
 search.addEventListener("input",render);
 
-document.querySelectorAll(".filter-btn").forEach(button=>{
+document.querySelectorAll(".filter-btn")
+  .forEach(button=>{
 
-  button.addEventListener("click",()=>{
+    button.addEventListener("click",()=>{
 
-    document.querySelectorAll(".filter-btn").forEach(b=>{
-      b.classList.remove("active");
+      document.querySelectorAll(".filter-btn")
+        .forEach(b=>b.classList.remove("active"));
+
+      button.classList.add("active");
+
+      activeFilter=button.dataset.filter;
+
+      render();
+
     });
 
-    button.classList.add("active");
+  });
 
-    activeFilter=button.dataset.filter;
+
+document.getElementById("navFavorites")
+  .addEventListener("click",()=>{
+
+    activeFilter="favorites";
+
+    updateFilters();
 
     render();
 
   });
 
-});
 
-document.getElementById("navFavorites").addEventListener("click",()=>{
+document.getElementById("navRecent")
+  .addEventListener("click",()=>{
 
-  activeFilter="favorites";
-  updateFilters();
-  render();
+    activeFilter="recent";
 
-});
+    updateFilters();
 
-document.getElementById("navRecent").addEventListener("click",()=>{
+    render();
 
-  activeFilter="recent";
-  updateFilters();
-  render();
+  });
 
-});
 
 function updateFilters(){
 
-  document.querySelectorAll(".filter-btn").forEach(button=>{
+  document.querySelectorAll(".filter-btn")
+    .forEach(button=>{
 
-    button.classList.toggle(
-      "active",
-      button.dataset.filter===activeFilter
-    );
+      button.classList.toggle(
+        "active",
+        button.dataset.filter===activeFilter
+      );
 
-  });
+    });
 
 }
 
 
-/* =========================================
-   INSTALAÇÃO DO APLICATIVO
-========================================= */
+/* ==========================================
+   INICIALIZAÇÃO
+   ========================================== */
 
 render();
+
 updateFavoriteButton();
+
+
+/* ==========================================
+   INSTALAÇÃO DO APLICATIVO
+   ========================================== */
 
 let installPrompt=null;
 
@@ -1083,6 +1262,7 @@ window.addEventListener("beforeinstallprompt",event=>{
 
 });
 
+
 installButton.addEventListener("click",async()=>{
 
   if(installPrompt){
@@ -1091,23 +1271,30 @@ installButton.addEventListener("click",async()=>{
 
     const result=await installPrompt.userChoice;
 
-    if(result.outcome==="accepted") {
+    if(result.outcome==="accepted"){
+
       toast("Instalação iniciada!");
+
     }
 
     installPrompt=null;
 
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+  }else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
 
-    toast("No Safari: toque em Compartilhar e depois em Adicionar à Tela de Início.");
+    toast(
+      "No Safari: toque em Compartilhar e depois em Adicionar à Tela de Início."
+    );
 
-  } else {
+  }else{
 
-    toast("Procure a opção Instalar aplicativo ou Adicionar à tela inicial no menu do navegador.");
+    toast(
+      "Procure a opção Instalar aplicativo ou Adicionar à tela inicial no menu do navegador."
+    );
 
   }
 
 });
+
 
 window.addEventListener("appinstalled",()=>{
 
@@ -1118,21 +1305,28 @@ window.addEventListener("appinstalled",()=>{
 });
 
 
-/* =========================================
+/* ==========================================
    SERVICE WORKER
-========================================= */
+   ========================================== */
 
-if("serviceWorker" in navigator && location.protocol.startsWith("http")){
+if(
+  "serviceWorker" in navigator &&
+  location.protocol.startsWith("http")
+){
 
   window.addEventListener("load",()=>{
 
     navigator.serviceWorker.register("./service-worker.js")
-      .catch(error=>console.log("Service Worker:",error));
+
+      .catch(error=>{
+        console.log("Service Worker:",error);
+      });
 
   });
 
 }
 
 </script>
+
 </body>
 </html>
