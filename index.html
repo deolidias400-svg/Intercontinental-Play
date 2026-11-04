@@ -336,12 +336,8 @@ footer {
   .player-actions button {flex:1}
 }
 
-/* ==========================================
-   ABERTURA MÁGICA INTERCONTINENTAL
-   ========================================== */
-
+/* ABERTURA CINEMATOGRÁFICA */
 body.intro-active {overflow:hidden}
-
 .intro-screen {
   position:fixed;
   inset:0;
@@ -351,320 +347,119 @@ body.intro-active {overflow:hidden}
   justify-content:center;
   overflow:hidden;
   padding:24px;
-  isolation:isolate;
-  background:radial-gradient(
-    ellipse at 50% 48%,
-    #263d70 0%,
-    #111b39 38%,
-    #070b19 78%
-  );
-  transition:opacity 1.15s ease,visibility 1.15s ease;
+  background:
+    radial-gradient(ellipse at 50% 45%,rgba(41,74,125,.58),transparent 48%),
+    linear-gradient(135deg,#050812,#101b35 55%,#090b18);
+  transition:opacity 1s ease,visibility 1s ease;
 }
-
-.intro-screen:before {
+.intro-screen::before,.intro-screen::after {
   content:"";
   position:absolute;
-  inset:-35%;
-  z-index:-3;
-  background:conic-gradient(
-    from 0deg,
-    transparent 0 13%,
-    rgba(44,220,232,.18) 19%,
-    transparent 27%,
-    rgba(166,83,255,.19) 38%,
-    transparent 48%,
-    rgba(255,193,75,.2) 61%,
-    transparent 72%,
-    rgba(50,119,255,.2) 85%,
-    transparent 96%
-  );
-  filter:blur(42px);
-  animation:auroraSpin 24s linear infinite;
-}
-
-.intro-screen:after {
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-2;
-  pointer-events:none;
-  background:radial-gradient(
-    ellipse at 50% 50%,
-    transparent 28%,
-    rgba(2,5,15,.78) 100%
-  );
-}
-
-@keyframes auroraSpin {
-  to {transform:rotate(360deg) scale(1.08)}
-}
-
-.intro-ribbon {
-  position:absolute;
-  width:75vw;
-  height:75vw;
-  max-width:900px;
-  max-height:900px;
-  border:1px solid rgba(92,220,255,.22);
+  width:65vw;
+  height:65vw;
+  max-width:700px;
+  max-height:700px;
+  border:1px solid rgba(255,205,105,.18);
   border-radius:50%;
-  box-shadow:
-    0 0 45px rgba(49,196,255,.12),
-    inset 0 0 55px rgba(177,89,255,.12);
-  animation:ribbonOrbit 18s linear infinite;
-  pointer-events:none;
+  box-shadow:0 0 80px rgba(255,190,80,.08),inset 0 0 80px rgba(50,190,230,.06);
+  animation:introOrbit 12s linear infinite;
 }
-.intro-ribbon.r2 {
-  width:92vw;
-  height:55vw;
-  border-color:rgba(255,202,103,.22);
-  transform:rotateX(68deg);
-  animation-duration:23s;
+.intro-screen::after {
+  width:82vw;
+  height:82vw;
   animation-direction:reverse;
+  animation-duration:20s;
+  border-color:rgba(56,210,232,.12);
 }
-.intro-ribbon.r3 {
-  width:55vw;
-  height:92vw;
-  border-color:rgba(190,112,255,.2);
-  transform:rotateY(68deg);
-  animation-duration:28s;
-}
-@keyframes ribbonOrbit {to {rotate:360deg}}
-
-.intro-beam {
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:2px;
-  height:75vh;
-  transform-origin:50% 0;
-  opacity:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(255,223,145,0),
-    rgba(255,223,145,.5),
-    rgba(67,214,255,0)
-  );
-  filter:blur(2px);
-  animation:beamSweep 7s ease-in-out infinite;
-}
-.intro-beam.b2 {
-  transform:rotate(65deg);
-  animation-delay:1.8s;
-  background:linear-gradient(to bottom,transparent,rgba(178,111,255,.5),transparent);
-}
-.intro-beam.b3 {
-  transform:rotate(-65deg);
-  animation-delay:3.5s;
-  background:linear-gradient(to bottom,transparent,rgba(67,225,218,.45),transparent);
-}
-@keyframes beamSweep {
-  0%,100% {opacity:0;scale:1 .5}
-  45% {opacity:.8;scale:1 1.2}
-}
-
-.intro-sparkles {
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-}
-.intro-sparkles i {
-  position:absolute;
-  left:var(--x);
-  top:110%;
-  width:var(--s);
-  height:var(--s);
-  border-radius:50%;
-  background:var(--c);
-  box-shadow:0 0 12px 2px var(--c);
-  opacity:0;
-  animation:sparkRise var(--d) linear var(--delay) infinite;
-}
-@keyframes sparkRise {
-  0% {transform:translate3d(0,0,0) scale(.3);opacity:0}
-  12% {opacity:.9}
-  85% {opacity:.75}
-  100% {transform:translate3d(var(--drift),-120vh,0) scale(1.2);opacity:0}
-}
-
+@keyframes introOrbit {to{transform:rotate(360deg)}}
 .intro-content {
   position:relative;
   z-index:2;
   text-align:center;
-  width:min(720px,100%);
-  animation:introReveal 1.5s cubic-bezier(.18,.78,.2,1) both;
+  width:min(680px,100%);
+  animation:introAppear 1.4s ease both;
 }
-@keyframes introReveal {
-  from {opacity:0;transform:translateY(32px) scale(.88);filter:blur(8px)}
-  to {opacity:1;transform:none;filter:blur(0)}
+@keyframes introAppear {
+  from{opacity:0;transform:translateY(22px) scale(.97)}
+  to{opacity:1;transform:none}
 }
-
-.intro-logo-wrap {
-  position:relative;
-  width:clamp(112px,21vw,178px);
-  height:clamp(112px,21vw,178px);
-  margin:0 auto 18px;
-}
-.intro-logo-wrap:before,
-.intro-logo-wrap:after {
-  content:"";
-  position:absolute;
-  inset:-12px;
-  border:1px solid rgba(255,207,112,.55);
-  border-radius:50%;
-  box-shadow:0 0 25px rgba(255,196,75,.22);
-  animation:logoHalo 3.4s ease-in-out infinite;
-}
-.intro-logo-wrap:after {
-  inset:-23px;
-  border-color:rgba(74,220,255,.32);
-  animation-delay:1.2s;
-}
-@keyframes logoHalo {
-  0%,100% {transform:scale(.92);opacity:.35}
-  50% {transform:scale(1.08);opacity:1}
-}
-
 .intro-logo {
-  position:relative;
-  z-index:1;
-  width:100%;
-  height:100%;
+  width:clamp(100px,20vw,170px);
+  height:clamp(100px,20vw,170px);
   object-fit:contain;
-  filter:drop-shadow(0 0 18px rgba(255,193,75,.6));
-  animation:mascotFloat 4s ease-in-out infinite;
+  margin:0 auto 20px;
+  filter:drop-shadow(0 0 24px rgba(255,193,75,.4));
+  animation:introGlow 3s ease-in-out infinite alternate;
 }
-@keyframes mascotFloat {
-  0%,100% {transform:translateY(0) rotate(-1deg)}
-  50% {transform:translateY(-10px) rotate(1deg)}
+@keyframes introGlow {
+  to{filter:drop-shadow(0 0 42px rgba(255,193,75,.8))}
 }
-
 .intro-kicker {
-  color:#73e8f5;
-  letter-spacing:7px;
+  color:#53d9e8;
+  letter-spacing:5px;
   font-size:11px;
   font-weight:bold;
-  text-shadow:0 0 18px #39d8e8;
 }
-
 .intro-title {
-  position:relative;
-  margin:13px 0 8px;
-  font-size:clamp(29px,6.5vw,61px);
-  line-height:1.02;
-  letter-spacing:clamp(1px,.65vw,6px);
-  font-weight:950;
-  background:linear-gradient(
-    105deg,
-    #fff8db 4%,
-    #ffc85a 27%,
-    #fff3bf 44%,
-    #72eaff 62%,
-    #d5a0ff 78%,
-    #fff0bf 95%
-  );
-  background-size:240% auto;
+  margin:14px 0 8px;
+  font-size:clamp(27px,6vw,55px);
+  line-height:1.05;
+  letter-spacing:clamp(1px,.6vw,5px);
+  font-weight:900;
+  background:linear-gradient(100deg,#fff0b8,#ffc857 45%,#fff8df);
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-  animation:titleShimmer 5s linear infinite;
-  filter:drop-shadow(0 8px 24px rgba(255,190,70,.2));
+  text-shadow:0 8px 35px rgba(255,190,70,.12);
 }
-@keyframes titleShimmer {
-  to {background-position:240% center}
-}
-
 .intro-slogan {
-  color:#f1f4ff;
-  letter-spacing:4px;
+  color:#e3e9f6;
+  letter-spacing:3px;
   font-size:clamp(11px,2vw,15px);
-  margin:13px 0 29px;
-  text-shadow:0 0 18px rgba(90,194,255,.45);
+  margin:12px 0 30px;
 }
-
 .intro-enter {
-  position:relative;
-  overflow:hidden;
-  border:1px solid rgba(255,239,190,.95);
-  border-radius:32px;
-  padding:15px 34px;
-  background:linear-gradient(105deg,#fff0b4,#ffc34f 42%,#6ee4ed 100%);
+  border:1px solid rgba(255,225,160,.8);
+  border-radius:30px;
+  padding:14px 35px;
+  background:linear-gradient(110deg,#ffe19a,#d99a35);
   color:#111a2d;
-  font-weight:950;
-  letter-spacing:1.7px;
-  box-shadow:
-    0 0 22px rgba(255,194,79,.35),
-    0 0 50px rgba(70,199,255,.12);
-  transition:transform .25s,box-shadow .25s;
-}
-.intro-enter:before {
-  content:"";
-  position:absolute;
-  top:-80%;
-  left:-45%;
-  width:28%;
-  height:260%;
-  transform:rotate(25deg);
-  background:#fff9;
-  filter:blur(5px);
-  animation:buttonShine 3.4s ease-in-out infinite;
-}
-@keyframes buttonShine {
-  0%,35% {left:-45%}
-  75%,100% {left:130%}
+  font-weight:900;
+  letter-spacing:2px;
+  box-shadow:0 0 30px rgba(255,190,70,.2);
+  transition:.25s;
 }
 .intro-enter:hover {
-  transform:translateY(-3px) scale(1.04);
-  box-shadow:
-    0 0 34px rgba(255,194,79,.55),
-    0 0 65px rgba(70,199,255,.22);
+  transform:scale(1.05);
+  box-shadow:0 0 45px rgba(255,190,70,.5);
 }
-
 .intro-note {
   display:block;
   margin-top:17px;
-  color:#bdcbe5;
-  font-size:10px;
-  letter-spacing:2px;
+  color:#aab8d2;
+  font-size:11px;
+  letter-spacing:1px;
 }
 .intro-screen.leaving {
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-  transform:scale(1.035);
 }
 .sound-toggle {
   position:absolute;
-  z-index:4;
+  z-index:3;
   right:20px;
   top:20px;
-  border:1px solid #7185a8;
+  border:1px solid #465778;
   background:#111a2dcc;
   color:#eaf0ff;
   border-radius:25px;
   padding:9px 13px;
   font-size:12px;
 }
-
-@media(max-width:600px) {
-  .intro-ribbon {width:110vw;height:110vw}
-  .intro-ribbon.r2 {width:120vw;height:75vw}
-  .intro-kicker {letter-spacing:5px}
-  .intro-slogan {letter-spacing:2px}
-  .intro-enter {padding:14px 23px;font-size:12px}
-}
 @media(prefers-reduced-motion:reduce) {
-  .intro-screen:before,
-  .intro-ribbon,
-  .intro-beam,
-  .intro-sparkles i,
-  .intro-logo-wrap:before,
-  .intro-logo-wrap:after,
-  .intro-logo,
-  .intro-content,
-  .intro-title,
-  .intro-enter:before {
-    animation:none!important;
+  .intro-screen::before,.intro-screen::after,.intro-logo,.intro-content {
+    animation:none;
   }
 }
 </style>
@@ -672,33 +467,15 @@ body.intro-active {overflow:hidden}
 
 <body class="intro-active">
 
-<!-- ABERTURA CINEMATOGRÁFICA -->
+<!-- TELA DE ABERTURA -->
 <div class="intro-screen" id="introScreen" aria-label="Abertura do Intercontinental Play">
-
-  <div class="intro-ribbon"></div>
-  <div class="intro-ribbon r2"></div>
-  <div class="intro-ribbon r3"></div>
-
-  <div class="intro-beam"></div>
-  <div class="intro-beam b2"></div>
-  <div class="intro-beam b3"></div>
-
-  <div class="intro-sparkles" id="introSparkles" aria-hidden="true"></div>
-
-  <button class="sound-toggle" id="soundToggle" type="button">
-    ♫ SOM LIGADO
-  </button>
+  <button class="sound-toggle" id="soundToggle" type="button">♫ SOM LIGADO</button>
 
   <div class="intro-content">
-
-    <div class="intro-logo-wrap">
-      <img
-        class="intro-logo"
-        src="./mascote-intercontinental.png"
-        alt="Intercontinental Play"
-        onerror="this.style.display='none'"
-      >
-    </div>
+    <img class="intro-logo"
+         src="./mascote-intercontinental.png"
+         alt="Intercontinental Play"
+         onerror="this.style.display='none'">
 
     <div class="intro-kicker">APRESENTA</div>
 
@@ -706,9 +483,7 @@ body.intro-active {overflow:hidden}
       INTERCONTINENTAL<br>PLAY
     </div>
 
-    <div class="intro-slogan">
-      SEU CINEMA. SEU MUNDO.
-    </div>
+    <div class="intro-slogan">SEU CINEMA. SEU MUNDO.</div>
 
     <button class="intro-enter" id="enterPlay" type="button">
       ♫ &nbsp; ATIVAR SOM E ENTRAR
@@ -717,19 +492,15 @@ body.intro-active {overflow:hidden}
     <span class="intro-note">
       UMA NOVA EXPERIÊNCIA DE ENTRETENIMENTO
     </span>
-
   </div>
 </div>
 
 <header>
   <div class="header-inner">
-
     <div class="brand">
-      <img
-        src="./mascote-intercontinental.png"
-        alt="Mascote Intercontinental"
-        onerror="this.style.display='none'"
-      >
+      <img src="./mascote-intercontinental.png"
+           alt="Mascote Intercontinental"
+           onerror="this.style.display='none'">
 
       <div>
         <h1>INTERCONTINENTAL PLAY</h1>
@@ -747,41 +518,32 @@ body.intro-active {overflow:hidden}
     <button class="install-btn" id="installButton">
       ⬇ INSTALAR APP
     </button>
-
   </div>
 </header>
 
 <main id="inicio">
 
   <section class="hero">
-
     <div>
       <span class="hero-tag">SEU CINEMA DIGITAL</span>
 
-      <h2>
-        O entretenimento está <span>aqui!</span>
-      </h2>
+      <h2>O entretenimento está <span>aqui!</span></h2>
 
       <p>
         Filmes, documentários e produções para assistir diretamente
         no Intercontinental Play. Escolha um título e aproveite!
       </p>
 
-      <button
-        class="primary-btn"
-        onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})"
-      >
+      <button class="primary-btn"
+        onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
         EXPLORAR CATÁLOGO
       </button>
     </div>
 
-    <img
-      class="hero-mascot"
-      src="./mascote-intercontinental.png"
-      alt="Mascote Intercontinental Play"
-      onerror="this.style.visibility='hidden'"
-    >
-
+    <img class="hero-mascot"
+         src="./mascote-intercontinental.png"
+         alt="Mascote Intercontinental Play"
+         onerror="this.style.visibility='hidden'">
   </section>
 
   <section class="player-section" id="player">
@@ -804,7 +566,6 @@ body.intro-active {overflow:hidden}
       </div>
 
       <div class="player-info">
-
         <div>
           <h3 id="nowPlaying">Nenhum título selecionado</h3>
           <p id="playerStatus">Selecione um título no catálogo abaixo.</p>
@@ -819,49 +580,40 @@ body.intro-active {overflow:hidden}
             ⛶ Tela cheia
           </button>
         </div>
-
       </div>
+
     </div>
   </section>
 
   <section class="promo">
-
     <div>
       <h2>INTERCONTINENTAL PLAY</h2>
       <p>Um catálogo em crescimento, com 102 vídeos disponíveis para explorar.</p>
     </div>
 
-    <button
-      class="primary-btn"
-      onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})"
-    >
+    <button class="primary-btn"
+      onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
       VER CATÁLOGO
     </button>
-
   </section>
 
   <section id="catalogo">
-
     <div class="section-title">
       <h2>🎬 Catálogo de vídeos</h2>
       <span id="catalogCount" style="color:var(--muted);font-size:13px"></span>
     </div>
 
     <div class="search-row">
-
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="🔎 Pesquisar título ou número..."
-        aria-label="Pesquisar no catálogo"
-      >
+      <input id="searchInput"
+             type="search"
+             placeholder="🔎 Pesquisar título ou número..."
+             aria-label="Pesquisar no catálogo">
 
       <div class="filters">
         <button class="filter-btn active" data-filter="all">Todos</button>
         <button class="filter-btn" data-filter="favorites">Minha lista</button>
         <button class="filter-btn" data-filter="recent">Recentes</button>
       </div>
-
     </div>
 
     <div class="catalog" id="catalogGrid"></div>
@@ -869,7 +621,6 @@ body.intro-active {overflow:hidden}
     <p class="empty" id="emptyMessage" hidden>
       Nenhum vídeo encontrado.
     </p>
-
   </section>
 
   <section id="minhalista"></section>
@@ -892,96 +643,59 @@ body.intro-active {overflow:hidden}
 <script>
 
 /* ==========================================
-   PARTÍCULAS COLORIDAS DA ABERTURA
+   ABERTURA SONORA ORIGINAL
+   Música sintetizada pelo próprio navegador
    ========================================== */
 
-(function createIntroSparkles(){
+let introSoundEnabled = true;
+let introAudioContext = null;
 
-  const layer=document.getElementById("introSparkles");
+function playIntroSoundtrack() {
 
-  if(!layer) return;
+  if (!introSoundEnabled) return;
 
-  const colors=[
-    "#ffe29a",
-    "#63e8f4",
-    "#c99aff",
-    "#ffffff",
-    "#ffb86b"
-  ];
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
 
-  for(let i=0;i<42;i++){
+  if (!AudioCtx) return;
 
-    const dot=document.createElement("i");
+  try {
 
-    dot.style.setProperty("--x",(Math.random()*100)+"%");
-    dot.style.setProperty("--s",(2+Math.random()*4)+"px");
-    dot.style.setProperty("--c",colors[i%colors.length]);
-    dot.style.setProperty("--d",(7+Math.random()*9)+"s");
-    dot.style.setProperty("--delay",(-Math.random()*15)+"s");
-    dot.style.setProperty("--drift",((Math.random()-.5)*180)+"px");
+    introAudioContext = new AudioCtx();
 
-    layer.appendChild(dot);
+    const ctx = introAudioContext;
 
-  }
-
-})();
-
-
-/* ==========================================
-   VINHETA SONORA ORIGINAL
-   ========================================== */
-
-let introSoundEnabled=true;
-let introAudioContext=null;
-
-function playIntroSoundtrack(){
-
-  if(!introSoundEnabled) return;
-
-  const AudioCtx=window.AudioContext||window.webkitAudioContext;
-
-  if(!AudioCtx) return;
-
-  try{
-
-    introAudioContext=new AudioCtx();
-
-    const ctx=introAudioContext;
-
-    if(ctx.state==="suspended"){
+    if (ctx.state === "suspended") {
       ctx.resume().catch(()=>{});
     }
 
-    const master=ctx.createGain();
+    const master = ctx.createGain();
 
-    master.gain.setValueAtTime(.0001,ctx.currentTime);
+    master.gain.setValueAtTime(0.0001,ctx.currentTime);
 
     master.gain.exponentialRampToValueAtTime(
-      .16,
-      ctx.currentTime+.35
+      0.16,
+      ctx.currentTime+0.35
     );
 
     master.gain.setValueAtTime(
-      .16,
+      0.16,
       ctx.currentTime+3.2
     );
 
     master.gain.exponentialRampToValueAtTime(
-      .0001,
+      0.0001,
       ctx.currentTime+5.2
     );
 
     master.connect(ctx.destination);
 
-    const notes=[
-
+    const notes = [
       {f:130.81,t:0,d:2.8,type:"sine",v:.35},
       {f:196.00,t:.25,d:3.1,type:"sine",v:.22},
       {f:261.63,t:.65,d:2.8,type:"triangle",v:.16},
       {f:392.00,t:1.25,d:2.5,type:"sine",v:.12},
       {f:523.25,t:2.0,d:2.4,type:"triangle",v:.10},
       {f:659.25,t:2.55,d:2.0,type:"sine",v:.08}
-
     ];
 
     notes.forEach(n=>{
@@ -1057,62 +771,51 @@ function playIntroSoundtrack(){
     });
 
     setTimeout(()=>{
-
-      if(ctx.state!=="closed"){
+      if(ctx.state!=="closed") {
         ctx.close().catch(()=>{});
       }
-
     },6500);
 
-  }catch(err){
-
+  } catch(err) {
     console.log("Áudio de abertura indisponível:",err);
-
   }
-
 }
 
+let introIsPlaying = false;
 
-/* ==========================================
-   ENTRADA NO STREAMING
-   ========================================== */
+function enterStreaming() {
 
-let introIsPlaying=false;
+  if (introIsPlaying) return;
 
-function enterStreaming(){
+  introIsPlaying = true;
 
-  if(introIsPlaying) return;
+  const intro = document.getElementById("introScreen");
+  const enterButton = document.getElementById("enterPlay");
 
-  introIsPlaying=true;
+  enterButton.disabled = true;
 
-  const intro=document.getElementById("introScreen");
-  const enterButton=document.getElementById("enterPlay");
+  enterButton.textContent = introSoundEnabled
+    ? "♫ TOCANDO VINHETA..."
+    : "▶ ENTRANDO...";
 
-  enterButton.disabled=true;
+  enterButton.style.opacity = ".8";
+  enterButton.style.cursor = "wait";
 
-  enterButton.textContent=introSoundEnabled
-    ?"♫ TOCANDO VINHETA..."
-    :"▶ ENTRANDO...";
-
-  enterButton.style.opacity=".8";
-  enterButton.style.cursor="wait";
+  /* A vinheta começa após o clique */
 
   playIntroSoundtrack();
 
-  const waitTime=introSoundEnabled?5500:250;
+  const waitTime = introSoundEnabled ? 5500 : 250;
 
-  setTimeout(()=>{
+  setTimeout(() => {
 
     intro.classList.add("leaving");
 
     document.body.classList.remove("intro-active");
 
-    setTimeout(()=>{
-      intro.remove();
-    },1100);
+    setTimeout(() => intro.remove(),1100);
 
   },waitTime);
-
 }
 
 document.getElementById("enterPlay")
@@ -1123,10 +826,10 @@ document.getElementById("soundToggle")
 
     introSoundEnabled=!introSoundEnabled;
 
-    document.getElementById("soundToggle").textContent=
+    document.getElementById("soundToggle").textContent =
       introSoundEnabled
-        ?"♫ SOM LIGADO"
-        :"♫ SOM DESLIGADO";
+        ? "♫ SOM LIGADO"
+        : "♫ SOM DESLIGADO";
 
   });
 
@@ -1135,33 +838,33 @@ document.getElementById("soundToggle")
    CATÁLOGO — 102 VÍDEOS
    ========================================== */
 
-const videoIds=[
+const videoIds = [
 
-  "KSA8LJBcuBw","cez-y17Uppc","QmiE91_ah0M","-50azQcgQcU","yf0Ri0mWBkE",
-  "27eKL7NsD6k","ZvP5vxfOYOI","yDbfHukTCyI","wBAqZwNiIBM","JkDhDTK_WpA",
-  "AUqSf8WhcMw","1TVosYYuS7k","--N62ZpSx-s","C3b3LDh_3iM","MabGOA9jmjA",
-  "iboykN3HbvY","GouLfRUG3Xw","tYge0CkIjC4","O2PuqhLmNfo","8-7P91yx3FA",
-  "Id1lRcaZwiw","aLM_L7kpfQw","mh7eKtOBGow","v37QjyIXXrg","LCwhpZvNmwI",
-  "-KhV4UBkD5w","vFsuvXoRjL8","B6URc8AEJ4I","3Cotd0Ljqu0","vUtmQH5o5KE",
-  "J658w9YBHgE","SuZW5Tn5vwU","1bWBw4ehgVs","nF1m74ZTbDQ","yPdylO9yCLw",
-  "T40-Wu6fZwM","2G6Z4B3DqjM","4hiStiT6D8Q","mr7Bpyhu4tg","V4vakP26V0Y",
-  "lxwvDg_QdrY","nkLf8oAEm9s","4c_yiwDkNOQ","FHIHCtc0xQI","swjerYktyr8",
-  "5pLposHGNmw","d0vwGt_Fr7I","rNBojhayj-A","60R2Tbf9o6s","l3tIpFtM58Y",
-  "lKf9wFE5PBY","gENMUeKPWJM","cTzbN16N9iA","72uoI3_QDg0","gc8i0gNjqms",
-  "5fY2HW8ItS0","mp5FEDffH7Y","4-rEUkG9XCo","ml9s_ikCM8o","aiD2x76gZyU",
-  "jT60asBuU1k","hqoRGV9uZeM","IJbPg8AxRtA","h5YFNAuzqDo","9TqK1oZZ1w4",
-  "-imSUhbD--w","yZqakD5BYLg","xlgTC0fWNQw","jaGKARCrOqI","hUPTCZRH-gM",
-  "3pvGyDHkt90","_Dv7D3DIDfE","kOfP_SUr52E","DCYBfPeYO_M","DX2XC3JYU2E",
-  "mgYY2MdWofA","wFViEWSTrYk","IDP03ZZncNA","XV-gTgahpOo","s5A6iaJhzow",
-  "r8gjwaoA7dc","AHx1Q-3Cnfc","awshHgved9s","SizLJVJX5xs","KHOQ6TJR2W0",
-  "E2wzWmuo6Tc","toVVJSnGaHY","tojtr1uqAtk","1kReXz_qwJo","GwZa9g67lA0",
-  "DsN9FAyRpII","KdT0JLyPLjw","atgsvILh8gk","-dgoUnvq_Ms","fUtAamtCBew",
-  "jBUaAHxS9NQ","Xv1cBRatW1M","nr6v8Geo2yU","it3LSaCmJ2c","RfL2OW8ez6c",
-  "0kMJW7jT8Tg","v_dbp_iTOqM"
+  "KSA8LJBcuBw", "cez-y17Uppc", "QmiE91_ah0M", "-50azQcgQcU", "yf0Ri0mWBkE",
+  "27eKL7NsD6k", "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
+  "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
+  "iboykN3HbvY", "GouLfRUG3Xw", "tYge0CkIjC4", "O2PuqhLmNfo", "8-7P91yx3FA",
+  "Id1lRcaZwiw", "aLM_L7kpfQw", "mh7eKtOBGow", "v37QjyIXXrg", "LCwhpZvNmwI",
+  "-KhV4UBkD5w", "vFsuvXoRjL8", "B6URc8AEJ4I", "3Cotd0Ljqu0", "vUtmQH5o5KE",
+  "J658w9YBHgE", "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw",
+  "T40-Wu6fZwM", "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y",
+  "lxwvDg_QdrY", "nkLf8oAEm9s", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8",
+  "5pLposHGNmw", "d0vwGt_Fr7I", "rNBojhayj-A", "60R2Tbf9o6s", "l3tIpFtM58Y",
+  "lKf9wFE5PBY", "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms",
+  "5fY2HW8ItS0", "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "aiD2x76gZyU",
+  "jT60asBuU1k", "hqoRGV9uZeM", "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4",
+  "-imSUhbD--w", "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", "hUPTCZRH-gM",
+  "3pvGyDHkt90", "_Dv7D3DIDfE", "kOfP_SUr52E", "DCYBfPeYO_M", "DX2XC3JYU2E",
+  "mgYY2MdWofA", "wFViEWSTrYk", "IDP03ZZncNA", "XV-gTgahpOo", "s5A6iaJhzow",
+  "r8gjwaoA7dc", "AHx1Q-3Cnfc", "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0",
+  "E2wzWmuo6Tc", "toVVJSnGaHY", "tojtr1uqAtk", "1kReXz_qwJo", "GwZa9g67lA0",
+  "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk", "-dgoUnvq_Ms", "fUtAamtCBew",
+  "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU", "it3LSaCmJ2c", "RfL2OW8ez6c",
+  "0kMJW7jT8Tg", "v_dbp_iTOqM"
 
 ];
 
-const movies=videoIds.map((id,index)=>({
+const movies = videoIds.map((id,index)=>({
 
   id,
 
@@ -1176,20 +879,20 @@ const movies=videoIds.map((id,index)=>({
    FAVORITOS E HISTÓRICO
    ========================================== */
 
-let favorites=JSON.parse(
-  localStorage.getItem("icp_favorites")||"[]"
+let favorites = JSON.parse(
+  localStorage.getItem("icp_favorites") || "[]"
 );
 
-let recent=JSON.parse(
-  localStorage.getItem("icp_recent")||"[]"
+let recent = JSON.parse(
+  localStorage.getItem("icp_recent") || "[]"
 );
 
-let currentId=null;
-let activeFilter="all";
+let currentId = null;
+let activeFilter = "all";
 
-const grid=document.getElementById("catalogGrid");
-const search=document.getElementById("searchInput");
-const emptyMessage=document.getElementById("emptyMessage");
+const grid = document.getElementById("catalogGrid");
+const search = document.getElementById("searchInput");
+const emptyMessage = document.getElementById("emptyMessage");
 
 
 function saveData(){
@@ -1251,15 +954,15 @@ function render(){
 
   grid.innerHTML="";
 
-  document.getElementById("catalogCount").textContent=
+  document.getElementById("catalogCount").textContent =
     `${list.length} de ${movies.length} vídeos`;
 
   list.forEach(movie=>{
 
     const card=document.createElement("article");
 
-    card.className=
-      "movie-card"+
+    card.className =
+      "movie-card" +
       (movie.id===currentId?" selected":"");
 
     card.innerHTML=`
@@ -1360,7 +1063,7 @@ function playMovie(id){
 
   document.getElementById("nowPlaying").textContent=movie.title;
 
-  document.getElementById("playerStatus").textContent=
+  document.getElementById("playerStatus").textContent =
     "Reprodução selecionada no catálogo.";
 
   updateFavoriteButton();
@@ -1414,10 +1117,10 @@ function updateFavoriteButton(){
 
   }
 
-  button.textContent=
+  button.textContent =
     favorites.includes(currentId)
-      ?"♥ Favoritado"
-      :"♡ Favoritar";
+      ? "♥ Favoritado"
+      : "♡ Favoritar";
 
 }
 
@@ -1425,10 +1128,14 @@ function updateFavoriteButton(){
 document.getElementById("favoriteCurrent")
   .addEventListener("click",()=>{
 
-    if(currentId){
+    if(currentId) {
+
       toggleFavorite(currentId);
-    }else{
+
+    } else {
+
       toast("Escolha um vídeo primeiro.");
+
     }
 
   });
@@ -1446,9 +1153,13 @@ document.getElementById("fullscreenButton")
     if(frame){
 
       if(frame.requestFullscreen){
+
         frame.requestFullscreen();
+
       }else{
+
         toast("Tela cheia não disponível neste navegador.");
+
       }
 
     }else{
@@ -1561,7 +1272,9 @@ installButton.addEventListener("click",async()=>{
     const result=await installPrompt.userChoice;
 
     if(result.outcome==="accepted"){
+
       toast("Instalação iniciada!");
+
     }
 
     installPrompt=null;
@@ -1614,5 +1327,6 @@ if(
 }
 
 </script>
+
 </body>
 </html>
