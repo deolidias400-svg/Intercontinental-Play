@@ -9,8 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Intercontinental Play</title>
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23111b39%22/%3E%3Cpath d=%22M39 25 L76 50 L39 75Z%22 fill=%22%23ffc857%22/%3E%3C/svg%3E">
-
+<link rel="icon" href="./mascote-intercontinental.png">
 <style>
 :root {
   --bg:#090d1b;
@@ -33,7 +32,6 @@ body {
 button,input {font:inherit}
 button {cursor:pointer}
 img {max-width:100%;display:block}
-
 header {
   position:sticky;
   top:0;
@@ -58,17 +56,12 @@ header {
   gap:12px;
   min-width:0;
 }
-.brand-mark {
-  width:52px;
-  height:52px;
-  flex:0 0 52px;
-  display:grid;
-  place-items:center;
-  border-radius:16px;
-  color:#111a2d;
-  font-size:22px;
-  background:linear-gradient(135deg,#fff0b4,#ffc34f 55%,#6ee4ed);
-  box-shadow:0 0 22px #ffc85744;
+.brand img {
+  width:55px;
+  height:55px;
+  object-fit:contain;
+  border-radius:50%;
+  background:#202b48;
 }
 .brand h1 {
   font-size:clamp(17px,3vw,25px);
@@ -84,251 +77,925 @@ nav {
   align-items:center;
   flex-wrap:wrap;
 }
-nav a {
-  color:#e9efff;
-  text-decoration:none;
-  padding:9px 12px;
+nav button,.small-btn {
+  border:1px solid #35466c;
+  color:#eaf0ff;
+  background:#17223c;
+  padding:9px 13px;
   border-radius:20px;
-  font-size:13px;
+  font-size:12px;
+  transition:.25s;
 }
-nav a:hover {background:#263858;color:var(--gold)}
-.install-btn,.primary-btn {
-  border:0;
-  border-radius:22px;
-  padding:11px 17px;
-  background:linear-gradient(120deg,#ffcc5c,#ff9d43);
-  color:#172039;
-  font-weight:bold;
+nav button:hover,.small-btn:hover {
+  border-color:var(--gold);
+  color:var(--gold);
+  transform:translateY(-2px);
 }
-.install-btn:hover,.primary-btn:hover {filter:brightness(1.1)}
-main {max-width:1400px;margin:auto;padding:22px}
-
+main {
+  max-width:1400px;
+  margin:auto;
+  padding:24px 22px 100px;
+}
 .hero {
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  gap:20px;
-  align-items:center;
-  padding:30px;
-  border:1px solid #33476d;
-  border-radius:24px;
-  background:linear-gradient(120deg,#1b3155,#18213b 65%,#30264a);
+  position:relative;
+  min-height:280px;
+  border-radius:25px;
+  padding:35px;
   overflow:hidden;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(133,76,255,.35),transparent 32%),
+    radial-gradient(circle at 20% 100%,rgba(28,198,225,.24),transparent 40%),
+    linear-gradient(120deg,#17284b,#10152b 60%,#30204a);
+  border:1px solid #38466b;
+  box-shadow:0 20px 60px #0008;
+}
+.hero:before {
+  content:"";
+  position:absolute;
+  width:400px;
+  height:400px;
+  right:-100px;
+  top:-180px;
+  border:1px solid #ffffff22;
+  border-radius:50%;
+  box-shadow:0 0 0 25px #ffffff08,0 0 0 60px #ffffff05;
+}
+.hero-content {position:relative;z-index:2;max-width:650px}
+.eyebrow {
+  color:var(--cyan);
+  letter-spacing:4px;
+  font-size:11px;
+  font-weight:bold;
 }
 .hero h2 {
-  max-width:900px;
-  font-size:clamp(27px,5vw,48px);
-  line-height:1.12;
-  margin:0 0 12px;
-  overflow-wrap:anywhere;
+  font-size:clamp(30px,5vw,56px);
+  line-height:1.02;
+  margin:13px 0;
+  text-shadow:0 5px 25px #0008;
 }
 .hero h2 span {color:var(--gold)}
-.hero p {color:#d0d9eb;line-height:1.6;margin:0 0 18px}
-.hero-tag {
-  display:inline-block;
-  color:#12203a;
-  background:var(--cyan);
-  border-radius:20px;
-  padding:7px 12px;
-  font-size:12px;
-  font-weight:bold;
-  margin-bottom:12px;
+.hero p {color:#c5d2ec;max-width:560px;line-height:1.6}
+.primary-btn {
+  background:linear-gradient(110deg,#ffc857,#ffe6a0);
+  color:#21182b;
+  border:0;
+  border-radius:25px;
+  padding:14px 23px;
+  font-weight:900;
+  letter-spacing:1px;
+  box-shadow:0 8px 25px #ffc85735;
+  transition:.25s;
 }
-.player-section {margin-top:28px}
-.section-title {
+.primary-btn:hover {transform:translateY(-3px);box-shadow:0 12px 30px #ffc85755}
+.hero-mascot {
+  position:absolute;
+  right:7%;
+  bottom:-20px;
+  width:min(28%,260px);
+  height:270px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 25px #5bdfff77);
+  animation:mascotFloat 4s ease-in-out infinite;
+}
+@keyframes mascotFloat {
+  0%,100% {transform:translateY(0)}
+  50% {transform:translateY(-12px)}
+}
+.stats {
   display:flex;
-  justify-content:space-between;
-  align-items:center;
   flex-wrap:wrap;
   gap:12px;
-  margin:25px 0 14px;
+  margin:20px 0 26px;
 }
-.section-title h2 {margin:0;font-size:22px}
-.player-box {
-  background:#050812;
-  border:1px solid #34466a;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 15px 45px #0007;
+.stat {
+  background:#141d34;
+  border:1px solid #293858;
+  border-radius:14px;
+  padding:13px 18px;
+  color:#c4d0e7;
+  font-size:12px;
 }
+.stat strong {color:var(--gold);font-size:18px;margin-right:5px}
+.section-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:30px 0 15px;
+}
+.section-title h2 {font-size:20px;margin:0}
+.section-title span {font-size:11px;color:var(--muted)}
+.player-panel {
+  background:linear-gradient(145deg,#182541,#101729);
+  border:1px solid #344668;
+  padding:16px;
+  border-radius:22px;
+  box-shadow:0 15px 45px #0005;
+}
+.player-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:3px 3px 14px;
+}
+.player-heading h2 {font-size:17px;margin:0;color:var(--gold)}
 .player-screen {
-  width:100%;
-  aspect-ratio:16/9;
   background:#000;
+  aspect-ratio:16/9;
+  width:100%;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 30px #0008;
 }
-.player-screen iframe {width:100%;height:100%;border:0}
-.player-placeholder {
+.player-screen iframe {
+  width:100%;
   height:100%;
+  border:0;
+}
+.player-placeholder {
+  position:absolute;
+  inset:0;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   text-align:center;
+  background:radial-gradient(circle,#24375b,#080b14 70%);
+  color:#dbe6ff;
   padding:20px;
-  color:#b9c5dc;
 }
-.play-symbol {font-size:55px;color:var(--gold)}
+.play-symbol {
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(140deg,#ffc857,#eaa43b);
+  color:#1a1b2c;
+  font-size:25px;
+  margin-bottom:13px;
+  box-shadow:0 0 35px #ffc85766;
+}
 .player-info {
-  padding:15px 18px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   flex-wrap:wrap;
-  gap:12px;
-  background:#111a2e;
+  gap:10px;
+  padding:14px 3px 0;
 }
-.player-info h3 {margin:0 0 5px;font-size:18px}
-.player-info p {margin:0;color:var(--muted);font-size:12px}
+.player-info strong {color:#fff}
+.player-info small {color:var(--muted)}
 .player-actions {display:flex;gap:8px;flex-wrap:wrap}
-.action-btn {
-  border:1px solid #435779;
-  background:#202d49;
-  color:white;
-  border-radius:20px;
-  padding:9px 13px;
-}
-.action-btn:hover {background:#344969}
-
-.search-row {
+.search-area {
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin:18px 0;
+  margin:17px 0;
 }
-.search-row input {
-  flex:1 1 240px;
-  min-width:0;
-  border:1px solid #405477;
-  background:#111a2e;
-  color:white;
-  padding:13px 16px;
+.search-area input {
+  flex:1;
+  min-width:180px;
+  background:#111b30;
+  border:1px solid #344668;
   border-radius:25px;
+  padding:13px 17px;
+  color:white;
   outline:none;
 }
-.search-row input:focus {border-color:var(--cyan)}
-.filters {display:flex;gap:8px;flex-wrap:wrap}
-.filter-btn {
-  padding:9px 15px;
-  border-radius:20px;
-  color:#dce6fa;
-  background:#1a2741;
-  border:1px solid #35496c;
-}
-.filter-btn.active {
-  background:var(--gold);
-  color:#172039;
-  border-color:var(--gold);
-  font-weight:bold;
-}
-.catalog {
+.search-area input:focus {border-color:var(--cyan)}
+.catalog-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(min(170px,100%),1fr));
-  gap:17px;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:16px;
 }
 .movie-card {
+  position:relative;
   min-width:0;
-  overflow:hidden;
-  border:1px solid #293c60;
+  background:#151f36;
+  border:1px solid #293858;
   border-radius:15px;
-  background:linear-gradient(160deg,#192641,#10182b);
-  transition:transform .2s,border-color .2s,box-shadow .2s;
+  overflow:hidden;
   cursor:pointer;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
 }
 .movie-card:hover {
-  transform:translateY(-5px);
+  transform:translateY(-7px) scale(1.025);
   border-color:var(--gold);
-  box-shadow:0 12px 25px #0007;
+  box-shadow:0 15px 30px #0008,0 0 18px #ffc85722;
 }
-.movie-card.selected {border:2px solid var(--cyan)}
 .poster {
-  aspect-ratio:16/10;
   position:relative;
-  background:#202b42;
+  aspect-ratio:2/3;
   overflow:hidden;
+  background:linear-gradient(145deg,#243c63,#241a40);
 }
-.poster img {width:100%;height:100%;object-fit:cover}
-.poster-number {
+.poster img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s;
+}
+.movie-card:hover .poster img {transform:scale(1.08)}
+.poster:after {
+  content:"▶";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:30px;
+  text-shadow:0 2px 15px #000;
+  background:#0000;
+  opacity:0;
+  transition:.25s;
+}
+.movie-card:hover .poster:after {opacity:1;background:#0003}
+.movie-title {
+  padding:11px 10px 12px;
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.4;
+  min-height:48px;
+}
+.favorite-btn {
   position:absolute;
   top:8px;
-  left:8px;
-  background:#080d1bdc;
-  color:var(--gold);
-  padding:5px 8px;
-  border-radius:12px;
-  font-size:11px;
-}
-.movie-details {padding:11px}
-.movie-details h3 {
-  font-size:14px;
-  margin:0 0 10px;
-  line-height:1.4;
-  overflow-wrap:anywhere;
-}
-.movie-details button {
+  right:8px;
+  z-index:2;
+  width:32px;
+  height:32px;
   border:0;
-  border-radius:18px;
-  padding:7px 10px;
-  background:#263b60;
+  border-radius:50%;
   color:white;
-  font-size:11px;
+  background:#09101dcc;
+  font-size:17px;
 }
-.movie-details button:hover {background:#3c5b89}
-.empty {color:var(--muted);padding:25px 0}
-.promo {
-  margin:30px 0;
-  border:1px solid #6a5833;
-  border-radius:18px;
-  padding:20px;
-  background:linear-gradient(110deg,#40321d,#1d2944);
+.favorite-btn.active {color:#ff6384}
+.empty {
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  grid-column:1/-1;
+  background:#141d34;
+  border-radius:15px;
+}
+footer {
+  border-top:1px solid #283858;
+  text-align:center;
+  padding:30px 15px;
+  color:#8292b3;
+  font-size:12px;
+}
+footer strong {color:var(--gold)}
+.bottom-nav {display:none}
+.opening {
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  overflow:hidden;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:15px;
-}
-.promo h2 {margin:0 0 6px;color:var(--gold)}
-.promo p {margin:0;color:#e0e6f3;line-height:1.5}
-footer {
+  justify-content:center;
   text-align:center;
-  padding:30px 18px;
-  margin-top:35px;
-  border-top:1px solid #293858;
-  color:#9eacc7;
-  font-size:13px;
-  line-height:1.7;
+  background:#060916;
+  transition:opacity 1.4s ease,visibility 1.4s ease;
 }
-.toast {
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#263b60;
-  border:1px solid #6681a9;
-  color:white;
-  padding:12px 18px;
-  border-radius:25px;
-  z-index:100;
-  box-shadow:0 8px 25px #0008;
-  display:none;
-  max-width:90%;
-  text-align:center;
+.opening.hide {opacity:0;visibility:hidden;pointer-events:none}
+.opening:before,.opening:after {
+  content:"";
+  position:absolute;
+  width:90vmax;
+  height:90vmax;
+  border-radius:50%;
+  filter:blur(55px);
+  opacity:.32;
+  animation:aurora 12s ease-in-out infinite alternate;
+}
+.opening:before {
+  background:conic-gradient(from 30deg,#143d9b,#5426a3,#00a9b7,#d69b32,#143d9b);
+  top:-55vmax;
+  left:-25vmax;
+}
+.opening:after {
+  background:conic-gradient(#6c38ad,#113e88,#d6a13b,#136e8a,#6c38ad);
+  bottom:-65vmax;
+  right:-25vmax;
+  animation-delay:-5s;
+}
+@keyframes aurora {
+  to {transform:rotate(45deg) scale(1.2)}
+}
+.opening-stars {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.star {
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:0 0 10px 3px #b7eaff;
+  animation:twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,100% {opacity:.15;transform:scale(.5)}
+  50% {opacity:1;transform:scale(1.5)}
+}
+.light-ribbon {
+  position:absolute;
+  width:120vw;
+  height:180px;
+  left:-10vw;
+  border-radius:50%;
+  border-top:2px solid #ffe6a088;
+  box-shadow:0 -10px 35px #a8dfff22;
+  transform:rotate(-13deg);
+  animation:ribbon 9s ease-in-out infinite alternate;
+}
+.ribbon-one {top:17%;border-color:#4be4ff88}
+.ribbon-two {top:67%;transform:rotate(13deg);border-color:#ffc85788;animation-delay:-4s}
+@keyframes ribbon {
+  to {transform:translateX(5%) rotate(-5deg);opacity:.3}
+}
+.opening-content {
+  position:relative;
+  z-index:3;
+  width:min(94%,700px);
+  padding:25px 15px;
+}
+.portal {
+  position:relative;
+  width:230px;
+  height:230px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+}
+.portal:before,.portal:after {
+  content:"";
+  position:absolute;
+  inset:0;
+  border:2px solid #f8d77a99;
+  border-radius:50%;
+  box-shadow:0 0 25px #ffc85755,inset 0 0 30px #ffc85722;
+  animation:portalSpin 12s linear infinite;
+}
+.portal:after {
+  inset:13px;
+  border-color:#55dfffa0;
+  animation-direction:reverse;
+  animation-duration:8s;
+}
+@keyframes portalSpin {to {transform:rotate(360deg)}}
+.portal-glow {
+  position:absolute;
+  inset:25px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ffc85744,#4c5dff22 60%,transparent);
+  filter:blur(12px);
+  animation:glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  50% {transform:scale(1.2);opacity:.55}
+}
+.opening-mascot {
+  width:155px;
+  height:175px;
+  object-fit:contain;
+  position:relative;
+  z-index:2;
+  filter:drop-shadow(0 0 22px #55dfff99);
+  animation:mascotEntrance 2.2s cubic-bezier(.2,.8,.2,1) both,mascotFloat 4s ease-in-out 2.2s infinite;
+}
+@keyframes mascotEntrance {
+  from {opacity:0;transform:translateY(35px) scale(.7);filter:blur(12px)}
+  to {opacity:1;transform:translateY(0) scale(1);filter:drop-shadow(0 0 22px #55dfff99)}
+}
+.opening-title {
+  font-size:clamp(27px,6vw,54px);
+  font-weight:1000;
+  letter-spacing:clamp(2px,1vw,7px);
+  margin:10px 0 7px;
+  color:#ffe3a0;
+  text-shadow:0 0 12px #ffc857aa,0 0 35px #d59b32aa,0 5px 15px #000;
+  animation:titleShine 4s ease-in-out infinite;
+}
+@keyframes titleShine {
+  50% {text-shadow:0 0 20px #fff1b8,0 0 50px #ffc857}
+}
+.opening-slogan {
+  color:#d8eaff;
+  letter-spacing:5px;
+  font-size:clamp(10px,2vw,14px);
+  margin-bottom:25px;
+}
+.opening-button {
+  border:1px solid #ffe4a0;
+  border-radius:30px;
+  padding:15px 27px;
+  color:#1a1a2a;
+  background:linear-gradient(110deg,#ffca58,#fff0bb,#d69a36);
+  font-weight:1000;
+  letter-spacing:1px;
+  box-shadow:0 0 25px #ffc85755,0 8px 25px #0007;
+  transition:.3s;
+}
+.opening-button:hover {transform:scale(1.05);box-shadow:0 0 40px #ffc85799}
+.opening-button:disabled {opacity:.65;cursor:wait}
+.sound-note {
+  margin-top:13px;
+  color:#a9b8d8;
+  font-size:11px;
+}
+.skip-opening {
+  position:absolute;
+  right:22px;
+  bottom:22px;
+  z-index:4;
+  border:1px solid #ffffff44;
+  background:#0b1228aa;
+  color:#dce8ff;
+  border-radius:20px;
+  padding:9px 15px;
+  font-size:11px;
+}
+@media(max-width:1000px) {
+  .catalog-grid {grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:650px) {
+  .header-inner {padding:10px 14px}
+  header nav {display:none}
+  main {padding:15px 13px 95px}
+  .hero {min-height:330px;padding:25px 20px;align-items:flex-start}
+  .hero-content {max-width:70%}
+  .hero-mascot {width:40%;right:-3%;bottom:0;height:220px}
+  .hero h2 {font-size:32px}
+  .catalog-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .movie-title {font-size:10px;padding:8px;min-height:43px}
+  .favorite-btn {width:27px;height:27px;font-size:14px;top:5px;right:5px}
+  .player-panel {padding:10px}
+  .bottom-nav {
+    display:flex;
+    position:fixed;
+    z-index:30;
+    bottom:0;
+    left:0;
+    right:0;
+    justify-content:space-around;
+    padding:10px 5px calc(10px + env(safe-area-inset-bottom));
+    background:#0b1124f5;
+    border-top:1px solid #35466c;
+    backdrop-filter:blur(15px);
+  }
+  .bottom-nav button {
+    border:0;
+    background:none;
+    color:#aebbd3;
+    font-size:10px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    align-items:center;
+  }
+  .bottom-nav button span {font-size:19px}
+  .portal {width:190px;height:190px}
+  .opening-mascot {width:130px;height:145px}
+  .opening-slogan {letter-spacing:3px}
+}
+@media(max-width:390px) {
+  .catalog-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-content {max-width:75%}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*:before,*:after {animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="opening" id="opening">
+  <div class="opening-stars" id="openingStars"></div>
+  <div class="light-ribbon ribbon-one"></div>
+  <div class="light-ribbon ribbon-two"></div>
+  <div class="opening-content">
+    <div class="portal">
+      <div class="portal-glow"></div>
+      <img class="opening-mascot" src="./mascote-intercontinental.png" alt="Mascote Intercontinental">
+    </div>
+    <div class="opening-title">INTERCONTINENTAL PLAY</div>
+    <div class="opening-slogan">SEU CINEMA. SEU MUNDO.</div>
+    <button class="opening-button" id="enterButton">♫ ATIVAR SOM E ENTRAR</button>
+    <div class="sound-note" id="soundNote">Uma experiência cinematográfica espera por você</div>
+  </div>
+  <button class="skip-opening" id="skipOpening">ENTRAR SEM SOM →</button>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="./mascote-intercontinental.png" alt="Intercontinental Play">
+      <div>
+        <h1>INTERCONTINENTAL PLAY</h1>
+        <small>SEU CINEMA. SEU MUNDO.</small>
+      </div>
+    </div>
+    <nav>
+      <button onclick="scrollToSection('inicio')">Início</button>
+      <button onclick="scrollToSection('catalogo')">Catálogo</button>
+      <button onclick="showFavorites()">Favoritos ♥</button>
+      <button onclick="showRecent()">Recentes ◷</button>
+    </nav>
+    <button class="small-btn" id="installButton" hidden>＋ Instalar aplicativo</button>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">ENTROU • CLICOU • ASSISTIU</div>
+      <h2>UM UNIVERSO DE <span>ENTRETENIMENTO</span></h2>
+      <p>O mundo do cinema ao seu alcance. Descubra filmes, histórias e grandes aventuras em um só lugar.</p>
+      <button class="primary-btn" onclick="scrollToSection('catalogo')">EXPLORAR CATÁLOGO ▶</button>
+    </div>
+    <img class="hero-mascot" src="./mascote-intercontinental.png" alt="Mascote">
+  </section>
+
+  <div class="stats">
+    <div class="stat"><strong id="movieCount">102</strong> vídeos no catálogo</div>
+    <div class="stat"><strong>24h</strong> entretenimento</div>
+    <div class="stat"><strong>100%</strong> experiência digital</div>
+  </div>
+
+  <section id="playerSection">
+    <div class="section-title">
+      <h2>▶ Agora em exibição</h2>
+      <span>Seu cinema começa aqui</span>
+    </div>
+    <div class="player-panel">
+      <div class="player-heading">
+        <h2 id="nowPlayingTitle">INTERCONTINENTAL PLAY</h2>
+        <span class="eyebrow">PLAYER OFICIAL</span>
+      </div>
+      <div class="player-screen" id="playerScreen">
+        <div class="player-placeholder" id="playerPlaceholder">
+          <div class="play-symbol">▶</div>
+          <strong>Bem-vindo ao Intercontinental Play</strong>
+          <p>Escolha um título no catálogo para começar a assistir.</p>
+        </div>
+      </div>
+      <div class="player-info">
+        <div>
+          <strong id="currentTitle">Nenhum filme selecionado</strong><br>
+          <small>Intercontinental Play • Seu cinema. Seu mundo.</small>
+        </div>
+        <div class="player-actions">
+          <button class="small-btn" onclick="toggleCurrentFavorite()">♡ Favoritar</button>
+          <button class="small-btn" onclick="scrollToSection('catalogo')">Ver catálogo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogo">
+    <div class="section-title">
+      <h2>🎬 Explore nosso catálogo</h2>
+      <span id="catalogLabel">Todos os títulos</span>
+    </div>
+    <div class="search-area">
+      <input id="searchInput" type="search" placeholder="Pesquisar filmes..." aria-label="Pesquisar filmes">
+      <button class="small-btn" onclick="showAll()">Todos</button>
+      <button class="small-btn" onclick="showFavorites()">♥ Favoritos</button>
+      <button class="small-btn" onclick="showRecent()">◷ Recentes</button>
+    </div>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <strong>INTERCONTINENTAL PLAY</strong><br>
+  SEU CINEMA. SEU MUNDO.<br><br>
+  © <span id="year"></span> Intercontinental Play • Entretenimento para todos.
+</footer>
+
+<div class="bottom-nav">
+  <button onclick="scrollToSection('inicio')"><span>⌂</span>Início</button>
+  <button onclick="scrollToSection('catalogo')"><span>▣</span>Catálogo</button>
+  <button onclick="showFavorites()"><span>♥</span>Favoritos</button>
+  <button onclick="showRecent()"><span>◷</span>Recentes</button>
+</div>
+
+<script>
+const videoIds = [
+" ScMzIvxBSi4","aqz-KE-bpKQ","ysz5S6PUM-U","jNQXAC9IVRw",
+"2Vv-BfVoq4g","L_jWHff Ix5E","kJQP7kiw5Fk","fJ9rUzIMcZQ",
+"9bZkp7q19f0","CevxZvSJLk8","uelHwf8o7_U","RgKAFK5djSk",
+"OPf0YbXqDm0","YQHsXMglC9A","hT_nvWreIhg","e-ORhEE9VVg",
+"JGwWNGJdvx8","pRpeEdMmmQ0","60ItHLz5WEA","KQ6zr6kCPj8",
+"SlPhMPnQ58k","kXYiU_JCYtU","fRh_vgS2dFE","09R8_2nJtjg",
+"3JZ_D3ELwOQ","uelHwf8o7_U","RgKAFK5djSk","2vjPBrBU-TM",
+"YqeW9_5kURI","CduA0TULnow","hTWKbfoikeg","Zi_XLOBDo_Y",
+"ktvTqknDobU","nfWlot6h_JM","M7lc1UVf-VE","ScMzIvxBSi4",
+"aqz-KE-bpKQ","ysz5S6PUM-U","jNQXAC9IVRw","2Vv-BfVoq4g",
+"L_jWHff Ix5E","kJQP7kiw5Fk","fJ9rUzIMcZQ","9bZkp7q19f0",
+"CevxZvSJLk8","uelHwf8o7_U","RgKAFK5djSk","OPf0YbXqDm0",
+"YQHsXMglC9A","hT_nvWreIhg","e-ORhEE9VVg","JGwWNGJdvx8",
+"pRpeEdMmmQ0","60ItHLz5WEA","KQ6zr6kCPj8","SlPhMPnQ58k",
+"kXYiU_JCYtU","fRh_vgS2dFE","09R8_2nJtjg","3JZ_D3ELwOQ",
+"uelHwf8o7_U","RgKAFK5djSk","2vjPBrBU-TM","YqeW9_5kURI",
+"CduA0TULnow","hTWKbfoikeg","Zi_XLOBDo_Y","ktvTqknDobU",
+"nfWlot6h_JM","M7lc1UVf-VE","ScMzIvxBSi4","aqz-KE-bpKQ",
+"ysz5S6PUM-U","jNQXAC9IVRw","2Vv-BfVoq4g","L_jWHff Ix5E",
+"kJQP7kiw5Fk","fJ9rUzIMiZQ","9bZkp7q19f0","CevxZvSJLk8",
+"uelHwf8o7_U","RgKAFK5djSk","OPf0YbXqDm0","YQHsXMglC9A",
+"hT_nvWreIhg","e-ORhEE9VVg","JGwWNGJdvx8","pRpeEdMmmQ0",
+"60ItHLz5WEA","KQ6zr6kCPj8","SlPhMPnQ58k","kXYiU_JCYtU",
+"fRh_vgS2dFE","09R8_2nJtjg","3JZ_D3ELwOQ","2vjPBrBU-TM",
+"YqeW9_5kURI","CduA0TULnow"
+];
+
+const movies = videoIds.map((id,index)=>({
+  id:id.trim(),
+  title:`Filme ${String(index+1).padStart(2,"0")}`,
+  poster:`https://img.youtube.com/vi/${id.trim()}/hqdefault.jpg`
+}));
+
+let currentMovie = null;
+let currentFilter = "all";
+let favorites = JSON.parse(localStorage.getItem("icp_favorites") || "[]");
+let recent = JSON.parse(localStorage.getItem("icp_recent") || "[]");
+
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("movieCount").textContent = movies.length;
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+function saveLists() {
+  localStorage.setItem("icp_favorites",JSON.stringify(favorites));
+  localStorage.setItem("icp_recent",JSON.stringify(recent));
+}
+function renderCatalog(list=movies) {
+  const grid=document.getElementById("catalogGrid");
+  grid.innerHTML="";
+  if(!list.length) {
+    grid.innerHTML='<div class="empty">Nenhum título encontrado nesta seleção.</div>';
+    return;
+  }
+  list.forEach(movie=>{
+    const card=document.createElement("article");
+    card.className="movie-card";
+    const isFav=favorites.includes(movie.id);
+    card.innerHTML=`
+      <button class="favorite-btn ${isFav?"active":""}" title="Favoritar" aria-label="Favoritar">${isFav?"♥":"♡"}</button>
+      <div class="poster">
+        <img src="${movie.poster}" alt="${movie.title}" loading="lazy" onerror="this.src='https://placehold.co/400x600/17213b/ffc857?text=Intercontinental+Play'">
+      </div>
+      <div class="movie-title">${movie.title}</div>`;
+    card.querySelector(".favorite-btn").addEventListener("click",event=>{
+      event.stopPropagation();
+      toggleFavorite(movie.id);
+    });
+    card.addEventListener("click",()=>playMovie(movie));
+    grid.appendChild(card);
+  });
+}
+function playMovie(movie) {
+  currentMovie=movie;
+  document.getElementById("nowPlayingTitle").textContent=movie.title;
+  document.getElementById("currentTitle").textContent=movie.title;
+  const screen=document.getElementById("playerScreen");
+  screen.innerHTML=`
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(movie.id)}?autoplay=1&rel=0"
+      title="${movie.title}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>`;
+  recent=[movie.id,...recent.filter(id=>id!==movie.id)].slice(0,20);
+  saveLists();
+  if(currentFilter==="recent") showRecent();
+  scrollToSection("playerSection");
+}
+function toggleFavorite(id) {
+  if(favorites.includes(id)) favorites=favorites.filter(x=>x!==id);
+  else favorites.push(id);
+  saveLists();
+  applyFilter();
+}
+function toggleCurrentFavorite() {
+  if(!currentMovie) {
+    alert("Escolha um filme primeiro.");
+    return;
+  }
+  toggleFavorite(currentMovie.id);
+}
+function applyFilter() {
+  const term=document.getElementById("searchInput").value.toLowerCase().trim();
+  let list=movies;
+  if(currentFilter==="favorites") list=list.filter(m=>favorites.includes(m.id));
+  if(currentFilter==="recent") list=recent.map(id=>movies.find(m=>m.id===id)).filter(Boolean);
+  if(term) list=list.filter(m=>m.title.toLowerCase().includes(term));
+  renderCatalog(list);
+}
+function showAll() {
+  currentFilter="all";
+  document.getElementById("catalogLabel").textContent="Todos os títulos";
+  applyFilter();
+  scrollToSection("catalogo");
+}
+function showFavorites() {
+  currentFilter="favorites";
+  document.getElementById("catalogLabel").textContent="Seus favoritos";
+  applyFilter();
+  scrollToSection("catalogo");
+}
+function showRecent() {
+  currentFilter="recent";
+  document.getElementById("catalogLabel").textContent="Assistidos recentemente";
+  applyFilter();
+  scrollToSection("catalogo");
+}
+document.getElementById("searchInput").addEventListener("input",applyFilter);
+renderCatalog();
+
+function createStars() {
+  const area=document.getElementById("openingStars");
+  for(let i=0;i<75;i++) {
+    const star=document.createElement("i");
+    star.className="star";
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
+    star.style.animationDelay=(Math.random()*4)+"s";
+    star.style.animationDuration=(2+Math.random()*4)+"s";
+    area.appendChild(star);
+  }
+}
+createStars();
+
+/* Trilha sonora original sintetizada com Web Audio API.
+   O som só começa após o visitante clicar no botão. */
+let audioContext=null;
+let masterGain=null;
+let audioNodes=[];
+let audioStopTimer=null;
+
+function playOpeningTrack() {
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass) return false;
+
+  try {
+    audioContext=new AudioContextClass();
+    masterGain=audioContext.createGain();
+    masterGain.gain.setValueAtTime(0.0001,audioContext.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0.32,audioContext.currentTime+1.8);
+    masterGain.connect(audioContext.destination);
+
+    const start=audioContext.currentTime;
+    const chords=[
+      [130.81,164.81,196.00],
+      [146.83,174.61,220.00],
+      [110.00,164.81,207.65],
+      [130.81,164.81,196.00]
+    ];
+
+    function tone(freq,time,duration,volume,type="sine",detune=0) {
+      const osc=audioContext.createOscillator();
+      const gain=audioContext.createGain();
+      osc.type=type;
+      osc.frequency.setValueAtTime(freq,time);
+      osc.detune.setValueAtTime(detune,time);
+      gain.gain.setValueAtTime(0.0001,time);
+      gain.gain.exponentialRampToValueAtTime(Math.max(volume,0.0002),time+0.5);
+      gain.gain.setValueAtTime(Math.max(volume,0.0002),time+duration-0.7);
+      gain.gain.exponentialRampToValueAtTime(0.0001,time+duration);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(time);
+      osc.stop(time+duration+0.05);
+      audioNodes.push(osc);
+    }
+
+    chords.forEach((chord,index)=>{
+      const time=start+index*2.5;
+      chord.forEach((freq,j)=>{
+        tone(freq,time,3.0,0.045,"triangle",j===1?5:0);
+        tone(freq*2,time,2.7,0.012,"sine");
+      });
+    });
+
+    const melody=[
+      [523.25,1.0],[659.25,1.8],[783.99,2.7],
+      [659.25,3.6],[783.99,4.5],[987.77,5.4],
+      [1046.50,6.3],[987.77,7.2],[783.99,8.1],
+      [1046.50,9.0],[1318.51,9.8]
+    ];
+    melody.forEach(([freq,offset],i)=>{
+      tone(freq,start+offset,1.15,0.045,i%3===0?"sine":"triangle");
+      if(i>5) tone(freq*2,start+offset,0.8,0.009,"sine");
+    });
+
+    const bass=audioContext.createOscillator();
+    const bassGain=audioContext.createGain();
+    bass.type="sine";
+    bass.frequency.setValueAtTime(55,start+8.9);
+    bass.frequency.exponentialRampToValueAtTime(38,start+10.8);
+    bassGain.gain.setValueAtTime(0.0001,start+8.9);
+    bassGain.gain.linearRampToValueAtTime(0.18,start+9.4);
+    bassGain.gain.exponentialRampToValueAtTime(0.0001,start+11.3);
+    bass.connect(bassGain);
+    bassGain.connect(masterGain);
+    bass.start(start+8.9);
+    bass.stop(start+11.4);
+    audioNodes.push(bass);
+
+    const shimmer=[1567.98,1975.53,2349.32,2637.02];
+    shimmer.forEach((freq,i)=>{
+      tone(freq,start+9.2+i*0.12,1.3,0.012,"sine");
+    });
+
+    masterGain.gain.setValueAtTime(0.32,start+10.5);
+    masterGain.gain.linearRampToValueAtTime(0.0001,start+12.0);
+    audioStopTimer=setTimeout(()=>{
+      stopOpeningAudio();
+    },12500);
+    return true;
+  } catch(error) {
+    console.warn("Não foi possível iniciar a trilha:",error);
+    return false;
+  }
 }
 
-@media(max-width:760px) {
-  .header-inner {justify-content:center}
-  .brand {width:100%;justify-content:center}
-  nav {justify-content:center}
-  .hero {grid-template-columns:1fr;text-align:center;padding:23px}
-    main {padding:15px}
+function stopOpeningAudio() {
+  if(audioStopTimer) clearTimeout(audioStopTimer);
+  if(masterGain&&audioContext) {
+    try {
+      masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+      masterGain.gain.setTargetAtTime(0.0001,audioContext.currentTime,0.35);
+    } catch(e) {}
+  }
+  setTimeout(()=>{
+    if(audioContext) {
+      audioContext.close().catch(()=>{});
+      audioContext=null;
+      masterGain=null;
+      audioNodes=[];
+    }
+  },1000);
 }
-@media(max-width:430px) {
-  .header-inner {padding:12px}
-  nav a {padding:8px;font-size:12px}
-  .install-btn {width:100%}
-  .hero {padding:19px}
-  .catalog {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .movie-details {padding:9px}
-  .movie-details h3 {font-size:12px}
-  .player-info {align-items:flex-start}
-  .player-actions {width:100%}
-  .player-actions button {flex:1}
+
+function enterSite(withSound) {
+  const button=document.getElementById("enterButton");
+  button.disabled=true;
+  button.textContent=withSound?"♫ PREPARANDO A TRILHA...":"ENTRANDO...";
+  if(withSound) {
+    const started=playOpeningTrack();
+    document.getElementById("soundNote").textContent=started
+      ?"A trilha original está tocando. Boa sessão!"
+      :"Seu navegador não permitiu iniciar o som.";
+  }
+  setTimeout(()=>{
+    document.getElementById("opening").classList.add("hide");
+  },withSound?5500:350);
 }
+document.getElementById("enterButton").addEventListener("click",()=>enterSite(true));
+document.getElementById("skipOpening").addEventListener("click",()=>{
+  stopOpeningAudio();
+  enterSite(false);
+});
+
+/* Instalação como aplicativo, quando o navegador oferecer suporte. */
+let deferredInstallPrompt=null;
+const installButton=document.getElementById("installButton");
+window.addEventListener("beforeinstallprompt",event=>{
+  event.preventDefault();
+  deferredInstallPrompt=event;
+  installButton.hidden=false;
+});
+installButton.addEventListener("click",async()=>{
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt=null;
+  installButton.hidden=true;
+});
+
+/* Registro do Service Worker, se o arquivo estiver disponível no site. */
+if("serviceWorker" in navigator) {
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
