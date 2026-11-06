@@ -594,7 +594,7 @@ body.intro-active {overflow:hidden}
   <section class="promo">
     <div>
       <h2>INTERCONTINENTAL PLAY</h2>
-      <p>Um catálogo em crescimento, com 133 vídeos disponíveis para explorar.</p>
+      <p>Um catálogo em crescimento, com 184 vídeos organizados por categoria.</p>
     </div>
 
     <button class="primary-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
@@ -610,11 +610,17 @@ body.intro-active {overflow:hidden}
 
     <div class="search-row">
       <input id="searchInput" type="search"
-             placeholder="🔎 Pesquisar título ou número..."
+             placeholder="🔎 Pesquisar título, categoria ou número..."
              aria-label="Pesquisar no catálogo">
 
       <div class="filters">
         <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="Filmes">Filmes</button>
+        <button class="filter-btn" data-filter="Novos filmes 2">Novos filmes 2</button>
+        <button class="filter-btn" data-filter="Documentários">Documentários</button>
+        <button class="filter-btn" data-filter="Shows">Shows</button>
+        <button class="filter-btn" data-filter="Desenhos">Desenhos</button>
+        <button class="filter-btn" data-filter="Desenhos adultos">Desenhos adultos</button>
         <button class="filter-btn" data-filter="favorites">Minha lista</button>
         <button class="filter-btn" data-filter="recent">Recentes</button>
       </div>
@@ -750,10 +756,10 @@ document.getElementById("soundToggle").addEventListener("click",()=>{
 
 
 /* =========================================
-   CATÁLOGO — 133 VÍDEOS
+   CATÁLOGO — 184 VÍDEOS
 ========================================= */
 
-const videoIds = [
+const originalVideoIds = [
   "KSA8LJBcuBw", "cez-y17Uppc", "QmiE91_ah0M", "-50azQcgQcU", "yf0Ri0mWBkE",
   "27eKL7NsD6k", "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
   "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
@@ -774,24 +780,65 @@ const videoIds = [
   "E2wzWmuo6Tc", "toVVJSnGaHY", "tojtr1uqAtk", "1kReXz_qwJo", "GwZa9g67lA0",
   "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk", "-dgoUnvq_Ms", "fUtAamtCBew",
   "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU", "it3LSaCmJ2c", "RfL2OW8ez6c",
-  "0kMJW7jT8Tg", "v_dbp_iTOqM",
-
-  // NOVOS FILMES
-  "IwapJJc3XAw", "Z_RZilLwiks", "sUGGksoN8PU", "xXcuTfa8dmE",
-  "kwPVqjZiZ0c", "DFJD6J1fQrs", "8OpaQGq-zLA", "xIseHxtMa20",
-  "DoxQWCciyeQ", "dJE8OnuXT4U", "47TJx2nzN_c", "PcGH8M6GZ10",
-  "Oq-d1l4eIzs", "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE",
-  "9d0f8JdLPZY", "OhLGnrcheWM", "Xy5sFR7stNo", "z0TfbdSJ86A",
-  "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4", "ie4J0qIchUs",
-  "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
-  "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs"
+  "0kMJW7jT8Tg", "v_dbp_iTOqM", "IwapJJc3XAw", "Z_RZilLwiks", "sUGGksoN8PU",
+  "xXcuTfa8dmE", "kwPVqjZiZ0c", "DFJD6J1fQrs", "8OpaQGq-zLA", "xIseHxtMa20",
+  "DoxQWCciyeQ", "dJE8OnuXT4U", "47TJx2nzN_c", "PcGH8M6GZ10", "Oq-d1l4eIzs",
+  "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY", "OhLGnrcheWM",
+  "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
+  "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
+  "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs",
 ];
 
-const movies = videoIds.map((id,index)=>({
+const movieGroups = {
+  'Novos filmes 2': [
+    "N99e3s4cjEg", "0J0VI3dwDkI", "5k6z8A7NuIM", "kDBSwSeSd8o", "MhBy7DL34Do",
+    "4Y55XmmmuMc", "mIXGYGPhg8o", "HHiuKwjMqZ0", "nsZxmWn6uMk", "DwOzp7DlqsI",
+    "cHx8ACnfkIA", "fNzSGVxhcX4", "9_EK0iaLpHk", "akKOUUc5vIw", "pnHPhTeWER4",
+    "7YEBYYApGBg", "rfMQgdhYWbk", "xN8diUcaRvc", "k2rxBx1li34", "--82iplHwhQ",
+    "cAmVBCcansg", "ZarSody5IUE", "CaIEHnTKw7c", "lwqdOFCAHkg",
+  ],
+  'Documentários': [
+    "BX8sx9VUOxE", "fNEYi6lNqlc", "i8rkBP7ccCE", "crDZv7qpdgs", "vkLM9s5vEko",
+    "-6PiVnKwfWg", "3ymU3LBEIgU", "zBz9K5WxX34", "EmQh8IJuewA", "UfGD0lqHObI",
+    "p16jrOQSq3A", "A-LR_OOAmTE",
+  ],
+  'Shows': [
+    "wg8sk25LGHA", "B5TVWA2RtYY", "pPdLH_CtpJU", "NJkMPfWRc28",
+  ],
+  'Desenhos': [
+    "4P4hTPI0bg0", "hiCzdp0KwYI", "F5mKlnQI65E", "kPNrS-UjtkM", "jaWfq2mCo9A",
+    "6qDWtP5qsMA",
+  ],
+  'Desenhos adultos': [
+    "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM",
+  ],
+};
+
+let nextMovieNumber = 1;
+
+const movies = originalVideoIds.map(id => ({
   id,
-  title:`Filme ${String(index+1).padStart(2,"0")}`,
-  number:index+1
+  title: `Filme ${String(nextMovieNumber).padStart(3,"0")}`,
+  number: nextMovieNumber++,
+  category: "Filmes"
 }));
+
+Object.entries(movieGroups).forEach(([category, ids]) => {
+  ids.forEach((id, index) => {
+    const prefix = category === "Novos filmes 2" ? "Novo filme" :
+      category === "Documentários" ? "Documentário" :
+      category === "Shows" ? "Show" :
+      category === "Desenhos adultos" ? "Desenho adulto" : "Desenho";
+
+    movies.push({
+      id,
+      title: `${prefix} ${String(index + 1).padStart(2,"0")}`,
+      number: nextMovieNumber++,
+      category
+    });
+  });
+});
+
 
 let favorites = JSON.parse(localStorage.getItem("icp_favorites") || "[]");
 let recent = JSON.parse(localStorage.getItem("icp_recent") || "[]");
@@ -843,7 +890,12 @@ function render(){
       return false;
     }
 
+    if(!["all", "favorites", "recent"].includes(activeFilter) && movie.category!==activeFilter) {
+      return false;
+    }
+
     return movie.title.toLowerCase().includes(term) ||
+      movie.category.toLowerCase().includes(term) ||
       String(movie.number).includes(term) ||
       movie.id.toLowerCase().includes(term);
   });
@@ -874,6 +926,7 @@ function render(){
 
       <div class="movie-details">
         <h3>${movie.title}</h3>
+        <div style="font-size:10px;color:var(--cyan);margin:0 0 8px;letter-spacing:.5px">${movie.category}</div>
 
         <button type="button" class="watch-button">
           ▶ ASSISTIR
