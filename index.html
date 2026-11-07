@@ -18,6 +18,8 @@
   --panel2:#1b2743;
   --gold:#ffc857;
   --cyan:#39d8e8;
+  --red:#ff2a5f;
+  --purple:#8a2be2;
   --text:#f5f7ff;
   --muted:#aebbd3;
 }
@@ -348,7 +350,7 @@ footer {
 }
 
 /* =========================================
-   ABERTURA CINEMATOGRÁFICA
+   ABERTURA CINEMATOGRÁFICA (AJUSTADA SEM CORTES)
 ========================================= */
 
 body.intro-active {overflow:hidden}
@@ -360,33 +362,36 @@ body.intro-active {overflow:hidden}
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden;
-  padding:24px;
-  background:
-    radial-gradient(ellipse at 50% 45%,rgba(41,74,125,.58),transparent 48%),
-    linear-gradient(135deg,#050812,#101b35 55%,#090b18);
-  transition:opacity 1s ease,visibility 1s ease;
+  overflow-y:auto;
+  padding:16px;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(255, 42, 95, 0.25) 0%, rgba(138, 43, 226, 0.2) 35%, rgba(9, 13, 27, 0.98) 75%),
+    linear-gradient(135deg,#050812 0%,#0f172a 50%,#1e102d 100%);
+  transition:opacity 1s ease,visibility 1s ease, transform 1s ease;
 }
 
 .intro-screen::before,.intro-screen::after {
   content:"";
   position:absolute;
-  width:65vw;
-  height:65vw;
-  max-width:700px;
-  max-height:700px;
-  border:1px solid rgba(255,205,105,.18);
+  width:75vw;
+  height:75vw;
+  max-width:800px;
+  max-height:800px;
+  border:2px solid rgba(255, 200, 87, 0.25);
   border-radius:50%;
-  box-shadow:0 0 80px rgba(255,190,80,.08),inset 0 0 80px rgba(50,190,230,.06);
-  animation:introOrbit 12s linear infinite;
+  box-shadow:0 0 100px rgba(255, 42, 95, 0.3), inset 0 0 90px rgba(57, 216, 232, 0.2);
+  animation:introOrbit 10s linear infinite;
+  pointer-events:none;
 }
 
 .intro-screen::after {
-  width:82vw;
-  height:82vw;
+  width:90vw;
+  height:90vw;
+  max-width:950px;
+  max-height:950px;
   animation-direction:reverse;
-  animation-duration:20s;
-  border-color:rgba(56,210,232,.12);
+  animation-duration:16s;
+  border-color:rgba(57, 216, 232, 0.25);
 }
 
 @keyframes introOrbit {
@@ -397,82 +402,100 @@ body.intro-active {overflow:hidden}
   position:relative;
   z-index:2;
   text-align:center;
-  width:min(680px,100%);
-  animation:introAppear 1.4s ease both;
+  width:min(600px, 100%);
+  margin:auto;
+  animation:introAppear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  background: rgba(16, 23, 45, 0.75);
+  padding: 28px 16px;
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
 }
 
 @keyframes introAppear {
-  from {opacity:0;transform:translateY(22px) scale(.97)}
+  from {opacity:0;transform:translateY(30px) scale(.9)}
   to {opacity:1;transform:none}
 }
 
 .intro-logo {
-  width:clamp(100px,20vw,170px);
-  height:clamp(100px,20vw,170px);
+  width:clamp(80px, 16vw, 130px);
+  height:clamp(80px, 16vw, 130px);
   object-fit:contain;
-  margin:0 auto 20px;
-  filter:drop-shadow(0 0 24px rgba(255,193,75,.4));
-  animation:introGlow 3s ease-in-out infinite alternate;
+  margin:0 auto 12px;
+  filter:drop-shadow(0 0 25px rgba(255,200,87,0.6));
+  animation:introGlow 2.5s ease-in-out infinite alternate;
 }
 
 @keyframes introGlow {
-  to {filter:drop-shadow(0 0 42px rgba(255,193,75,.8))}
+  0% {filter:drop-shadow(0 0 20px rgba(255,200,87,0.5)) scale(1);}
+  100% {filter:drop-shadow(0 0 40px rgba(255,42,95,0.9)) scale(1.04);}
 }
 
 .intro-kicker {
-  color:#53d9e8;
-  letter-spacing:5px;
+  color:var(--cyan);
+  letter-spacing:4px;
   font-size:11px;
-  font-weight:bold;
+  font-weight:900;
+  text-transform:uppercase;
+  text-shadow:0 0 10px rgba(57,216,232,0.5);
+  margin-bottom: 4px;
 }
 
 .intro-title {
-  margin:14px 0 8px;
-  font-size:clamp(27px,6vw,55px);
-  line-height:1.05;
-  letter-spacing:clamp(1px,.6vw,5px);
-  font-weight:900;
-  background:linear-gradient(100deg,#fff0b8,#ffc857 45%,#fff8df);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  text-shadow:0 8px 35px rgba(255,190,70,.12);
+  margin: 6px 0;
+  font-size: clamp(20px, 4.8vw, 38px);
+  line-height: 1.15;
+  letter-spacing: clamp(1px, 0.4vw, 3px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #ffc857 0%, #ff2a5f 50%, #39d8e8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 8px 30px rgba(255,42,95,0.3);
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .intro-slogan {
   color:#e3e9f6;
-  letter-spacing:3px;
-  font-size:clamp(11px,2vw,15px);
-  margin:12px 0 30px;
+  letter-spacing:2px;
+  font-size:clamp(11px, 1.8vw, 14px);
+  margin: 8px 0 20px;
+  font-weight:bold;
 }
 
 .intro-enter {
-  border:1px solid rgba(255,225,160,.8);
+  border:none;
   border-radius:30px;
-  padding:14px 35px;
-  background:linear-gradient(110deg,#ffe19a,#d99a35);
-  color:#111a2d;
+  padding:14px 38px;
+  background:linear-gradient(90deg,#ff2a5f,#ffc857);
+  color:#090d1b;
+  font-size:15px;
   font-weight:900;
   letter-spacing:2px;
-  box-shadow:0 0 30px rgba(255,190,70,.2);
-  transition:.25s;
+  box-shadow:0 0 30px rgba(255,42,95,0.6);
+  transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .intro-enter:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 45px rgba(255,190,70,.5);
+  transform:scale(1.06);
+  box-shadow:0 0 50px rgba(255,200,87,0.8);
+  background:linear-gradient(90deg,#ffc857,#39d8e8);
 }
 
 .intro-note {
   display:block;
-  margin-top:17px;
+  margin-top:14px;
   color:#aab8d2;
-  font-size:11px;
+  font-size:10px;
   letter-spacing:1px;
+  text-transform:uppercase;
 }
 
 .intro-screen.leaving {
   opacity:0;
+  transform:scale(1.08);
   visibility:hidden;
   pointer-events:none;
 }
@@ -480,20 +503,15 @@ body.intro-active {overflow:hidden}
 .sound-toggle {
   position:absolute;
   z-index:3;
-  right:20px;
-  top:20px;
-  border:1px solid #465778;
-  background:#111a2dcc;
+  right:16px;
+  top:16px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(17,26,45,0.8);
   color:#eaf0ff;
-  border-radius:25px;
-  padding:9px 13px;
-  font-size:12px;
-}
-
-@media(prefers-reduced-motion:reduce) {
-  .intro-screen::before,.intro-screen::after,.intro-logo,.intro-content {
-    animation:none;
-  }
+  border-radius:20px;
+  padding:7px 12px;
+  font-size:11px;
+  backdrop-filter:blur(10px);
 }
 </style>
 </head>
@@ -651,8 +669,7 @@ body.intro-active {overflow:hidden}
 <script>
 
 /* =========================================
-   ABERTURA SONORA ORIGINAL
-   Criada pelo navegador, sem arquivo externo
+   ABERTURA SONORA CINEMATOGRÁFICA (TUDUM STYLE)
 ========================================= */
 
 let introSoundEnabled = true;
@@ -673,17 +690,31 @@ function playIntroSoundtrack() {
     }
 
     const master = ctx.createGain();
-    master.gain.setValueAtTime(0.0001,ctx.currentTime);
-    master.gain.exponentialRampToValueAtTime(0.18,ctx.currentTime+0.4);
-    master.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+5.8);
+    master.gain.setValueAtTime(0.0001, ctx.currentTime);
+    master.gain.exponentialRampToValueAtTime(0.35, ctx.currentTime + 0.1);
+    master.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 4.5);
     master.connect(ctx.destination);
 
+    const subOsc = ctx.createOscillator();
+    const subGain = ctx.createGain();
+    subOsc.type = "sine";
+    subOsc.frequency.setValueAtTime(110, ctx.currentTime);
+    subOsc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.8);
+
+    subGain.gain.setValueAtTime(0.8, ctx.currentTime);
+    subGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.5);
+
+    subOsc.connect(subGain);
+    subGain.connect(master);
+    subOsc.start(ctx.currentTime);
+    subOsc.stop(ctx.currentTime + 2.6);
+
     const notes = [
-      {f:196.00,t:.25,d:3.1,type:"sine",v:.22},
-      {f:261.63,t:.65,d:2.8,type:"triangle",v:.16},
-      {f:392.00,t:1.25,d:2.5,type:"sine",v:.12},
-      {f:523.25,t:2.0,d:2.4,type:"triangle",v:.10},
-      {f:659.25,t:2.55,d:2.0,type:"sine",v:.08}
+      {f:130.81, t:.05, d:3.5, type:"sawtooth", v:.20},
+      {f:196.00, t:.10, d:3.2, type:"sine",     v:.25},
+      {f:261.63, t:.15, d:3.0, type:"triangle", v:.20},
+      {f:392.00, t:.25, d:2.8, type:"sine",     v:.15},
+      {f:523.25, t:.40, d:2.5, type:"triangle", v:.12}
     ];
 
     notes.forEach(n=>{
@@ -694,8 +725,8 @@ function playIntroSoundtrack() {
       osc.frequency.setValueAtTime(n.f,ctx.currentTime+n.t);
 
       gain.gain.setValueAtTime(.0001,ctx.currentTime+n.t);
-      gain.gain.exponentialRampToValueAtTime(n.v,ctx.currentTime+n.t+.18);
-      gain.gain.setValueAtTime(n.v,ctx.currentTime+n.t+n.d-.35);
+      gain.gain.exponentialRampToValueAtTime(n.v,ctx.currentTime+n.t+.15);
+      gain.gain.setValueAtTime(n.v,ctx.currentTime+n.t+n.d-.4);
       gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+n.t+n.d);
 
       osc.connect(gain);
@@ -705,59 +736,58 @@ function playIntroSoundtrack() {
       osc.stop(ctx.currentTime+n.t+n.d);
     });
 
-    // Brilho final suave, como assinatura sonora de cinema.
-    [783.99,1046.5].forEach((freq,i)=>{
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
+    [659.25, 783.99, 1046.50].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
 
-      osc.type="sine";
-      osc.frequency.value=freq;
+      osc.type = "sine";
+      osc.frequency.value = freq;
 
-      const start=ctx.currentTime+3.55+i*.12;
+      const start = ctx.currentTime + 1.2 + i * .12;
 
-      gain.gain.setValueAtTime(.0001,start);
-      gain.gain.exponentialRampToValueAtTime(.055,start+.12);
-      gain.gain.exponentialRampToValueAtTime(.0001,start+1.25);
+      gain.gain.setValueAtTime(.0001, start);
+      gain.gain.exponentialRampToValueAtTime(.08, start + .1);
+      gain.gain.exponentialRampToValueAtTime(.0001, start + 1.8);
 
       osc.connect(gain);
       gain.connect(master);
 
       osc.start(start);
-      osc.stop(start+1.3);
+      osc.stop(start + 1.9);
     });
 
-    setTimeout(()=>{
-      if(ctx.state!=="closed") ctx.close().catch(()=>{});
-    },6500);
+    setTimeout(() => {
+      if(ctx.state !== "closed") ctx.close().catch(()=>{});
+    }, 5000);
 
   } catch(err) {
-    console.log("Áudio de abertura indisponível:",err);
+    console.log("Áudio de abertura indisponível:", err);
   }
 }
 
 function enterStreaming() {
-  const intro=document.getElementById("introScreen");
+  const intro = document.getElementById("introScreen");
 
   playIntroSoundtrack();
 
   intro.classList.add("leaving");
   document.body.classList.remove("intro-active");
 
-  setTimeout(()=>intro.remove(),1100);
+  setTimeout(() => intro.remove(), 1100);
 }
 
-document.getElementById("enterPlay").addEventListener("click",enterStreaming);
+document.getElementById("enterPlay").addEventListener("click", enterStreaming);
 
-document.getElementById("soundToggle").addEventListener("click",()=>{
-  introSoundEnabled=!introSoundEnabled;
+document.getElementById("soundToggle").addEventListener("click", () => {
+  introSoundEnabled = !introSoundEnabled;
 
-  document.getElementById("soundToggle").textContent=
+  document.getElementById("soundToggle").textContent =
     introSoundEnabled ? "♫ SOM LIGADO" : "♫ SOM DESLIGADO";
 });
 
 
 /* =========================================
-   CATÁLOGO — VÍDEOS
+   CATÁLOGO — VÍDEOS (COM OS NOVOS INCLUÍDOS)
 ========================================= */
 
 const originalVideoIds = [
@@ -777,7 +807,7 @@ const originalVideoIds = [
   "C3b3LDh_3iM",
   "MabGOA9jmjA",
   "iboykN3HbvY",
-  "GouLfRUG3Xw",
+  "7K2T24BjA9o",
   "O2PuqhLmNfo",
   "8-7P91yx3FA",
   "Id1lRcaZwiw",
@@ -864,8 +894,7 @@ const originalVideoIds = [
   "IwapJJc3XAw",
   "Z_RZilLwiks",
   "sUGGksoN8PU",
-  "xXcuTfa8dmE",
-  "kwPVqjZiZ0c",
+  "w-BIww-z_-4",
   "8OpaQGq-zLA",
   "xIseHxtMa20",
   "DoxQWCciyeQ",
@@ -891,6 +920,12 @@ const originalVideoIds = [
   "mi7hCevHBrc",
   "sQJZJqxge88",
   "FkkKkTbuUMs",
+  // Novos vídeos adicionados:
+  "xwgikJXMviM",
+  "OyI2Wx_17g4",
+  "LoOl2enPw94",
+  "cpdu7AQsr2A",
+  "QmS_dY4XDCg"
 ];
 
 const movieGroups = {
