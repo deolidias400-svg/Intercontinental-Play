@@ -350,7 +350,7 @@ footer {
 }
 
 /* =========================================
-   ABERTURA CINEMATOGRÁFICA (AJUSTADA SEM CORTES)
+   ABERTURA CINEMATOGRÁFICA
 ========================================= */
 
 body.intro-active {overflow:hidden}
@@ -636,6 +636,7 @@ body.intro-active {overflow:hidden}
         <button class="filter-btn" data-filter="Filmes">Filmes</button>
         <button class="filter-btn" data-filter="Novos filmes 2">Novos filmes 2</button>
         <button class="filter-btn" data-filter="Mais filmes novos">Mais filmes novos</button>
+        <button class="filter-btn" data-filter="Filmes Bíblicos">Filmes Bíblicos</button>
         <button class="filter-btn" data-filter="Documentários">Documentários</button>
         <button class="filter-btn" data-filter="Shows">Shows</button>
         <button class="filter-btn" data-filter="Desenhos">Desenhos</button>
@@ -669,7 +670,7 @@ body.intro-active {overflow:hidden}
 <script>
 
 /* =========================================
-   ABERTURA SONORA CINEMATOGRÁFICA (TUDUM STYLE)
+   ABERTURA SONORA CINEMATOGRÁFICA
 ========================================= */
 
 let introSoundEnabled = true;
@@ -791,142 +792,38 @@ document.getElementById("soundToggle").addEventListener("click", () => {
 ========================================= */
 
 const originalVideoIds = [
-  "KSA8LJBcuBw",
-  "cez-y17Uppc",
-  "QmiE91_ah0M",
-  "-50azQcgQcU",
-  "yf0Ri0mWBkE",
-  "27eKL7NsD6k",
-  "ZvP5vxfOYOI",
-  "yDbfHukTCyI",
-  "wBAqZwNiIBM",
-  "JkDhDTK_WpA",
-  "AUqSf8WhcMw",
-  "1TVosYYuS7k",
-  "--N62ZpSx-s",
-  "C3b3LDh_3iM",
-  "MabGOA9jmjA",
-  "iboykN3HbvY",
-  "7K2T24BjA9o",
-  "O2PuqhLmNfo",
-  "8-7P91yx3FA",
-  "Id1lRcaZwiw",
-  "aLM_L7kpfQw",
-  "mh7eKtOBGow",
-  "v37QjyIXXrg",
-  "LCwhpZvNmwI",
-  "-KhV4UBkD5w",
-  "vFsuvXoRjL8",
-  "B6URc8AEJ4I",
-  "3Cotd0Ljqu0",
-  "vUtmQH5o5KE",
-  "J658w9YBHgE",
-  "SuZW5Tn5vwU",
-  "1bWBw4ehgVs",
-  "nF1m74ZTbDQ",
-  "yPdylO9yCLw",
-  "T40-Wu6fZwM",
-  "2G6Z4B3DqjM",
-  "4hiStiT6D8Q",
-  "mr7Bpyhu4tg",
-  "V4vakP26V0Y",
-  "lxwvDg_QdrY",
-  "nkLf8oAEm9s",
-  "4c_yiwDkNOQ",
-  "FHIHCtc0xQI",
-  "swjerYktyr8",
-  "5pLposHGNmw",
-  "d0vwGt_Fr7I",
-  "rNBojhayj-A",
-  "60R2Tbf9o6s",
-  "l3tIpFtM58Y",
-  "lKf9wFE5PBY",
-  "gENMUeKPWJM",
-  "cTzbN16N9iA",
-  "72uoI3_QDg0",
-  "gc8i0gNjqms",
-  "5fY2HW8ItS0",
-  "mp5FEDffH7Y",
-  "4-rEUkG9XCo",
-  "ml9s_ikCM8o",
-  "aiD2x76gZyU",
-  "jT60asBuU1k",
-  "hqoRGV9uZeM",
-  "IJbPg8AxRtA",
-  "h5YFNAuzqDo",
-  "9TqK1oZZ1w4",
-  "-imSUhbD--w",
-  "yZqakD5BYLg",
-  "xlgTC0fWNQw",
-  "jaGKARCrOqI",
-  // Filme 074 ("kOfP_SUr52E") substituído por 2CCJeInoKd0
-  "2CCJeInoKd0",
+  "KSA8LJBcuBw", "cez-y17Uppc", "QmiE91_ah0M", "-50azQcgQcU", "yf0Ri0mWBkE",
+  "27eKL7NsD6k", "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
+  "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
+  "iboykN3HbvY", "7K2T24BjA9o", "O2PuqhLmNfo", "8-7P91yx3FA", "Id1lRcaZwiw",
+  // "aLM_L7kpfQw" (Filme 21) removido e substituídos por novas adições abaixo
+  "mh7eKtOBGow", "v37QjyIXXrg", "LCwhpZvNmwI", "-KhV4UBkD5w",
+  "vFsuvXoRjL8", "B6URc8AEJ4I", "3Cotd0Ljqu0", "vUtmQH5o5KE", "J658w9YBHgE",
+  "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
+  "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y", "lxwvDg_QdrY",
+  "nkLf8oAEm9s", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8", "5pLposHGNmw",
+  "d0vwGt_Fr7I", "rNBojhayj-A", "60R2Tbf9o6s", "l3tIpFtM58Y", "lKf9wFE5PBY",
+  "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
+  "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "aiD2x76gZyU", "jT60asBuU1k",
+  "hqoRGV9uZeM", "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
+  "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", 
+  // "2CCJeInoKd0" (Filme 74) removido
   "3pvGyDHkt90",
-  "_Dv7D3DIDfE",
-  "DCYBfPeYO_M",
-  "DX2XC3JYU2E",
-  "mgYY2MdWofA",
-  "wFViEWSTrYk",
-  "IDP03ZZncNA",
-  "XV-gTgahpOo",
-  "s5A6iaJhzow",
-  "r8gjwaoA7dc",
-  "AHx1Q-3Cnfc",
-  "awshHgved9s",
-  "SizLJVJX5xs",
-  "KHOQ6TJR2W0",
-  "E2wzWmuo6Tc",
-  "toVVJSnGaHY",
-  "tojtr1uqAtk",
-  "GwZa9g67lA0",
-  "DsN9FAyRpII",
-  "KdT0JLyPLjw",
-  "atgsvILh8gk",
-  "-dgoUnvq_Ms",
-  "fUtAamtCBew",
-  "jBUaAHxS9NQ",
-  "Xv1cBRatW1M",
-  "nr6v8Geo2yU",
-  "it3LSaCmJ2c",
-  "RfL2OW8ez6c",
-  "0kMJW7jT8Tg",
-  "v_dbp_iTOqM",
-  "IwapJJc3XAw",
-  "Z_RZilLwiks",
-  "sUGGksoN8PU",
-  "w-BIww-z_-4",
-  "8OpaQGq-zLA",
-  "xIseHxtMa20",
-  "DoxQWCciyeQ",
-  "dJE8OnuXT4U",
-  "47TJx2nzN_c",
-  "PcGH8M6GZ10",
-  "Oq-d1l4eIzs",
-  "-asUNrks370",
-  "0Uk2WEzVA1E",
-  "UCDNW3le7gE",
-  "9d0f8JdLPZY",
-  "OhLGnrcheWM",
-  "Xy5sFR7stNo",
-  "z0TfbdSJ86A",
-  "PuVuB9iKZGg",
-  "y8WfKvY5VDQ",
-  "pTT3IsSBlO4",
-  "ie4J0qIchUs",
-  "TzECk3Kmlr8",
-  "0BygofoYbik",
-  "sn7YKOZc2xs",
-  "6PHiBzRmqYw",
-  "mi7hCevHBrc",
-  "sQJZJqxge88",
-  "FkkKkTbuUMs",
-  "xwgikJXMviM",
-  "OyI2Wx_17g4",
-  "LoOl2enPw94",
-  "cpdu7AQsr2A",
-  "QmS_dY4XDCg",
-  "lpAAxaOA1EU",
-  "PLt6htme5FM"
+  "_Dv7D3DIDfE", "DCYBfPeYO_M", "DX2XC3JYU2E", "mgYY2MdWofA", "wFViEWSTrYk",
+  "IDP03ZZncNA", "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
+  "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
+  "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk",
+  "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
+  "it3LSaCmJ2c", "RfL2OW8ez6c", "0kMJW7jT8Tg", "v_dbp_iTOqM", "IwapJJc3XAw",
+  "Z_RZilLwiks", "sUGGksoN8PU", "w-BIww-z_-4", "8OpaQGq-zLA", "xIseHxtMa20",
+  "DoxQWCciyeQ", "dJE8OnuXT4U", "47TJx2nzN_c", "PcGH8M6GZ10", "Oq-d1l4eIzs",
+  "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY", "OhLGnrcheWM",
+  "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
+  "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
+  "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs", "xwgikJXMviM", "OyI2Wx_17g4",
+  "LoOl2enPw94", "cpdu7AQsr2A", "QmS_dY4XDCg", "lpAAxaOA1EU", "PLt6htme5FM",
+  /* Adicionados no lugar dos filmes 21 e 74 */
+  "0wEGADCBnnw", "a57Y1AX4NE0"
 ];
 
 const movieGroups = {
@@ -935,36 +832,48 @@ const movieGroups = {
     "4Y55XmmmuMc", "mIXGYGPhg8o", "HHiuKwjMqZ0", "nsZxmWn6uMk", "DwOzp7DlqsI",
     "cHx8ACnfkIA", "fNzSGVxhcX4", "9_EK0iaLpHk", "akKOUUc5vIw", "pnHPhTeWER4",
     "7YEBYYApGBg", "rfMQgdhYWbk", "xN8diUcaRvc", "k2rxBx1li34", "--82iplHwhQ",
-    "cAmVBCcansg", "ZarSody5IUE", "CaIEHnTKw7c", "lwqdOFCAHkg",
+    "cAmVBCcansg", "ZarSody5IUE", "CaIEHnTKw7c", "lwqdOFCAHkg"
+  ],
+  'Filmes Bíblicos': [
+    "K6Gm0xlWxes", "TpUq-9pgCLA", "CakEFsRSa6I", "gznuhGkLntQ",
+    "bKJfraJx284", "i1LPIJZX8tc", "oGYSLXToL50", "udeynQlN-Hc",
+    "KyQYwQYLWyY", "_GmzPEdskEg", "qvXqqGgAX8A", "iNKkWxvGOxk"
   ],
   'Documentários': [
     "BX8sx9VUOxE", "fNEYi6lNqlc", "i8rkBP7ccCE", "crDZv7qpdgs", "vkLM9s5vEko",
     "-6PiVnKwfWg", "3ymU3LBEIgU", "zBz9K5WxX34", "EmQh8IJuewA", "UfGD0lqHObI",
-    "p16jrOQSq3A", "A-LR_OOAmTE",
-    "CVe0_6s4gMo", "iC6Yyo0qhM8", "MxRLHg_STgY", "X3YLYWJJRkI",
-    "dIUhOTF8HTM", "K2iXHs1Zj9g", "E3bX8Kveqqk", "PE2LIwo24z0", "FD50brmQp_Y",
-    "bS6-L8s5GRM",
-    "ZvuRW4d1RR0",
-    // Novo documentário adicionado:
-    "f1pxqRkQCyk"
+    "p16jrOQSq3A", 
+    /* "A-LR_OOAmTE" (Documentário 12) removido */
+    "CVe0_6s4gMo", "iC6Yyo0qhM8", "MxRLHg_STgY",
+    "X3YLYWJJRkI", "dIUhOTF8HTM", "K2iXHs1Zj9g", "E3bX8Kveqqk", "PE2LIwo24z0",
+    "FD50brmQp_Y", "bS6-L8s5GRM", "ZvuRW4d1RR0", "f1pxqRkQCyk",
+    "vYBLq4UXp9E", "HofzgBoAu1I", "vHeXBOe1A_A", "mcWaypzFzps", "1XBIQjsPwDA"
   ],
   'Shows': [
     "wg8sk25LGHA", "B5TVWA2RtYY", "pPdLH_CtpJU", "NJkMPfWRc28",
     "XhV3iyLPBr8", "svKUiH-3xS8", "jqZ4_JJKnL0", "GbLD64t7sKk", "ptfiz5_GH30",
+    "J7JUOhkNIN0", "joRjg5dN4Ao", "eNXfkbpT0eQ", "oxHBe3MEX9c",
+    "W_Z1b3Ciiso", "cPzrZ-1g-7U", "jxa1j7nRQuw", "D-LiTwOjE30", "9_bMYmvMSKA",
+    /* Show adicionado */
+    "ai_gI0Jbr_E"
   ],
   'Desenhos': [
     "4P4hTPI0bg0", "hiCzdp0KwYI", "F5mKlnQI65E", "kPNrS-UjtkM", "jaWfq2mCo9A",
-    "6qDWtP5qsMA",
+    "6qDWtP5qsMA"
   ],
   'Desenhos adultos': [
-    "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM",
+    "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM"
   ],
   'Mais filmes novos': [
     "NGTsgnw1SvE", "1rgELmO9Wvg", "RoOn71iK9NA", "ybLmaTFWWRY", "Pe8FhfAoGOg",
     "Q9SlA4MSxWY", "XMtqDZ4dJzo", "2R1aaROltxE", "ZRDUeUm-OHw", "mvf5X1NaTTs",
     "i6TE0d21JQU", "EcdXU3jDxpU", "oWL0bc3yGXM", "szd26YF_x0I", "sCQEPSCHZSg",
     "sFP6aLQNVe8", "tnGRURSAoXo",
-  ],
+    "Yp1gDQF6GRQ", "VHyF33B1410", "iYMpyz9lDWQ", "3TlzOjE-8ZQ", "lazjEh_Vr7E",
+    "RyV87H4nUZg", "1kERXH1ALNM", "UQKJPDbPVOk", "JNtkEaU0mZo", "WaJGxNg9Bic",
+    "bGpwTWcr2cc", "yV8VWdhK7T4", "pRjCZeraytQ", "IFT7ndbmhk4", "bnAivSy-LM8",
+    "jMpSuDUr2Ac", "RQM0mgE7F-g", "4KIqBSdkWRo", "KZVohT2PhRw"
+  ]
 };
 
 let nextMovieNumber = 1;
@@ -979,6 +888,7 @@ const movies = originalVideoIds.map(id => ({
 Object.entries(movieGroups).forEach(([category, ids]) => {
   ids.forEach((id, index) => {
     const prefix = (category === "Novos filmes 2" || category === "Mais filmes novos") ? "Novo filme" :
+      category === "Filmes Bíblicos" ? "Filme Bíblico" :
       category === "Documentários" ? "Documentário" :
       category === "Shows" ? "Show" :
       category === "Desenhos adultos" ? "Desenho adulto" : "Desenho";
@@ -992,7 +902,6 @@ Object.entries(movieGroups).forEach(([category, ids]) => {
   });
 });
 
-
 let favorites = JSON.parse(localStorage.getItem("icp_favorites") || "[]");
 let recent = JSON.parse(localStorage.getItem("icp_recent") || "[]");
 let currentId = null;
@@ -1001,7 +910,6 @@ let activeFilter = "all";
 const grid = document.getElementById("catalogGrid");
 const search = document.getElementById("searchInput");
 const emptyMessage = document.getElementById("emptyMessage");
-
 
 /* =========================================
    FAVORITOS E HISTÓRICO
@@ -1024,7 +932,6 @@ function toast(message){
     el.style.display="none";
   },2600);
 }
-
 
 /* =========================================
    MONTAGEM DO CATÁLOGO
@@ -1109,7 +1016,6 @@ function render(){
   emptyMessage.hidden=list.length!==0;
 }
 
-
 /* =========================================
    REPRODUÇÃO
 ========================================= */
@@ -1150,7 +1056,6 @@ function playMovie(id){
     behavior:"smooth"
   });
 }
-
 
 /* =========================================
    CONTROLE DE FAVORITOS
@@ -1198,7 +1103,6 @@ document.getElementById("favoriteCurrent").addEventListener("click",()=>{
 
 });
 
-
 /* =========================================
    TELA CHEIA
 ========================================= */
@@ -1222,7 +1126,6 @@ document.getElementById("fullscreenButton").addEventListener("click",()=>{
   }
 
 });
-
 
 /* =========================================
    PESQUISA E FILTROS
@@ -1277,77 +1180,36 @@ function updateFilters(){
 
 }
 
-
 /* =========================================
-   INSTALAÇÃO DO APLICATIVO
+   INSTALAÇÃO DO APLICATIVO E INICIALIZAÇÃO
 ========================================= */
 
 render();
 updateFavoriteButton();
 
 let installPrompt=null;
-
 const installButton=document.getElementById("installButton");
 
 window.addEventListener("beforeinstallprompt",event=>{
-
   event.preventDefault();
-
   installPrompt=event;
-
   installButton.style.display="inline-block";
-
 });
 
 installButton.addEventListener("click",async()=>{
-
   if(installPrompt){
-
     installPrompt.prompt();
-
     const result=await installPrompt.userChoice;
-
     if(result.outcome==="accepted") {
       toast("Instalação iniciada!");
     }
-
     installPrompt=null;
-
   } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-
-    toast("No Safari: toque em Compartilhar e depois em Adicionar à Tela de Início.");
-
+    toast("No iOS, toque em Compartilhar > Adicionar à Tela de Início.");
   } else {
-
-    toast("Procure a opção Instalar aplicativo ou Adicionar à tela inicial no menu do navegador.");
-
+    toast("Instalação não suportada ou app já instalado.");
   }
-
 });
-
-window.addEventListener("appinstalled",()=>{
-
-  toast("Intercontinental Play instalado com sucesso!");
-
-  installButton.style.display="none";
-
-});
-
-
-/* =========================================
-   SERVICE WORKER
-========================================= */
-
-if("serviceWorker" in navigator && location.protocol.startsWith("http")){
-
-  window.addEventListener("load",()=>{
-
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(error=>console.log("Service Worker:",error));
-
-  });
-
-}
 
 </script>
 </body>
