@@ -788,7 +788,7 @@ document.getElementById("soundToggle").addEventListener("click", () => {
 
 
 /* =========================================
-   CATÁLOGO — VÍDEOS (ATUALIZADO)
+   CATÁLOGO — VÍDEOS (ATUALIZADO COM OS NOVOS ITENS)
 ========================================= */
 
 const originalVideoIds = [
@@ -796,7 +796,6 @@ const originalVideoIds = [
   "27eKL7NsD6k", "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
   "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
   "iboykN3HbvY", "7K2T24BjA9o", "O2PuqhLmNfo", "8-7P91yx3FA", "Id1lRcaZwiw",
-  // "aLM_L7kpfQw" (Filme 21) removido e substituídos por novas adições abaixo
   "mh7eKtOBGow", "v37QjyIXXrg", "LCwhpZvNmwI", "-KhV4UBkD5w",
   "vFsuvXoRjL8", "B6URc8AEJ4I", "3Cotd0Ljqu0", "vUtmQH5o5KE", "J658w9YBHgE",
   "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
@@ -805,12 +804,10 @@ const originalVideoIds = [
   "d0vwGt_Fr7I", "rNBojhayj-A", "60R2Tbf9o6s", "l3tIpFtM58Y", "lKf9wFE5PBY",
   "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
   "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "aiD2x76gZyU", "jT60asBuU1k",
-  "hqoRGV9uZeM", "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
-  "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", 
-  // "2CCJeInoKd0" (Filme 74) removido
-  "3pvGyDHkt90",
+  "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
+  "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", "3pvGyDHkt90",
   "_Dv7D3DIDfE", "DCYBfPeYO_M", "DX2XC3JYU2E", "mgYY2MdWofA", "wFViEWSTrYk",
-  "IDP03ZZncNA", "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
+  "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
   "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
@@ -822,8 +819,10 @@ const originalVideoIds = [
   "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
   "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs", "xwgikJXMviM", "OyI2Wx_17g4",
   "LoOl2enPw94", "cpdu7AQsr2A", "QmS_dY4XDCg", "lpAAxaOA1EU", "PLt6htme5FM",
-  /* Adicionados no lugar dos filmes 21 e 74 */
-  "0wEGADCBnnw", "a57Y1AX4NE0"
+  "0wEGADCBnnw", "a57Y1AX4NE0",
+  /* Novos filmes adicionados à categoria principal 'Filmes' */
+  "L6QzVnBY-Y4", "ytlOpzEPzJg", "j1eS6mwIVus", "32zFgSROi8g",
+  "wHZdIrYSSI4", "zswxUK5kXg8", "hN6E12qZm20", "0305fS8agug"
 ];
 
 const movieGroups = {
@@ -842,27 +841,30 @@ const movieGroups = {
   'Documentários': [
     "BX8sx9VUOxE", "fNEYi6lNqlc", "i8rkBP7ccCE", "crDZv7qpdgs", "vkLM9s5vEko",
     "-6PiVnKwfWg", "3ymU3LBEIgU", "zBz9K5WxX34", "EmQh8IJuewA", "UfGD0lqHObI",
-    "p16jrOQSq3A", 
-    /* "A-LR_OOAmTE" (Documentário 12) removido */
-    "CVe0_6s4gMo", "iC6Yyo0qhM8", "MxRLHg_STgY",
+    "p16jrOQSq3A", "CVe0_6s4gMo", "iC6Yyo0qhM8", "MxRLHg_STgY",
     "X3YLYWJJRkI", "dIUhOTF8HTM", "K2iXHs1Zj9g", "E3bX8Kveqqk", "PE2LIwo24z0",
     "FD50brmQp_Y", "bS6-L8s5GRM", "ZvuRW4d1RR0", "f1pxqRkQCyk",
-    "vYBLq4UXp9E", "HofzgBoAu1I", "vHeXBOe1A_A", "mcWaypzFzps", "1XBIQjsPwDA"
+    "vYBLq4UXp9E", "HofzgBoAu1I", "vHeXBOe1A_A", "mcWaypzFzps", "1XBIQjsPwDA",
+    /* Novos documentários adicionados */
+    "m1ZdnXmxYiQ", "7YX_dgJBmmg", "C2qxewjx1l0"
   ],
   'Shows': [
     "wg8sk25LGHA", "B5TVWA2RtYY", "pPdLH_CtpJU", "NJkMPfWRc28",
     "XhV3iyLPBr8", "svKUiH-3xS8", "jqZ4_JJKnL0", "GbLD64t7sKk", "ptfiz5_GH30",
     "J7JUOhkNIN0", "joRjg5dN4Ao", "eNXfkbpT0eQ", "oxHBe3MEX9c",
     "W_Z1b3Ciiso", "cPzrZ-1g-7U", "jxa1j7nRQuw", "D-LiTwOjE30", "9_bMYmvMSKA",
-    /* Show adicionado */
-    "ai_gI0Jbr_E"
+    "ai_gI0Jbr_E",
+    /* Novos shows adicionados (IDs extraídos das URLs informadas) */
+    "i7j0bw5TonI", "18cFvSXaIY0", "fJWvc2NK-Ro"
   ],
   'Desenhos': [
     "4P4hTPI0bg0", "hiCzdp0KwYI", "F5mKlnQI65E", "kPNrS-UjtkM", "jaWfq2mCo9A",
     "6qDWtP5qsMA"
   ],
   'Desenhos adultos': [
-    "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM"
+    "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM",
+    /* Novo desenho adulto adicionado */
+    "Tua7Es_pB7M"
   ],
   'Mais filmes novos': [
     "NGTsgnw1SvE", "1rgELmO9Wvg", "RoOn71iK9NA", "ybLmaTFWWRY", "Pe8FhfAoGOg",
@@ -1169,47 +1171,17 @@ document.getElementById("navRecent").addEventListener("click",()=>{
 
 function updateFilters(){
 
-  document.querySelectorAll(".filter-btn").forEach(button=>{
-
-    button.classList.toggle(
-      "active",
-      button.dataset.filter===activeFilter
-    );
-
+  document.querySelectorAll(".filter-btn").forEach(b=>{
+    if(b.dataset.filter === activeFilter) {
+      b.classList.add("active");
+    } else {
+      b.classList.remove("active");
+    }
   });
 
 }
 
-/* =========================================
-   INSTALAÇÃO DO APLICATIVO E INICIALIZAÇÃO
-========================================= */
-
 render();
-updateFavoriteButton();
-
-let installPrompt=null;
-const installButton=document.getElementById("installButton");
-
-window.addEventListener("beforeinstallprompt",event=>{
-  event.preventDefault();
-  installPrompt=event;
-  installButton.style.display="inline-block";
-});
-
-installButton.addEventListener("click",async()=>{
-  if(installPrompt){
-    installPrompt.prompt();
-    const result=await installPrompt.userChoice;
-    if(result.outcome==="accepted") {
-      toast("Instalação iniciada!");
-    }
-    installPrompt=null;
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-    toast("No iOS, toque em Compartilhar > Adicionar à Tela de Início.");
-  } else {
-    toast("Instalação não suportada ou app já instalado.");
-  }
-});
 
 </script>
 </body>
