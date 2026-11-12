@@ -788,7 +788,7 @@ document.getElementById("soundToggle").addEventListener("click", () => {
 
 
 /* =========================================
-   CATÁLOGO — VÍDEOS (Atualizado com novos filmes e Desenhos adultos)
+   CATÁLOGO — VÍDEOS (Filmes 022, 060, 069, 071, 096, 098 e 109 removidos)
 ========================================= */
 
 const originalVideoIds = [
@@ -796,7 +796,7 @@ const originalVideoIds = [
   "27eKL7NsD6k", "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
   "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
   "iboykN3HbvY", "7K2T24BjA9o", "O2PuqhLmNfo", "8-7P91yx3FA", "Id1lRcaZwiw",
-  "mh7eKtOBGow", "v37QjyIXXrg", "LCwhpZvNmwI", "-KhV4UBkD5w",
+  "mh7eKtOBGow", /* Filme 022 removido */ "LCwhpZvNmwI", "-KhV4UBkD5w",
   "vFsuvXoRjL8", "B6URc8AEJ4I", "3Cotd0Ljqu0", "vUtmQH5o5KE", "J658w9YBHgE",
   "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
   "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y", "lxwvDg_QdrY",
@@ -806,12 +806,12 @@ const originalVideoIds = [
   "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "aiD2x76gZyU", "jT60asBuU1k",
   /* Filme 060 removido */ "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
   "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", "3pvGyDHkt90",
-  "_Dv7D3DIDfE", "DCYBfPeYO_M", "DX2XC3JYU2E", /* Filme 071 removido */ "wFViEWSTrYk",
+  /* Filme 069 removido */ "DCYBfPeYO_M", "DX2XC3JYU2E", /* Filme 071 removido */ "wFViEWSTrYk",
   "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
   "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
-  /* Filme 096 removido */ "RfL2OW8ez6c", "0kMJW7jT8Tg", "v_dbp_iTOqM", "IwapJJc3XAw",
+  /* Filme 096 removido */ "RfL2OW8ez6c", /* Filme 098 removido */ "v_dbp_iTOqM", "IwapJJc3XAw",
   "Z_RZilLwiks", "sUGGksoN8PU", "w-BIww-z_-4", "8OpaQGq-zLA", "xIseHxtMa20",
   /* Filme 109 removido */ "dJE8OnuXT4U", "47TJx2nzN_c", "PcGH8M6GZ10", "Oq-d1l4eIzs",
   "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY", "OhLGnrcheWM",
@@ -823,7 +823,6 @@ const originalVideoIds = [
   "L6QzVnBY-Y4", "ytlOpzEPzJg", "j1eS6mwIVus", "32zFgSROi8g",
   "wHZdIrYSSI4", "zswxUK5kXg8", "hN6E12qZm20", "0305fS8agug",
   "UgfNZTCOFwg", "9lE7ygK3ZQw",
-  /* Novos filmes adicionados (KwUPk7iCtCU, mi0rbgzJDeM, 7-Pi-v431TY) */
   "KwUPk7iCtCU", "mi0rbgzJDeM", "7-Pi-v431TY"
 ];
 
@@ -862,9 +861,7 @@ const movieGroups = {
   ],
   'Desenhos adultos': [
     "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM",
-    "Tua7Es_pB7M",
-    /* Novo desenho adulto adicionado (pN7bXAtm0Gc) */
-    "pN7bXAtm0Gc"
+    "Tua7Es_pB7M", "pN7bXAtm0Gc"
   ],
   'Mais filmes novos': [
     "NGTsgnw1SvE", "1rgELmO9Wvg", "RoOn71iK9NA", "ybLmaTFWWRY", "Pe8FhfAoGOg",
