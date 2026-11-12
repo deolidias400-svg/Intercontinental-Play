@@ -788,7 +788,7 @@ document.getElementById("soundToggle").addEventListener("click", () => {
 
 
 /* =========================================
-   CATÁLOGO — VÍDEOS (ATUALIZADO: Filmes 60 e 71 removidos e novos adicionados)
+   CATÁLOGO — VÍDEOS (Atualizado com novos filmes e Desenhos adultos)
 ========================================= */
 
 const originalVideoIds = [
@@ -804,16 +804,16 @@ const originalVideoIds = [
   "d0vwGt_Fr7I", "rNBojhayj-A", "60R2Tbf9o6s", "l3tIpFtM58Y", "lKf9wFE5PBY",
   "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
   "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "aiD2x76gZyU", "jT60asBuU1k",
-  /* Filme 60 ("hqoRGV9uZeM") removido */ "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
+  /* Filme 060 removido */ "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
   "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", "3pvGyDHkt90",
-  "_Dv7D3DIDfE", "DCYBfPeYO_M", "DX2XC3JYU2E", "mgYY2MdWofA", "wFViEWSTrYk",
-  /* Filme 71 ("mgYY2MdWofA" / ID anterior de índice 71) removido ou ajustado */ "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
+  "_Dv7D3DIDfE", "DCYBfPeYO_M", "DX2XC3JYU2E", /* Filme 071 removido */ "wFViEWSTrYk",
+  "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
   "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
-  "it3LSaCmJ2c", "RfL2OW8ez6c", "0kMJW7jT8Tg", "v_dbp_iTOqM", "IwapJJc3XAw",
+  /* Filme 096 removido */ "RfL2OW8ez6c", "0kMJW7jT8Tg", "v_dbp_iTOqM", "IwapJJc3XAw",
   "Z_RZilLwiks", "sUGGksoN8PU", "w-BIww-z_-4", "8OpaQGq-zLA", "xIseHxtMa20",
-  "DoxQWCciyeQ", "dJE8OnuXT4U", "47TJx2nzN_c", "PcGH8M6GZ10", "Oq-d1l4eIzs",
+  /* Filme 109 removido */ "dJE8OnuXT4U", "47TJx2nzN_c", "PcGH8M6GZ10", "Oq-d1l4eIzs",
   "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY", "OhLGnrcheWM",
   "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
   "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
@@ -822,8 +822,9 @@ const originalVideoIds = [
   "0wEGADCBnnw", "a57Y1AX4NE0",
   "L6QzVnBY-Y4", "ytlOpzEPzJg", "j1eS6mwIVus", "32zFgSROi8g",
   "wHZdIrYSSI4", "zswxUK5kXg8", "hN6E12qZm20", "0305fS8agug",
-  /* Novos filmes adicionados */
-  "UgfNZTCOFwg", "9lE7ygK3ZQw"
+  "UgfNZTCOFwg", "9lE7ygK3ZQw",
+  /* Novos filmes adicionados (KwUPk7iCtCU, mi0rbgzJDeM, 7-Pi-v431TY) */
+  "KwUPk7iCtCU", "mi0rbgzJDeM", "7-Pi-v431TY"
 ];
 
 const movieGroups = {
@@ -861,7 +862,9 @@ const movieGroups = {
   ],
   'Desenhos adultos': [
     "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM",
-    "Tua7Es_pB7M"
+    "Tua7Es_pB7M",
+    /* Novo desenho adulto adicionado (pN7bXAtm0Gc) */
+    "pN7bXAtm0Gc"
   ],
   'Mais filmes novos': [
     "NGTsgnw1SvE", "1rgELmO9Wvg", "RoOn71iK9NA", "ybLmaTFWWRY", "Pe8FhfAoGOg",
@@ -1153,7 +1156,9 @@ document.querySelectorAll(".filter-btn").forEach(button=>{
 document.getElementById("navFavorites").addEventListener("click",()=>{
 
   activeFilter="favorites";
-  updateFilters();
+  document.querySelectorAll(".filter-btn").forEach(b=>{
+    b.classList.toggle("active", b.dataset.filter === "favorites");
+  });
   render();
 
 });
@@ -1161,25 +1166,14 @@ document.getElementById("navFavorites").addEventListener("click",()=>{
 document.getElementById("navRecent").addEventListener("click",()=>{
 
   activeFilter="recent";
-  updateFilters();
+  document.querySelectorAll(".filter-btn").forEach(b=>{
+    b.classList.toggle("active", b.dataset.filter === "recent");
+  });
   render();
 
 });
 
-function updateFilters(){
-
-  document.querySelectorAll(".filter-btn").forEach(b=>{
-    if(b.dataset.filter === activeFilter) {
-      b.classList.add("active");
-    } else {
-      b.classList.remove("active");
-    }
-  });
-
-}
-
 render();
-
 </script>
 </body>
 </html>
