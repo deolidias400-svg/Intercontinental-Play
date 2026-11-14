@@ -788,14 +788,14 @@ document.getElementById("soundToggle").addEventListener("click", () => {
 
 
 /* =========================================
-   CATÁLOGO — VÍDEOS (Atualizado: Filmes 006, 015, 058, 090 e 100 removidos)
+   CATÁLOGO — VÍDEOS
 ========================================= */
 
 const originalVideoIds = [
   "KSA8LJBcuBw", "cez-y17Uppc", "QmiE91_ah0M", "-50azQcgQcU", "yf0Ri0mWBkE",
-  /* Filme 006 ("27eKL7NsD6k") removido */ "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
+  "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
   "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "MabGOA9jmjA",
-  /* Filme 015 ("iboykN3HbvY") removido */ "7K2T24BjA9o", "O2PuqhLmNfo", "8-7P91yx3FA", "Id1lRcaZwiw",
+  "7K2T24BjA9o", "O2PuqhLmNfo", "8-7P91yx3FA", "Id1lRcaZwiw",
   "mh7eKtOBGow", "LCwhpZvNmwI", "-KhV4UBkD5w",
   "vFsuvXoRjL8", "B6URc8AEJ4I", "3Cotd0Ljqu0", "vUtmQH5o5KE", "J658w9YBHgE",
   "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
@@ -803,7 +803,7 @@ const originalVideoIds = [
   "nkLf8oAEm9s", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8", "5pLposHGNmw",
   "d0vwGt_Fr7I", "rNBojhayj-A", "l3tIpFtM58Y", "lKf9wFE5PBY",
   "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
-  "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", /* Filme 058 ("aiD2x76gZyU") removido */ "jT60asBuU1k",
+  "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "jT60asBuU1k",
   "IJbPg8AxRtA", "h5YFNAuzqDo", "9TqK1oZZ1w4", "-imSUhbD--w",
   "yZqakD5BYLg", "xlgTC0fWNQw", "jaGKARCrOqI", "3pvGyDHkt90",
   "DCYBfPeYO_M", "DX2XC3JYU2E", "wFViEWSTrYk",
@@ -812,9 +812,9 @@ const originalVideoIds = [
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw", "atgsvILh8gk",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
   "RfL2OW8ez6c", "v_dbp_iTOqM", "IwapJJc3XAw",
-  "Z_RZilLwiks", /* Filme 090 ("w-BIww-z_-4") removido */ "8OpaQGq-zLA", "xIseHxtMa20",
+  "Z_RZilLwiks", "8OpaQGq-zLA", "xIseHxtMa20",
   "47TJx2nzN_c", "PcGH8M6GZ10", "Oq-d1l4eIzs",
-  "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY", /* Filme 100 ("OhLGnrcheWM") removido */
+  "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY",
   "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
   "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
   "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs", "xwgikJXMviM", "OyI2Wx_17g4",
@@ -872,7 +872,9 @@ const movieGroups = {
     "Yp1gDQF6GRQ", "VHyF33B1410", "iYMpyz9lDWQ", "3TlzOjE-8ZQ", "lazjEh_Vr7E",
     "RyV87H4nUZg", "1kERXH1ALNM", "UQKJPDbPVOk", "JNtkEaU0mZo", "WaJGxNg9Bic",
     "bGpwTWcr2cc", "yV8VWdhK7T4", "pRjCZeraytQ", "IFT7ndbmhk4", "bnAivSy-LM8",
-    "jMpSuDUr2Ac", "RQM0mgE7F-g", "4KIqBSdkWRo", "KZVohT2PhRw"
+    "jMpSuDUr2Ac", "RQM0mgE7F-g", "4KIqBSdkWRo", "KZVohT2PhRw",
+    /* Novos filmes adicionados */
+    "sr9jM4ozsPU", "nwHY37ZfzxE", "UX9qwhzDwJc", "k-lM1OQqmgQ", "tzjIAOWwSPA", "v1fuxYW6It8"
   ]
 };
 
