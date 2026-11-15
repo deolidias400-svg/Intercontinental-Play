@@ -567,7 +567,7 @@ body.intro-active {overflow:hidden}
       <span class="hero-tag">SEU CINEMA DIGITAL</span>
       <h2>O entretenimento está <span>aqui!</span></h2>
       <p>
-        Filmes, documentários e produções para assistir diretamente
+        Filmes, séries, documentários e produções para assistir diretamente
         no Intercontinental Play. Escolha um título e aproveite!
       </p>
       <button class="primary-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
@@ -637,6 +637,7 @@ body.intro-active {overflow:hidden}
         <button class="filter-btn" data-filter="Novos filmes 2">Novos filmes 2</button>
         <button class="filter-btn" data-filter="Mais filmes novos">Mais filmes novos</button>
         <button class="filter-btn" data-filter="Filmes Bíblicos">Filmes Bíblicos</button>
+        <button class="filter-btn" data-filter="Séries">Séries</button>
         <button class="filter-btn" data-filter="Documentários">Documentários</button>
         <button class="filter-btn" data-filter="Shows">Shows</button>
         <button class="filter-btn" data-filter="Desenhos">Desenhos</button>
@@ -824,7 +825,9 @@ const originalVideoIds = [
   "wHZdIrYSSI4", "zswxUK5kXg8", "hN6E12qZm20", "0305fS8agug",
   "UgfNZTCOFwg", "9lE7ygK3ZQw",
   "KwUPk7iCtCU", "mi0rbgzJDeM", "7-Pi-v431TY",
-  "SZXp_ZVXNJw", "47cv0d-DkUE", "CB7Pj9tORNw", "7RSTUbf75f0", "F1m2hFQySxw", "OUY4MkFExWA"
+  "SZXp_ZVXNJw", "47cv0d-DkUE", "CB7Pj9tORNw", "7RSTUbf75f0", "F1m2hFQySxw", "OUY4MkFExWA",
+  /* Novo filme adicionado */
+  "6p1ExjqYpYU"
 ];
 
 const movieGroups = {
@@ -839,6 +842,13 @@ const movieGroups = {
     "K6Gm0xlWxes", "TpUq-9pgCLA", "CakEFsRSa6I", "gznuhGkLntQ",
     "bKJfraJx284", "i1LPIJZX8tc", "oGYSLXToL50", "udeynQlN-Hc",
     "KyQYwQYLWyY", "_GmzPEdskEg", "qvXqqGgAX8A", "iNKkWxvGOxk"
+  ],
+  'Séries': [
+    "NXEDS2jbCDM", "hb_LjczhteQ", "m0yzyX5Kqcc", "2dD8Xr66af8",
+    "DexUlKqq6y8", "P-SeGJKnL4w", "KVSCSd9y2Ho", "EKJo75lxhb8",
+    "uFixfSpt0uY", "i1WihBtqAyY", "i6SaOCCesVg", "bYRwK7W6FrM",
+    "eId74wQPVdI", "_CbfDgjBiAY", "-nqxc4tjsVM", "l3gupx2LHWU",
+    "wjLVaa5bSj4", "73vfu_jCjW8"
   ],
   'Documentários': [
     "BX8sx9VUOxE", "fNEYi6lNqlc", "i8rkBP7ccCE", "crDZv7qpdgs", "vkLM9s5vEko",
@@ -873,7 +883,6 @@ const movieGroups = {
     "RyV87H4nUZg", "1kERXH1ALNM", "UQKJPDbPVOk", "JNtkEaU0mZo", "WaJGxNg9Bic",
     "bGpwTWcr2cc", "yV8VWdhK7T4", "pRjCZeraytQ", "IFT7ndbmhk4", "bnAivSy-LM8",
     "jMpSuDUr2Ac", "RQM0mgE7F-g", "4KIqBSdkWRo", "KZVohT2PhRw",
-    /* Novos filmes adicionados */
     "sr9jM4ozsPU", "nwHY37ZfzxE", "UX9qwhzDwJc", "k-lM1OQqmgQ", "tzjIAOWwSPA", "v1fuxYW6It8"
   ]
 };
@@ -891,6 +900,7 @@ Object.entries(movieGroups).forEach(([category, ids]) => {
   ids.forEach((id, index) => {
     const prefix = (category === "Novos filmes 2" || category === "Mais filmes novos") ? "Novo filme" :
       category === "Filmes Bíblicos" ? "Filme Bíblico" :
+      category === "Séries" ? "Episódio" :
       category === "Documentários" ? "Documentário" :
       category === "Shows" ? "Show" :
       category === "Desenhos adultos" ? "Desenho adulto" : "Desenho";
