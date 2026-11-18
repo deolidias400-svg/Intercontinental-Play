@@ -350,7 +350,7 @@ footer {
 }
 
 /* =========================================
-   ABERTURA CINEMATOGRÁFICA
+   ABERTURA HOLLYWOODIANA DE LUXO
 ========================================= */
 
 body.intro-active {overflow:hidden}
@@ -362,39 +362,41 @@ body.intro-active {overflow:hidden}
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow-y:auto;
-  padding:16px;
+  overflow:hidden;
+  padding:20px;
   background: 
-    radial-gradient(circle at 50% 50%, rgba(255, 42, 95, 0.25) 0%, rgba(138, 43, 226, 0.2) 35%, rgba(9, 13, 27, 0.98) 75%),
-    linear-gradient(135deg,#050812 0%,#0f172a 50%,#1e102d 100%);
-  transition:opacity 1s ease,visibility 1s ease, transform 1s ease;
+    radial-gradient(circle at 50% 50%, rgba(255, 42, 95, 0.28) 0%, rgba(138, 43, 226, 0.2) 40%, rgba(5, 8, 18, 0.98) 80%),
+    linear-gradient(135deg,#03050c 0%,#090d1b 50%,#150c22 100%);
+  transition:opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.intro-screen::before,.intro-screen::after {
+/* Anéis de luz orbital cinematográfica estilo estúdio MGM/Universal */
+.intro-screen::before, .intro-screen::after {
   content:"";
   position:absolute;
-  width:75vw;
-  height:75vw;
-  max-width:800px;
-  max-height:800px;
-  border:2px solid rgba(255, 200, 87, 0.25);
+  width:80vw;
+  height:80vw;
+  max-width:850px;
+  max-height:850px;
+  border:2px solid rgba(255, 200, 87, 0.2);
   border-radius:50%;
-  box-shadow:0 0 100px rgba(255, 42, 95, 0.3), inset 0 0 90px rgba(57, 216, 232, 0.2);
-  animation:introOrbit 10s linear infinite;
+  box-shadow:0 0 120px rgba(255, 42, 95, 0.35), inset 0 0 100px rgba(57, 216, 232, 0.25);
+  animation:hollyOrbit 14s linear infinite;
   pointer-events:none;
 }
 
 .intro-screen::after {
-  width:90vw;
-  height:90vw;
-  max-width:950px;
-  max-height:950px;
+  width:105vw;
+  height:105vw;
+  max-width:1100px;
+  max-height:1100px;
   animation-direction:reverse;
-  animation-duration:16s;
-  border-color:rgba(57, 216, 232, 0.25);
+  animation-duration:22s;
+  border-color:rgba(57, 216, 232, 0.2);
+  box-shadow:0 0 150px rgba(138, 43, 226, 0.3);
 }
 
-@keyframes introOrbit {
+@keyframes hollyOrbit {
   to {transform:rotate(360deg)}
 }
 
@@ -402,100 +404,106 @@ body.intro-active {overflow:hidden}
   position:relative;
   z-index:2;
   text-align:center;
-  width:min(600px, 100%);
+  width:min(620px, 100%);
   margin:auto;
-  animation:introAppear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-  background: rgba(16, 23, 45, 0.75);
-  padding: 28px 16px;
-  border-radius: 24px;
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  animation:hollyZoom 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  background: rgba(14, 20, 38, 0.82);
+  padding: 35px 24px;
+  border-radius: 28px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 200, 87, 0.3);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), inset 0 0 35px rgba(255, 255, 255, 0.05);
 }
 
-@keyframes introAppear {
-  from {opacity:0;transform:translateY(30px) scale(.9)}
+@keyframes hollyZoom {
+  from {opacity:0;transform:scale(0.8) translateY(40px)}
   to {opacity:1;transform:none}
 }
 
 .intro-logo {
-  width:clamp(80px, 16vw, 130px);
-  height:clamp(80px, 16vw, 130px);
+  width:clamp(90px, 18vw, 140px);
+  height:clamp(90px, 18vw, 140px);
   object-fit:contain;
-  margin:0 auto 12px;
-  filter:drop-shadow(0 0 25px rgba(255,200,87,0.6));
-  animation:introGlow 2.5s ease-in-out infinite alternate;
+  margin:0 auto 14px;
+  filter:drop-shadow(0 0 30px rgba(255,200,87,0.7));
+  animation:hollyPulse 3s ease-in-out infinite alternate;
 }
 
-@keyframes introGlow {
-  0% {filter:drop-shadow(0 0 20px rgba(255,200,87,0.5)) scale(1);}
-  100% {filter:drop-shadow(0 0 40px rgba(255,42,95,0.9)) scale(1.04);}
+@keyframes hollyPulse {
+  0% {filter:drop-shadow(0 0 20px rgba(255,200,87,0.6)) scale(1);}
+  100% {filter:drop-shadow(0 0 45px rgba(255,42,95,0.95)) scale(1.06);}
 }
 
 .intro-kicker {
   color:var(--cyan);
-  letter-spacing:4px;
-  font-size:11px;
+  letter-spacing:6px;
+  font-size:12px;
   font-weight:900;
   text-transform:uppercase;
-  text-shadow:0 0 10px rgba(57,216,232,0.5);
-  margin-bottom: 4px;
+  text-shadow:0 0 15px rgba(57,216,232,0.6);
+  margin-bottom: 6px;
 }
 
 .intro-title {
-  margin: 6px 0;
-  font-size: clamp(20px, 4.8vw, 38px);
-  line-height: 1.15;
-  letter-spacing: clamp(1px, 0.4vw, 3px);
+  margin: 8px 0;
+  font-size: clamp(22px, 5.2vw, 42px);
+  line-height: 1.1;
+  letter-spacing: clamp(2px, 0.5vw, 4px);
   font-weight: 900;
-  background: linear-gradient(90deg, #ffc857 0%, #ff2a5f 50%, #39d8e8 100%);
+  background: linear-gradient(135deg, #fffae6 0%, #ffc857 30%, #ff2a5f 70%, #39d8e8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 8px 30px rgba(255,42,95,0.3);
-  word-break: normal;
-  overflow-wrap: normal;
+  text-shadow: 0 10px 35px rgba(255,42,95,0.4);
 }
 
 .intro-slogan {
-  color:#e3e9f6;
-  letter-spacing:2px;
-  font-size:clamp(11px, 1.8vw, 14px);
-  margin: 8px 0 20px;
+  color:#dbe6fb;
+  letter-spacing:3px;
+  font-size:clamp(12px, 2vw, 15px);
+  margin: 10px 0 24px;
   font-weight:bold;
+  text-transform:uppercase;
 }
 
 .intro-enter {
   border:none;
-  border-radius:30px;
-  padding:14px 38px;
-  background:linear-gradient(90deg,#ff2a5f,#ffc857);
+  border-radius:35px;
+  padding:15px 42px;
+  background:linear-gradient(90deg,#ff2a5f,#ffc857,#39d8e8);
+  background-size:200% auto;
   color:#090d1b;
-  font-size:15px;
+  font-size:16px;
   font-weight:900;
-  letter-spacing:2px;
-  box-shadow:0 0 30px rgba(255,42,95,0.6);
-  transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  letter-spacing:3px;
+  box-shadow:0 0 35px rgba(255,42,95,0.7);
+  transition:all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation:btnShine 4s linear infinite;
+}
+
+@keyframes btnShine {
+  0% {background-position:0% center}
+  50% {background-position:100% center}
+  100% {background-position:0% center}
 }
 
 .intro-enter:hover {
-  transform:scale(1.06);
-  box-shadow:0 0 50px rgba(255,200,87,0.8);
-  background:linear-gradient(90deg,#ffc857,#39d8e8);
+  transform:scale(1.08);
+  box-shadow:0 0 60px rgba(255,200,87,0.9);
 }
 
 .intro-note {
   display:block;
-  margin-top:14px;
-  color:#aab8d2;
+  margin-top:16px;
+  color:#9bb0d4;
   font-size:10px;
-  letter-spacing:1px;
+  letter-spacing:2px;
   text-transform:uppercase;
 }
 
 .intro-screen.leaving {
   opacity:0;
-  transform:scale(1.08);
+  transform:scale(1.1);
   visibility:hidden;
   pointer-events:none;
 }
@@ -503,39 +511,40 @@ body.intro-active {overflow:hidden}
 .sound-toggle {
   position:absolute;
   z-index:3;
-  right:16px;
-  top:16px;
-  border:1px solid rgba(255,255,255,0.2);
-  background:rgba(17,26,45,0.8);
+  right:20px;
+  top:20px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(17,26,45,0.85);
   color:#eaf0ff;
   border-radius:20px;
-  padding:7px 12px;
+  padding:8px 14px;
   font-size:11px;
   backdrop-filter:blur(10px);
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body class="intro-active">
 
-<!-- TELA DE ABERTURA -->
+<!-- TELA DE ABERTURA HOLLYWOODIANA -->
 <div class="intro-screen" id="introScreen" aria-label="Abertura do Intercontinental Play">
   <button class="sound-toggle" id="soundToggle" type="button">♫ SOM LIGADO</button>
 
   <div class="intro-content">
     <img class="intro-logo" src="./mascote-intercontinental.png" alt="Intercontinental Play" onerror="this.style.display='none'">
 
-    <div class="intro-kicker">APRESENTA</div>
+    <div class="intro-kicker">APRESENTAÇÃO ESPECIAL</div>
 
     <div class="intro-title">INTERCONTINENTAL<br>PLAY</div>
 
     <div class="intro-slogan">SEU CINEMA. SEU MUNDO.</div>
 
     <button class="intro-enter" id="enterPlay" type="button">
-      ▶ &nbsp; ENTRAR
+      ▶ &nbsp; ENTRAR NO CINEMA
     </button>
 
-    <span class="intro-note">UMA NOVA EXPERIÊNCIA DE ENTRETENIMENTO</span>
+    <span class="intro-note">PRODUÇÃO DIGITAL INTERCONTINENTAL</span>
   </div>
 </div>
 
@@ -673,13 +682,12 @@ body.intro-active {overflow:hidden}
 <script>
 
 /* =========================================
-   ABERTURA SONORA CINEMATOGRÁFICA
+   TRILHA SONORA HOLLYWOODIANA (WEB AUDIO API)
 ========================================= */
 
 let introSoundEnabled = true;
-let introAudioContext = null;
 
-function playIntroSoundtrack() {
+function playHollywoodSoundtrack() {
   if (!introSoundEnabled) return;
 
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -687,105 +695,102 @@ function playIntroSoundtrack() {
 
   try {
     const ctx = new AudioCtx();
-    introAudioContext = ctx;
+    if (ctx.state === "suspended") ctx.resume();
 
-    if (ctx.state === "suspended") {
-      ctx.resume();
-    }
-
+    // Canal mestre com compressor/ganho cinematográfico
     const master = ctx.createGain();
     master.gain.setValueAtTime(0.0001, ctx.currentTime);
-    master.gain.exponentialRampToValueAtTime(0.35, ctx.currentTime + 0.1);
-    master.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 4.5);
+    master.gain.exponentialRampToValueAtTime(0.42, ctx.currentTime + 0.15);
+    master.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 5.2);
     master.connect(ctx.destination);
 
-    const subOsc = ctx.createOscillator();
-    const subGain = ctx.createGain();
-    subOsc.type = "sine";
-    subOsc.frequency.setValueAtTime(110, ctx.currentTime);
-    subOsc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.8);
+    // 1. Sub-Bass Profundo de Impacto Inicial (estilo trailer)
+    const sub = ctx.createOscillator();
+    const subG = ctx.createGain();
+    sub.type = "sine";
+    sub.frequency.setValueAtTime(90, ctx.currentTime);
+    sub.frequency.exponentialRampToValueAtTime(32, ctx.currentTime + 1.2);
+    subG.gain.setValueAtTime(0.9, ctx.currentTime);
+    subG.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3.0);
+    sub.connect(subG);
+    subG.connect(master);
+    sub.start(ctx.currentTime);
+    sub.stop(ctx.currentTime + 3.1);
 
-    subGain.gain.setValueAtTime(0.8, ctx.currentTime);
-    subGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.5);
-
-    subOsc.connect(subGain);
-    subGain.connect(master);
-    subOsc.start(ctx.currentTime);
-    subOsc.stop(ctx.currentTime + 2.6);
-
-    const notes = [
-      {f:130.81, t:.05, d:3.5, type:"sawtooth", v:.20},
-      {f:196.00, t:.10, d:3.2, type:"sine",     v:.25},
-      {f:261.63, t:.15, d:3.0, type:"triangle", v:.20},
-      {f:392.00, t:.25, d:2.8, type:"sine",     v:.15},
-      {f:523.25, t:.40, d:2.5, type:"triangle", v:.12}
+    // 2. Acordes Cinemáticos Progressivos (Sintetizador Orquestral)
+    const cinematicChords = [
+      {f1: 130.81, f2: 196.00, f3: 261.63, t: 0.1, d: 4.2, v: 0.18, type: "sawtooth"}, // C3 + G3 + C4
+      {f1: 164.81, f2: 246.94, f3: 329.63, t: 0.8, d: 3.5, v: 0.20, type: "triangle"}, // E3 + B3 + E4
+      {f1: 220.00, f2: 329.63, f3: 440.00, t: 1.6, d: 3.0, v: 0.22, type: "sine"}     // A3 + E4 + A4
     ];
 
-    notes.forEach(n=>{
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
+    cinematicChords.forEach(chord => {
+      [chord.f1, chord.f2, chord.f3].forEach(freq => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
 
-      osc.type=n.type;
-      osc.frequency.setValueAtTime(n.f,ctx.currentTime+n.t);
+        osc.type = chord.type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + chord.t);
 
-      gain.gain.setValueAtTime(.0001,ctx.currentTime+n.t);
-      gain.gain.exponentialRampToValueAtTime(n.v,ctx.currentTime+n.t+.15);
-      gain.gain.setValueAtTime(n.v,ctx.currentTime+n.t+n.d-.4);
-      gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+n.t+n.d);
+        gain.gain.setValueAtTime(0.0001, ctx.currentTime + chord.t);
+        gain.gain.exponentialRampToValueAtTime(chord.v, ctx.currentTime + chord.t + 0.3);
+        gain.gain.setValueAtTime(chord.v, ctx.currentTime + chord.t + chord.d - 0.8);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + chord.t + chord.d);
 
-      osc.connect(gain);
-      gain.connect(master);
+        osc.connect(gain);
+        gain.connect(master);
 
-      osc.start(ctx.currentTime+n.t);
-      osc.stop(ctx.currentTime+n.t+n.d);
+        osc.start(ctx.currentTime + chord.t);
+        osc.stop(ctx.currentTime + chord.t + chord.d);
+      });
     });
 
-    [659.25, 783.99, 1046.50].forEach((freq, i) => {
+    // 3. Notas de Brilho Final (Sinos Estelares / Bell Chimes)
+    const bellNotes = [523.25, 659.25, 783.99, 1046.50];
+    bellNotes.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
+      const startTime = ctx.currentTime + 2.0 + (idx * 0.15);
 
       osc.type = "sine";
-      osc.frequency.value = freq;
+      osc.frequency.setValueAtTime(freq, startTime);
 
-      const start = ctx.currentTime + 1.2 + i * .12;
-
-      gain.gain.setValueAtTime(.0001, start);
-      gain.gain.exponentialRampToValueAtTime(.08, start + .1);
-      gain.gain.exponentialRampToValueAtTime(.0001, start + 1.8);
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.2);
 
       osc.connect(gain);
       gain.connect(master);
 
-      osc.start(start);
-      osc.stop(start + 1.9);
+      osc.start(startTime);
+      osc.stop(startTime + 2.3);
     });
 
     setTimeout(() => {
-      if(ctx.state !== "closed") ctx.close().catch(()=>{});
-    }, 5000);
+      if (ctx.state !== "closed") ctx.close().catch(() => {});
+    }, 5500);
 
-  } catch(err) {
-    console.log("Áudio de abertura indisponível:", err);
+  } catch (err) {
+    console.log("Áudio indisponível:", err);
   }
 }
 
 function enterStreaming() {
   const intro = document.getElementById("introScreen");
 
-  playIntroSoundtrack();
+  playHollywoodSoundtrack();
 
   intro.classList.add("leaving");
   document.body.classList.remove("intro-active");
 
-  setTimeout(() => intro.remove(), 1100);
+  setTimeout(() => intro.remove(), 1250);
 }
 
 document.getElementById("enterPlay").addEventListener("click", enterStreaming);
 
 document.getElementById("soundToggle").addEventListener("click", () => {
   introSoundEnabled = !introSoundEnabled;
-
-  document.getElementById("soundToggle").textContent =
+  document.getElementById("soundToggle कुलकर्णी" || "soundToggle").textContent =
     introSoundEnabled ? "♫ SOM LIGADO" : "♫ SOM DESLIGADO";
 });
 
@@ -837,7 +842,6 @@ const originalVideoIds = [
   "qdz0OaWMAaw", "OkD6K_zYXWY",
   "nQIgDqrGgrQ", "XVPzEwSaG_Y",
   "JJnjOV7aQDg", "0ZYFLhaJofs", "PLmGXqvmlcg", "lFS2NP8EDk0",
-  /* Novos filmes adicionados ao catálogo principal */
   "n9gpj5fC-18", "GxR3hwZ1f24", "IXZLEHe9RBk", "ATfVtONBT9A", "3BA1PjI5ugg"
 ];
 
@@ -903,7 +907,6 @@ const movieGroups = {
     "8_XLDwfo6so", "fFCL5eUR7Gs", "0RgZXjp-psQ", "BVNOEFqFBHQ",
     "iAi5-ny3NYM", "OPysOReTtvg", "57Mry3r8y7s", "tBA5A46Nzfo",
     "iiLYZxzLYTM", "UQqA7f6oSO4", "dYGf7EUp4kQ", "zsO4FAy6auU", "lEYQK1RovSc",
-    /* Novos desenhos adultos adicionados */
     "W47vn783CIk", "nNwwMeST66Q", "EsbeSxLdBNM", "-Tu-ffkocd0",
     "0gXua99BcV4", "R64ncrowrpA", "QZnZ1ZVrMKk", "zWW19HlLgEo"
   ],
