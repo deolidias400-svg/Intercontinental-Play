@@ -1246,4 +1246,18 @@ window.addEventListener("beforeinstallprompt",event=>{
 installButton.addEventListener("click",async()=>{
   if(installPrompt){
     installPrompt.prompt();
-    const result=await installPrompt
+    const result=await installPrompt.userChoice;
+    if(result.outcome==="accepted") {
+      toast("Instalação iniciada!");
+    }
+    installPrompt=null;
+  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+    toast("No iOS, toque em Compartilhar > Adicionar à Tela de Início.");
+  } else {
+    toast("Instalação não suportada ou app já instalado.");
+  }
+});
+
+</script>
+</body>
+</html>
