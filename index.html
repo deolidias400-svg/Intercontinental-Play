@@ -634,6 +634,7 @@ body.intro-active {overflow:hidden}
       <div class="filters">
         <button class="filter-btn active" data-filter="all">Todos</button>
         <button class="filter-btn" data-filter="Filmes">Filmes</button>
+        <button class="filter-btn" data-filter="Western">Western</button>
         <button class="filter-btn" data-filter="Novos filmes 2">Novos filmes 2</button>
         <button class="filter-btn" data-filter="Mais filmes novos">Mais filmes novos</button>
         <button class="filter-btn" data-filter="Filmes Bíblicos">Filmes Bíblicos</button>
@@ -802,8 +803,7 @@ const originalVideoIds = [
   "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
   "Kd46YX-bCb8", "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y", "lxwvDg_QdrY",
   "nkLf8oAEm9s", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8", "5pLposHGNmw",
-  /* Posição 057 substituída por LsrzxGGReFg */
-  "LsrzxGGReFg",
+  "MRgJUC40yrg",
   "rNBojhayj-A", "l3tIpFtM58Y", "lKf9wFE5PBY",
   "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
   "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "jT60asBuU1k",
@@ -813,13 +813,11 @@ const originalVideoIds = [
   "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
   "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw",
-  /* Posição 091 substituída por qcdTqUuKnS4 */
-  "qcdTqUuKnS4",
+  "_QOj-3GlBC4",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
   "RfL2OW8ez6c", "v_dbp_iTOqM", "IwapJJc3XAw",
   "Z_RZilLwiks", "8OpaQGq-zLA", "xIseHxtMa20",
-  /* Posição 100 substituída por 05aie07PIgY */
-  "05aie07PIgY",
+  "EHidpxvQsgU", "9Tu-_mogxSM", "lkALlaOMrrc", "R5n_BaQQYoI",
   "PcGH8M6GZ10", "Oq-d1l4eIzs",
   "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY",
   "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
@@ -838,10 +836,17 @@ const originalVideoIds = [
   "0sbz-kBD3fs", "P3z7z-NCJeU", "tkOMqk6v71w", "--JRwbxfoto", "tpwlYY8fY-I",
   "igQPOAW9l40", "_y5DaFdESes", "snhFgJGmXdI", "xPKwk57AMP8", "AopXzAIPQmU", "7_TMVSMsRlo",
   "qdz0OaWMAaw", "OkD6K_zYXWY",
-  "nQIgDqrGgrQ", "XVPzEwSaG_Y"
+  "nQIgDqrGgrQ", "XVPzEwSaG_Y",
+  /* Novos filmes adicionados */
+  "JJnjOV7aQDg", "0ZYFLhaJofs", "PLmGXqvmlcg", "lFS2NP8EDk0"
 ];
 
 const movieGroups = {
+  'Western': [
+    "3oFp9B6ReT4", "_c46ySNf8_o", "biFaxnUGDTc", "CpiihMA881E", "TzHWWIDYoCk",
+    "RPq9Voa-560", "Dvk2asBgBok", "AbZEsWnORgM", "4jmo0yU2K88", "Tdz8TgLTPCQ",
+    "rhdhsAmu9C4"
+  ],
   'Novos filmes 2': [
     "N99e3s4cjEg", "0J0VI3dwDkI", "5k6z8A7NuIM", "kDBSwSeSd8o", "MhBy7DL34Do",
     "4Y55XmmmuMc", "mIXGYGPhg8o", "HHiuKwjMqZ0", "nsZxmWn6uMk", "DwOzp7DlqsI",
@@ -879,7 +884,10 @@ const movieGroups = {
     "J7JUOhkNIN0", "joRjg5dN4Ao", "eNXfkbpT0eQ", "oxHBe3MEX9c",
     "W_Z1b3Ciiso", "cPzrZ-1g-7U", "jxa1j7nRQuw", "D-LiTwOjE30", "9_bMYmvMSKA",
     "ai_gI0Jbr_E", "i7j0bw5TonI", "18cFvSXaIY0", "fJWvc2NK-Ro",
-    "PqDazac8KMY", "VOKZ6SBRkNw"
+    "PqDazac8KMY", "VOKZ6SBRkNw",
+    /* Novos shows adicionados */
+    "9_5UFmJ7YhM", "5dLoz6GpIJc", "iqzb6snu_bw", "h0UAAfOaEmc",
+    "Zw8caklgKVk", "tPUd5iqq7wA", "3MsefIuCp44"
   ],
   'Desenhos': [
     "4P4hTPI0bg0", "hiCzdp0KwYI", "F5mKlnQI65E", "kPNrS-UjtkM", "jaWfq2mCo9A",
@@ -887,7 +895,10 @@ const movieGroups = {
   ],
   'Desenhos adultos': [
     "YvfWrC5prvU", "4K6JLrH7XrM", "uT64TjXDbHs", "ilxo4IHgm7E", "RS2qMBGU3tM",
-    "Tua7Es_pB7M", "pN7bXAtm0Gc"
+    "Tua7Es_pB7M", "pN7bXAtm0Gc",
+    /* Novos desenhos adultos adicionados */
+    "8_XLDwfo6so", "fFCL5eUR7Gs", "0RgZXjp-psQ", "BVNOEFqFBHQ",
+    "iAi5-ny3NYM", "OPysOReTtvg", "57Mry3r8y7s", "tBA5A46Nzfo"
   ],
   'Mais filmes novos': [
     "NGTsgnw1SvE", "1rgELmO9Wvg", "RoOn71iK9NA", "ybLmaTFWWRY", "Pe8FhfAoGOg",
@@ -914,6 +925,7 @@ const movies = originalVideoIds.map(id => ({
 Object.entries(movieGroups).forEach(([category, ids]) => {
   ids.forEach((id, index) => {
     const prefix = (category === "Novos filmes 2" || category === "Mais filmes novos") ? "Novo filme" :
+      category === "Western" ? "Western" :
       category === "Filmes Bíblicos" ? "Filme Bíblico" :
       category === "Séries" ? "Episódio" :
       category === "Shows" ? "Show" :
