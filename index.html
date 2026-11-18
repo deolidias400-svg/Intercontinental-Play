@@ -635,6 +635,7 @@ body.intro-active {overflow:hidden}
         <button class="filter-btn active" data-filter="all">Todos</button>
         <button class="filter-btn" data-filter="Filmes">Filmes</button>
         <button class="filter-btn" data-filter="Western">Western</button>
+        <button class="filter-btn" data-filter="Filmes Nacionais">Filmes Nacionais</button>
         <button class="filter-btn" data-filter="Novos filmes 2">Novos filmes 2</button>
         <button class="filter-btn" data-filter="Mais filmes novos">Mais filmes novos</button>
         <button class="filter-btn" data-filter="Filmes Bíblicos">Filmes Bíblicos</button>
@@ -803,8 +804,6 @@ const originalVideoIds = [
   "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
   "Kd46YX-bCb8", "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y", "lxwvDg_QdrY",
   "nkLf8oAEm9s", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8", "5pLposHGNmw",
-  /* Posição 057 atualizada para Tty5R7o8SKw */
-  "Tty5R7o8SKw",
   "rNBojhayj-A", "l3tIpFtM58Y", "lKf9wFE5PBY",
   "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
   "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "jT60asBuU1k",
@@ -814,15 +813,12 @@ const originalVideoIds = [
   "XV-gTgahpOo", "s5A6iaJhzow", "r8gjwaoA7dc", "AHx1Q-3Cnfc",
   "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw",
-  /* Posição 091 atualizada para eIgt7I4_7XE */
-  "eIgt7I4_7XE",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M", "nr6v8Geo2yU",
   "RfL2OW8ez6c", "v_dbp_iTOqM", "IwapJJc3XAw",
   "Z_RZilLwiks", "8OpaQGq-zLA", "xIseHxtMa20",
   "EHidpxvQsgU", "9Tu-_mogxSM", "lkALlaOMrrc", "R5n_BaQQYoI",
   "PcGH8M6GZ10", "Oq-d1l4eIzs",
-  /* Posição 103 */
-  "-asUNrks370", "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY",
+  "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY",
   "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
   "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
   "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs", "xwgikJXMviM", "OyI2Wx_17g4",
@@ -840,7 +836,9 @@ const originalVideoIds = [
   "igQPOAW9l40", "_y5DaFdESes", "snhFgJGmXdI", "xPKwk57AMP8", "AopXzAIPQmU", "7_TMVSMsRlo",
   "qdz0OaWMAaw", "OkD6K_zYXWY",
   "nQIgDqrGgrQ", "XVPzEwSaG_Y",
-  "JJnjOV7aQDg", "0ZYFLhaJofs", "PLmGXqvmlcg", "lFS2NP8EDk0"
+  "JJnjOV7aQDg", "0ZYFLhaJofs", "PLmGXqvmlcg", "lFS2NP8EDk0",
+  /* Novos filmes adicionados ao catálogo principal */
+  "n9gpj5fC-18", "GxR3hwZ1f24", "IXZLEHe9RBk", "ATfVtONBT9A", "3BA1PjI5ugg"
 ];
 
 const movieGroups = {
@@ -848,6 +846,10 @@ const movieGroups = {
     "3oFp9B6ReT4", "_c46ySNf8_o", "biFaxnUGDTc", "CpiihMA881E", "TzHWWIDYoCk",
     "RPq9Voa-560", "Dvk2asBgBok", "AbZEsWnORgM", "4jmo0yU2K88", "Tdz8TgLTPCQ",
     "rhdhsAmu9C4"
+  ],
+  'Filmes Nacionais': [
+    "kXOzd_Th8Hk", "fUtAamtCBew", "UXxUYWxzBEA", "PPyMEpZfy_k",
+    "qE0vGwbfY3E", "cpW-ZQYKbEI", "dEoEz-uNoNY", "1T-1pwcyN5c"
   ],
   'Novos filmes 2': [
     "N99e3s4cjEg", "0J0VI3dwDkI", "5k6z8A7NuIM", "kDBSwSeSd8o", "MhBy7DL34Do",
@@ -889,7 +891,6 @@ const movieGroups = {
     "PqDazac8KMY", "VOKZ6SBRkNw",
     "9_5UFmJ7YhM", "5dLoz6GpIJc", "iqzb6snu_bw", "h0UAAfOaEmc",
     "Zw8caklgKVk", "tPUd5iqq7wA", "3MsefIuCp44",
-    /* Novo show adicionado */
     "GV98X3kCWx0"
   ],
   'Desenhos': [
@@ -901,8 +902,10 @@ const movieGroups = {
     "Tua7Es_pB7M", "pN7bXAtm0Gc",
     "8_XLDwfo6so", "fFCL5eUR7Gs", "0RgZXjp-psQ", "BVNOEFqFBHQ",
     "iAi5-ny3NYM", "OPysOReTtvg", "57Mry3r8y7s", "tBA5A46Nzfo",
+    "iiLYZxzLYTM", "UQqA7f6oSO4", "dYGf7EUp4kQ", "zsO4FAy6auU", "lEYQK1RovSc",
     /* Novos desenhos adultos adicionados */
-    "iiLYZxzLYTM", "UQqA7f6oSO4", "dYGf7EUp4kQ", "zsO4FAy6auU", "lEYQK1RovSc"
+    "W47vn783CIk", "nNwwMeST66Q", "EsbeSxLdBNM", "-Tu-ffkocd0",
+    "0gXua99BcV4", "R64ncrowrpA", "QZnZ1ZVrMKk", "zWW19HlLgEo"
   ],
   'Mais filmes novos': [
     "NGTsgnw1SvE", "1rgELmO9Wvg", "RoOn71iK9NA", "ybLmaTFWWRY", "Pe8FhfAoGOg",
@@ -930,6 +933,7 @@ Object.entries(movieGroups).forEach(([category, ids]) => {
   ids.forEach((id, index) => {
     const prefix = (category === "Novos filmes 2" || category === "Mais filmes novos") ? "Novo filme" :
       category === "Western" ? "Western" :
+      category === "Filmes Nacionais" ? "Nacional" :
       category === "Filmes Bíblicos" ? "Filme Bíblico" :
       category === "Séries" ? "Episódio" :
       category === "Shows" ? "Show" :
@@ -1242,18 +1246,4 @@ window.addEventListener("beforeinstallprompt",event=>{
 installButton.addEventListener("click",async()=>{
   if(installPrompt){
     installPrompt.prompt();
-    const result=await installPrompt.userChoice;
-    if(result.outcome==="accepted") {
-      toast("Instalação iniciada!");
-    }
-    installPrompt=null;
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-    toast("No iOS, toque em Compartilhar > Adicionar à Tela de Início.");
-  } else {
-    toast("Instalação não suportada ou app já instalado.");
-  }
-});
-
-</script>
-</body>
-</html>
+    const result=await installPrompt
