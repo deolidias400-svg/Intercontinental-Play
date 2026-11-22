@@ -276,6 +276,11 @@ main {max-width:1400px;margin:auto;padding:22px}
   line-height:1.4;
   overflow-wrap:anywhere;
 }
+.movie-details .card-actions {
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
 .movie-details button {
   border:0;
   border-radius:18px;
@@ -285,6 +290,10 @@ main {max-width:1400px;margin:auto;padding:22px}
   font-size:11px;
 }
 .movie-details button:hover {background:#3c5b89}
+.movie-details .fav-btn.is-fav {
+  background:var(--red);
+  color:#fff;
+}
 .empty {color:var(--muted);padding:25px 0}
 
 .promo {
@@ -526,7 +535,6 @@ body.intro-active {overflow:hidden}
 
 <body class="intro-active">
 
-<!-- TELA DE ABERTURA HOLLYWOODIANA -->
 <div class="intro-screen" id="introScreen" aria-label="Abertura do Intercontinental Play">
   <button class="sound-toggle" id="soundToggle" type="button">♫ SOM LIGADO</button>
 
@@ -681,23 +689,15 @@ body.intro-active {overflow:hidden}
 <div class="toast" id="toast"></div>
 
 <script>
-
-/* =========================================
-   TRILHA SONORA HOLLYWOODIANA (WEB AUDIO API)
-========================================= */
-
 let introSoundEnabled = true;
 
 function playHollywoodSoundtrack() {
   if (!introSoundEnabled) return;
-
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   if (!AudioCtx) return;
-
   try {
     const ctx = new AudioCtx();
     if (ctx.state === "suspended") ctx.resume();
-
     const master = ctx.createGain();
     master.gain.setValueAtTime(0.0001, ctx.currentTime);
     master.gain.exponentialRampToValueAtTime(0.42, ctx.currentTime + 0.15);
@@ -726,18 +726,14 @@ function playHollywoodSoundtrack() {
       [chord.f1, chord.f2, chord.f3].forEach(freq => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-
         osc.type = chord.type;
         osc.frequency.setValueAtTime(freq, ctx.currentTime + chord.t);
-
         gain.gain.setValueAtTime(0.0001, ctx.currentTime + chord.t);
         gain.gain.exponentialRampToValueAtTime(chord.v, ctx.currentTime + chord.t + 0.3);
         gain.gain.setValueAtTime(chord.v, ctx.currentTime + chord.t + chord.d - 0.8);
         gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + chord.t + chord.d);
-
         osc.connect(gain);
         gain.connect(master);
-
         osc.start(ctx.currentTime + chord.t);
         osc.stop(ctx.currentTime + chord.t + chord.d);
       });
@@ -748,17 +744,13 @@ function playHollywoodSoundtrack() {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       const startTime = ctx.currentTime + 2.0 + (idx * 0.15);
-
       osc.type = "sine";
       osc.frequency.setValueAtTime(freq, startTime);
-
       gain.gain.setValueAtTime(0.0001, startTime);
       gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.08);
       gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.2);
-
       osc.connect(gain);
       gain.connect(master);
-
       osc.start(startTime);
       osc.stop(startTime + 2.3);
     });
@@ -766,7 +758,6 @@ function playHollywoodSoundtrack() {
     setTimeout(() => {
       if (ctx.state !== "closed") ctx.close().catch(() => {});
     }, 5500);
-
   } catch (err) {
     console.log("Áudio indisponível:", err);
   }
@@ -774,38 +765,29 @@ function playHollywoodSoundtrack() {
 
 function enterStreaming() {
   const intro = document.getElementById("introScreen");
-
   playHollywoodSoundtrack();
-
   intro.classList.add("leaving");
   document.body.classList.remove("intro-active");
-
   setTimeout(() => intro.remove(), 1250);
 }
 
 document.getElementById("enterPlay").addEventListener("click", enterStreaming);
-
 document.getElementById("soundToggle").addEventListener("click", () => {
   introSoundEnabled = !introSoundEnabled;
   document.getElementById("soundToggle").textContent =
     introSoundEnabled ? "♫ SOM LIGADO" : "♫ SOM DESLIGADO";
 });
 
-
-/* =========================================
-   CATÁLOGO — VÍDEOS
-========================================= */
-
 const originalVideoIds = [
   "KSA8LJBcuBw", "cez-y17Uppc", "QmiE91_ah0M", "-50azQcgQcU", "yf0Ri0mWBkE",
-  "ZvP5vxfOYOI", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
+  "0WHAzWwsgGw", "yDbfHukTCyI", "wBAqZwNiIBM", "JkDhDTK_WpA",
   "AUqSf8WhcMw", "1TVosYYuS7k", "--N62ZpSx-s", "C3b3LDh_3iM", "wkkpHin-djQ",
   "Oz3kRQzwkOU", "7K2T24BjA9o", "O2PuqhLmNfo", "8-7P91yx3FA", "Id1lRcaZwiw",
   "mh7eKtOBGow", "LCwhpZvNmwI", "-KhV4UBkD5w",
   "vFsuvXoRjL8", "B6URc8AEJ4I", "3Cotd0Ljqu0", "vUtmQH5o5KE", "J658w9YBHgE",
   "SuZW5Tn5vwU", "1bWBw4ehgVs", "nF1m74ZTbDQ", "yPdylO9yCLw", "T40-Wu6fZwM",
-  "Kd46YX-bCb8", "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y", "lxwvDg_QdrY",
-  "nkLf8oAEm9s", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8", "5pLposHGNmw",
+  "Kd46YX-bCb8", "2G6Z4B3DqjM", "4hiStiT6D8Q", "mr7Bpyhu4tg", "V4vakP26V0Y", "ejN4zfvNjdI",
+  "H0dRWOwy9lk", "4c_yiwDkNOQ", "FHIHCtc0xQI", "swjerYktyr8", "5pLposHGNmw",
   "rNBojhayj-A", "l3tIpFtM58Y", "lKf9wFE5PBY",
   "gENMUeKPWJM", "cTzbN16N9iA", "72uoI3_QDg0", "gc8i0gNjqms", "5fY2HW8ItS0",
   "mp5FEDffH7Y", "4-rEUkG9XCo", "ml9s_ikCM8o", "jT60asBuU1k",
@@ -816,13 +798,11 @@ const originalVideoIds = [
   "awshHgved9s", "SizLJVJX5xs", "KHOQ6TJR2W0", "E2wzWmuo6Tc", "toVVJSnGaHY",
   "tojtr1uqAtk", "GwZa9g67lA0", "DsN9FAyRpII", "KdT0JLyPLjw",
   "-dgoUnvq_Ms", "fUtAamtCBew", "jBUaAHxS9NQ", "Xv1cBRatW1M",
-  /* 089 (TzECk3Kmlr8) retirado */
-  "RfL2OW8ez6c", "v_dbp_iTOqM", "IwapJJc3XAw",
+  "RfL2OW8ez6c", "v_dbp_iTOqM", "mkdXW2FXmW8",
   "Z_RZilLwiks", "8OpaQGq-zLA", "xIseHxtMa20",
   "EHidpxvQsgU", "9Tu-_mogxSM", "lkALlaOMrrc", "R5n_BaQQYoI",
   "PcGH8M6GZ10",
-  /* 100 (Ol0WD6EpSxE) retirado */
-  "0Uk2WEzVA1E", "UCDNW3le7gE", "9d0f8JdLPZY",
+  "0Uk2WEzVA1E", "w0pUxcOkv0A", "9d0f8JdLPZY",
   "Xy5sFR7stNo", "z0TfbdSJ86A", "PuVuB9iKZGg", "y8WfKvY5VDQ", "pTT3IsSBlO4",
   "ie4J0qIchUs", "TzECk3Kmlr8", "0BygofoYbik", "sn7YKOZc2xs", "6PHiBzRmqYw",
   "mi7hCevHBrc", "sQJZJqxge88", "FkkKkTbuUMs", "xwgikJXMviM", "OyI2Wx_17g4",
@@ -842,7 +822,8 @@ const originalVideoIds = [
   "nQIgDqrGgrQ", "XVPzEwSaG_Y",
   "JJnjOV7aQDg", "0ZYFLhaJofs", "PLmGXqvmlcg", "lFS2NP8EDk0",
   "n9gpj5fC-18", "GxR3hwZ1f24", "IXZLEHe9RBk", "ATfVtONBT9A", "3BA1PjI5ugg",
-  "JrczXK7KBpw", "JAn2D_ovS3M", "eqRWtneEuNc", "6NMYRPayAoA"
+  "JrczXK7KBpw", "JAn2D_ovS3M", "eqRWtneEuNc", "6NMYRPayAoA",
+  "rw5zcSp5iOI", "s4D-bhIU4y0", "eUVmYQcVGjQ"
 ];
 
 const movieGroups = {
@@ -880,14 +861,19 @@ const movieGroups = {
     "eId74wQPVdI", "_CbfDgjBiAY", "-nqxc4tjsVM", "l3gupx2LHWU",
     "wjLVaa5bSj4", "73vfu_jCjW8",
     "dLr0qmR-uG8", "Kl5p3b6BQ1s", "9D43DWDAXfw", "sp_UpP-zS3g",
-    "gaLBsEcda7Y", "_y3S_wLcHcY", "AaAShD0Hifk", "TQcwz7jPdjA", "9YVtulunymM"
+    "gaLBsEcda7Y", "_y3S_wLcHcY", "AaAShD0Hifk", "TQcwz7jPdjA", "9YVtulunymM",
+    "Ykt6sV86xZE", "0OtcH0dzGSU", "c-A5UjjGGF4", "P2fKFOH2zYg", "_LLAALi4DbU",
+    "GVOIQJAbzi4", "-7HjVZSUm6Q", "6qeMTLUuRus", "sYjKvq6XBSI", "Nlh0c0nbvqA",
+    "WUX8r4oyU6E", "OcsNGeUHZng", "KYikZrBlF1c",
+    "f_m9wEGk20A", "WUsWpPM6xiI", "JdMu3RAl8CE", "Ot2xKU-BqJQ", "AVfWLkQ9Dd8",
+    "fcjc4s7LV2M", "w9p0j6ZQksY", "oqb-iIeaf0k", "YrY4-tIyNMU", "Vv_1-RPHp3w"
   ],
   'Documentários': [
     "BX8sx9VUOxE", "fNEYi6lNqlc", "i8rkBP7ccCE", "crDZv7qpdgs", "vkLM9s5vEko",
     "-6PiVnKwfWg", "3ymU3LBEIgU", "zBz9K5WxX34", "EmQh8IJuewA", "UfGD0lqHObI",
     "p16jrOQSq3A", "CVe0_6s4gMo", "iC6Yyo0qhM8", "MxRLHg_STgY",
     "X3YLYWJJRkI", "dIUhOTF8HTM", "K2iXHs1Zj9g", "E3bX8Kveqqk", "PE2LIwo24z0",
-    "FD50brmQp_Y", /* 21 (bS6-L8s5GRM) retirado */ "ZvuRW4d1RR0", "f1pxqRkQCyk",
+    "FD50brmQp_Y", "ZvuRW4d1RR0", "f1pxqRkQCyk",
     "vYBLq4UXp9E", "HofzgBoAu1I", "vHeXBOe1A_A", "mcWaypzFzps", "1XBIQjsPwDA",
     "m1ZdnXmxYiQ", "7YX_dgJBmmg", "C2qxewjx1l0"
   ],
@@ -896,7 +882,7 @@ const movieGroups = {
     "XhV3iyLPBr8", "svKUiH-3xS8", "jqZ4_JJKnL0", "GbLD64t7sKk", "ptfiz5_GH30",
     "J7JUOhkNIN0", "joRjg5dN4Ao", "eNXfkbpT0eQ", "oxHBe3MEX9c",
     "W_Z1b3Ciiso", "cPzrZ-1g-7U", "jxa1j7nRQuw", "D-LiTwOjE30", "9_bMYmvMSKA",
-    "ai_gI0Jbr_E", "i7j0bw5TonI", "18cFvSXaIY0", /* 22 (fJWvc2NK-Ro) retirado */
+    "ai_gI0Jbr_E", "i7j0bw5TonI", "18cFvSXaIY0",
     "PqDazac8KMY", "VOKZ6SBRkNw",
     "9_5UFmJ7YhM", "5dLoz6GpIJc", "iqzb6snu_bw", "h0UAAfOaEmc",
     "Zw8caklgKVk", "tPUd5iqq7wA", "3MsefIuCp44",
@@ -972,10 +958,6 @@ const grid = document.getElementById("catalogGrid");
 const search = document.getElementById("searchInput");
 const emptyMessage = document.getElementById("emptyMessage");
 
-/* =========================================
-   FAVORITOS E HISTÓRICO
-========================================= */
-
 function saveData(){
   localStorage.setItem("icp_favorites",JSON.stringify(favorites));
   localStorage.setItem("icp_recent",JSON.stringify(recent));
@@ -983,37 +965,67 @@ function saveData(){
 
 function toast(message){
   const el=document.getElementById("toast");
-
   el.textContent=message;
   el.style.display="block";
-
   clearTimeout(window.toastTimer);
-
   window.toastTimer=setTimeout(()=>{
     el.style.display="none";
   },2600);
 }
 
-/* =========================================
-   MONTAGEM DO CATÁLOGO
-========================================= */
+function toggleFavorite(id) {
+  const index = favorites.indexOf(id);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    toast("Removido da Minha lista");
+  } else {
+    favorites.push(id);
+    toast("Adicionado à Minha lista!");
+  }
+  saveData();
+  updatePlayerFavoriteButton();
+  render();
+}
+
+function updatePlayerFavoriteButton() {
+  const btn = document.getElementById("favoriteCurrent");
+  if (!currentId) {
+    btn.textContent = "♡ Favoritar";
+    return;
+  }
+  btn.textContent = favorites.includes(currentId) ? "♥ Favoritado" : "♡ Favoritar";
+}
+
+function playVideo(movie) {
+  currentId = movie.id;
+  recent = [movie.id, ...recent.filter(item => item !== movie.id)].slice(0, 30);
+  saveData();
+
+  const screen = document.getElementById("playerScreen");
+  screen.innerHTML = `
+    <iframe
+      src="https://www.youtube.com/embed/${movie.id}?autoplay=1&rel=0"
+      title="${movie.title}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  `;
+
+  document.getElementById("nowPlaying").textContent = `${movie.title} (#${String(movie.number).padStart(2, "0")})`;
+  document.getElementById("playerStatus").textContent = `Categoria: ${movie.category} • Reproduzindo agora`;
+
+  updatePlayerFavoriteButton();
+  render();
+  document.getElementById("player").scrollIntoView({ behavior: "smooth" });
+}
 
 function render(){
   const term=search.value.trim().toLowerCase();
 
   let list=movies.filter(movie=>{
-
-    if(activeFilter==="favorites" && !favorites.includes(movie.id)) {
-      return false;
-    }
-
-    if(activeFilter==="recent" && !recent.includes(movie.id)) {
-      return false;
-    }
-
-    if(!["all", "favorites", "recent"].includes(activeFilter) && movie.category!==activeFilter) {
-      return false;
-    }
+    if(activeFilter==="favorites" && !favorites.includes(movie.id)) return false;
+    if(activeFilter==="recent" && !recent.includes(movie.id)) return false;
+    if(!["all", "favorites", "recent"].includes(activeFilter) && movie.category!==activeFilter) return false;
 
     return movie.title.toLowerCase().includes(term) ||
       movie.category.toLowerCase().includes(term) ||
@@ -1022,14 +1034,12 @@ function render(){
   });
 
   grid.innerHTML="";
-
-  document.getElementById("catalogCount").textContent=
-    `${list.length} de ${movies.length} vídeos`;
+  document.getElementById("catalogCount").textContent = `${list.length} de ${movies.length} vídeos`;
+  emptyMessage.hidden = list.length > 0;
 
   list.forEach(movie=>{
-
+    const isFav = favorites.includes(movie.id);
     const card=document.createElement("article");
-
     card.className="movie-card"+(movie.id===currentId?" selected":"");
 
     card.innerHTML=`
@@ -1039,247 +1049,97 @@ function render(){
           alt="${movie.title}"
           loading="lazy"
           onerror="this.src='https://img.youtube.com/vi/${movie.id}/mqdefault.jpg'">
-
-        <span class="poster-number">
-          #${String(movie.number).padStart(2,"0")}
-        </span>
+        <span class="poster-number">#${String(movie.number).padStart(2,"0")}</span>
       </div>
-
       <div class="movie-details">
         <h3>${movie.title}</h3>
         <div style="font-size:10px;color:var(--cyan);margin:0 0 8px;letter-spacing:.5px">${movie.category}</div>
-
-        <button type="button" class="watch-button">
-          ▶ ASSISTIR
-        </button>
-
-        <button type="button" class="heart-button" aria-label="Favoritar">
-          ${favorites.includes(movie.id)?"♥":"♡"}
-        </button>
+        <div class="card-actions">
+          <button type="button" class="watch-button">▶ ASSISTIR</button>
+          <button type="button" class="fav-btn ${isFav ? "is-fav" : ""}" title="Favoritar">${isFav ? "♥" : "♡"}</button>
+        </div>
       </div>
     `;
 
-    card.querySelector(".watch-button").addEventListener("click",()=>{
-      playMovie(movie.id);
-    });
-
-    card.querySelector(".heart-button").addEventListener("click",()=>{
-      toggleFavorite(movie.id);
-    });
-
-    card.addEventListener("dblclick",()=>{
-      playMovie(movie.id);
+    card.addEventListener("click", (e) => {
+      if (e.target.closest(".fav-btn")) {
+        e.stopPropagation();
+        toggleFavorite(movie.id);
+        return;
+      }
+      playVideo(movie);
     });
 
     grid.appendChild(card);
   });
-
-  emptyMessage.hidden=list.length!==0;
 }
 
-/* =========================================
-   REPRODUÇÃO
-========================================= */
-
-function playMovie(id){
-
-  const movie=movies.find(item=>item.id===id);
-  if(!movie)return;
-
-  currentId=id;
-
-  recent=[
-    id,
-    ...recent.filter(item=>item!==id)
-  ].slice(0,20);
-
-  saveData();
-
-  document.getElementById("playerScreen").innerHTML=`
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
-      title="${movie.title}"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  `;
-
-  document.getElementById("nowPlaying").textContent=`${movie.title} (${movie.category})`;
-
-  document.getElementById("playerStatus").textContent=
-    "Reprodução iniciada. Caso o vídeo não abra aqui, use 'Abrir no YouTube'.";
-
-  updateFavoriteButton();
-  render();
-
-  document.getElementById("player").scrollIntoView({
-    behavior:"smooth"
-  });
-}
-
-document.getElementById("externalYoutubeButton").addEventListener("click",()=>{
-  if(!currentId){
-    toast("Escolha um vídeo primeiro.");
-    return;
-  }
-  window.open(`https://www.youtube.com/watch?v=${currentId}`, "_blank", "noopener,noreferrer");
-});
-
-/* =========================================
-   CONTROLE DE FAVORITOS
-========================================= */
-
-function toggleFavorite(id){
-
-  if(favorites.includes(id)){
-
-    favorites=favorites.filter(item=>item!==id);
-    toast("Removido da sua lista.");
-
-  } else {
-
-    favorites.push(id);
-    toast("Adicionado à sua lista!");
-
-  }
-
-  saveData();
-  updateFavoriteButton();
-  render();
-}
-
-function updateFavoriteButton(){
-
-  const button=document.getElementById("favoriteCurrent");
-
-  if(!currentId){
-    button.textContent="♡ Favoritar";
-    return;
-  }
-
-  button.textContent=
-    favorites.includes(currentId) ? "♥ Favoritado" : "♡ Favoritar";
-}
-
-document.getElementById("favoriteCurrent").addEventListener("click",()=>{
-
-  if(currentId) {
-    toggleFavorite(currentId);
-  } else {
-    toast("Escolha um vídeo primeiro.");
-  }
-
-});
-
-/* =========================================
-   TELA CHEIA
-========================================= */
-
-document.getElementById("fullscreenButton").addEventListener("click",()=>{
-
-  const frame=document.querySelector("#playerScreen iframe");
-
-  if(frame){
-
-    if(frame.requestFullscreen) {
-      frame.requestFullscreen();
-    } else {
-      toast("Tela cheia não disponível neste navegador.");
-    }
-
-  } else {
-
-    toast("Escolha um vídeo primeiro.");
-
-  }
-
-});
-
-/* =========================================
-   PESQUISA E FILTROS
-========================================= */
-
-search.addEventListener("input",render);
-
-document.querySelectorAll(".filter-btn").forEach(button=>{
-
-  button.addEventListener("click",()=>{
-
-    document.querySelectorAll(".filter-btn").forEach(b=>{
-      b.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    activeFilter=button.dataset.filter;
-
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter;
     render();
-
   });
-
 });
 
-document.getElementById("navFavorites").addEventListener("click",()=>{
+search.addEventListener("input", render);
 
-  activeFilter="favorites";
-  updateFilters();
-  render();
-
+document.getElementById("navFavorites").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.querySelector('.filter-btn[data-filter="favorites"]').click();
+  document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" });
 });
 
-document.getElementById("navRecent").addEventListener("click",()=>{
-
-  activeFilter="recent";
-  updateFilters();
-  render();
-
+document.getElementById("navRecent").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.querySelector('.filter-btn[data-filter="recent"]').click();
+  document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" });
 });
 
-function updateFilters(){
+document.getElementById("favoriteCurrent").addEventListener("click", () => {
+  if (!currentId) {
+    toast("Selecione um vídeo primeiro.");
+    return;
+  }
+  toggleFavorite(currentId);
+});
 
-  document.querySelectorAll(".filter-btn").forEach(button=>{
+document.getElementById("fullscreenButton").addEventListener("click", () => {
+  const playerEl = document.getElementById("playerScreen");
+  if (playerEl.requestFullscreen) {
+    playerEl.requestFullscreen().catch(() => {});
+  } else if (playerEl.webkitRequestFullscreen) {
+    playerEl.webkitRequestFullscreen();
+  }
+});
 
-    button.classList.toggle(
-      "active",
-      button.dataset.filter===activeFilter
-    );
+document.getElementById("externalYoutubeButton").addEventListener("click", () => {
+  if (!currentId) {
+    toast("Selecione um vídeo primeiro.");
+    return;
+  }
+  window.open(`https://www.youtube.com/watch?v=${currentId}`, "_blank", "noopener");
+});
 
-  });
+let deferredPrompt = null;
 
-}
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
 
-/* =========================================
-   INSTALAÇÃO DO APLICATIVO E INICIALIZAÇÃO
-========================================= */
+document.getElementById("installButton").addEventListener("click", async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  } else {
+    toast("Use o menu do navegador para instalar ou adicionar à tela inicial.");
+  }
+});
 
 render();
-updateFavoriteButton();
-
-let installPrompt=null;
-const installButton=document.getElementById("installButton");
-
-window.addEventListener("beforeinstallprompt",event=>{
-  event.preventDefault();
-  installPrompt=event;
-  installButton.style.display="inline-block";
-});
-
-installButton.addEventListener("click",async()=>{
-  if(installPrompt){
-    installPrompt.prompt();
-    const result=await installPrompt.userChoice;
-    if(result.outcome==="accepted") {
-      toast("Instalação iniciada!");
-    }
-    installPrompt=null;
-  } else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
-    toast("No iOS, toque em Compartilhar > Adicionar à Tela de Início.");
-  } else {
-    toast("Instalação não suportada ou app já instalado.");
-  }
-});
-
 </script>
 </body>
 </html>
