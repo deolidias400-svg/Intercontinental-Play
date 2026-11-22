@@ -359,7 +359,7 @@ footer {
 }
 
 /* =========================================
-   ABERTURA HOLLYWOODIANA DE LUXO
+   ABERTURA GRANDIOSA ESTILO ESTÚDIO DE CINEMA
 ========================================= */
 
 body.intro-active {overflow:hidden}
@@ -372,146 +372,270 @@ body.intro-active {overflow:hidden}
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  padding:20px;
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(255, 42, 95, 0.28) 0%, rgba(138, 43, 226, 0.2) 40%, rgba(5, 8, 18, 0.98) 80%),
-    linear-gradient(135deg,#03050c 0%,#090d1b 50%,#150c22 100%);
-  transition:opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  padding:14px;
+  perspective:1200px;
+  background:
+    radial-gradient(ellipse at 50% 25%, rgba(255, 200, 87, 0.32) 0%, rgba(185, 118, 25, 0.16) 28%, rgba(12, 20, 44, 0.96) 65%, #02040a 100%),
+    linear-gradient(180deg, #060b1c 0%, #0d1736 48%, #040711 100%);
+  transition:opacity 1.25s cubic-bezier(0.77, 0, 0.175, 1), transform 1.25s cubic-bezier(0.77, 0, 0.175, 1);
 }
+
+.intro-stars {
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, #fffbe6, transparent),
+    radial-gradient(1.5px 1.5px at 26% 12%, #ffd700, transparent),
+    radial-gradient(2px 2px at 42% 22%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 64% 14%, #ffe599, transparent),
+    radial-gradient(2px 2px at 81% 20%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 90% 34%, #ffd700, transparent),
+    radial-gradient(2px 2px at 18% 42%, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 74% 38%, #fff2cc, transparent),
+    radial-gradient(1.5px 1.5px at 34% 32%, #ffffff, transparent),
+    radial-gradient(2px 2px at 53% 10%, #ffd700, transparent);
+  opacity:0.85;
+  animation:starsTwinkle 4s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+@keyframes starsTwinkle {
+  0% {opacity:0.55; transform:scale(1);}
+  100% {opacity:1; transform:scale(1.03);}
+}
+
+.searchlight {
+  position:absolute;
+  bottom:-10%;
+  width:240px;
+  height:145vh;
+  background:linear-gradient(to top, rgba(255, 223, 128, 0.42) 0%, rgba(255, 200, 87, 0.14) 55%, transparent 100%);
+  clip-path:polygon(44% 100%, 56% 100%, 100% 0%, 0% 0%);
+  transform-origin:50% 100%;
+  filter:blur(6px);
+  pointer-events:none;
+}
+
+.searchlight.left-outer {left:8%; animation:beamSweepLeft 7.5s ease-in-out infinite alternate;}
+.searchlight.left-inner {left:24%; opacity:0.75; animation:beamSweepCenterL 6s ease-in-out infinite alternate;}
+.searchlight.right-inner {right:24%; opacity:0.75; animation:beamSweepCenterR 6.4s ease-in-out infinite alternate;}
+.searchlight.right-outer {right:8%; animation:beamSweepRight 7.8s ease-in-out infinite alternate;}
+
+@keyframes beamSweepLeft {0% {transform:rotate(-28deg);} 100% {transform:rotate(24deg);}}
+@keyframes beamSweepCenterL {0% {transform:rotate(18deg);} 100% {transform:rotate(-22deg);}}
+@keyframes beamSweepCenterR {0% {transform:rotate(-18deg);} 100% {transform:rotate(22deg);}}
+@keyframes beamSweepRight {0% {transform:rotate(28deg);} 100% {transform:rotate(-24deg);}}
 
 .intro-screen::before, .intro-screen::after {
   content:"";
   position:absolute;
-  width:80vw;
-  height:80vw;
-  max-width:850px;
-  max-height:850px;
-  border:2px solid rgba(255, 200, 87, 0.2);
+  width:78vw;
+  height:78vw;
+  max-width:860px;
+  max-height:860px;
+  border:2px solid rgba(255, 215, 0, 0.28);
   border-radius:50%;
-  box-shadow:0 0 120px rgba(255, 42, 95, 0.35), inset 0 0 100px rgba(57, 216, 232, 0.25);
-  animation:hollyOrbit 14s linear infinite;
+  box-shadow:0 0 110px rgba(255, 200, 87, 0.35), inset 0 0 80px rgba(255, 215, 0, 0.18);
+  animation:hollyOrbit 24s linear infinite;
   pointer-events:none;
 }
 
 .intro-screen::after {
-  width:105vw;
-  height:105vw;
-  max-width:1100px;
-  max-height:1100px;
+  width:102vw;
+  height:102vw;
+  max-width:1120px;
+  max-height:1120px;
   animation-direction:reverse;
-  animation-duration:22s;
-  border-color:rgba(57, 216, 232, 0.2);
-  box-shadow:0 0 150px rgba(138, 43, 226, 0.3);
+  animation-duration:36s;
+  border-color:rgba(57, 216, 232, 0.22);
+  box-shadow:0 0 140px rgba(255, 180, 50, 0.25);
 }
 
-@keyframes hollyOrbit {
-  to {transform:rotate(360deg)}
-}
+@keyframes hollyOrbit {to {transform:rotate(360deg)}}
 
-.intro-content {
+.studio-monument {
   position:relative;
   z-index:2;
+  width:min(820px, 100%);
   text-align:center;
-  width:min(620px, 100%);
-  margin:auto;
-  animation:hollyZoom 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-  background: rgba(14, 20, 38, 0.82);
-  padding: 35px 24px;
-  border-radius: 28px;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 200, 87, 0.3);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), inset 0 0 35px rgba(255, 255, 255, 0.05);
+  padding:34px 18px 30px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.22) 0%, rgba(14, 22, 46, 0.88) 65%),
+    linear-gradient(180deg, rgba(22, 34, 68, 0.92), rgba(7, 11, 24, 0.96));
+  border:2px solid rgba(255, 215, 0, 0.55);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.92),
+    0 0 70px rgba(255, 200, 87, 0.28),
+    inset 0 2px 25px rgba(255, 235, 160, 0.22);
+  backdrop-filter:blur(16px);
+  animation:monumentRise 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes hollyZoom {
-  from {opacity:0;transform:scale(0.8) translateY(40px)}
-  to {opacity:1;transform:none}
+@keyframes monumentRise {
+  from {opacity:0; transform:translateY(55px) scale(0.86) rotateX(12deg);}
+  to {opacity:1; transform:translateY(0) scale(1) rotateX(0deg);}
 }
 
-.intro-logo {
-  width:clamp(90px, 18vw, 140px);
-  height:clamp(90px, 18vw, 140px);
-  object-fit:contain;
-  margin:0 auto 14px;
-  filter:drop-shadow(0 0 30px rgba(255,200,87,0.7));
-  animation:hollyPulse 3s ease-in-out infinite alternate;
+.studio-stars-arc {
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:clamp(8px, 2vw, 18px);
+  margin-bottom:14px;
+  color:#ffd700;
+  text-shadow:0 0 18px rgba(255, 215, 0, 0.95);
+  user-select:none;
 }
 
-@keyframes hollyPulse {
-  0% {filter:drop-shadow(0 0 20px rgba(255,200,87,0.6)) scale(1);}
-  100% {filter:drop-shadow(0 0 45px rgba(255,42,95,0.95)) scale(1.06);}
+.studio-stars-arc span {display:inline-block; animation:starPop 2.4s ease-in-out infinite alternate;}
+.studio-stars-arc span:nth-child(1),
+.studio-stars-arc span:nth-child(7) {font-size:13px; transform:translateY(10px); animation-delay:0.1s;}
+.studio-stars-arc span:nth-child(2),
+.studio-stars-arc span:nth-child(6) {font-size:17px; transform:translateY(4px); animation-delay:0.25s;}
+.studio-stars-arc span:nth-child(3),
+.studio-stars-arc span:nth-child(5) {font-size:21px; transform:translateY(1px); animation-delay:0.4s;}
+.studio-stars-arc span:nth-child(4) {font-size:27px; color:#fff7cc; animation-delay:0.55s;}
+
+@keyframes starPop {
+  from {filter:drop-shadow(0 0 6px rgba(255,215,0,0.6));}
+  to {filter:drop-shadow(0 0 20px rgba(255,245,180,1));}
 }
 
 .intro-kicker {
-  color:var(--cyan);
-  letter-spacing:6px;
-  font-size:12px;
+  color:#ffe699;
+  letter-spacing:5px;
+  font-size:clamp(10px, 1.8vw, 13px);
   font-weight:900;
   text-transform:uppercase;
-  text-shadow:0 0 15px rgba(57,216,232,0.6);
-  margin-bottom: 6px;
+  text-shadow:0 0 18px rgba(255, 215, 0, 0.7);
+  margin-bottom:12px;
+}
+
+.studio-stage {
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  gap:clamp(8px, 1.8vw, 20px);
+  margin:8px 0 14px;
+}
+
+.studio-pillar {
+  width:clamp(12px, 2.2vw, 22px);
+  border-radius:4px;
+  background:linear-gradient(90deg, #7a5210 0%, #ffd700 35%, #fff6cc 50%, #d4941c 75%, #5c3c08 100%);
+  box-shadow:0 0 24px rgba(255, 215, 0, 0.45);
+  position:relative;
+  flex-shrink:0;
+}
+
+.studio-pillar::before,
+.studio-pillar::after {
+  content:"";
+  position:absolute;
+  left:-4px;
+  right:-4px;
+  height:8px;
+  border-radius:3px;
+  background:linear-gradient(90deg, #8f6214, #ffe885, #9c6b16);
+}
+
+.studio-pillar::before {top:-4px;}
+.studio-pillar::after {bottom:-4px;}
+
+.studio-emblem {
+  flex:1;
+  min-width:0;
+  padding:10px 4px;
+  overflow:visible;
 }
 
 .intro-title {
-  margin: 8px 0;
-  font-size: clamp(22px, 5.2vw, 42px);
-  line-height: 1.1;
-  letter-spacing: clamp(2px, 0.5vw, 4px);
-  font-weight: 900;
-  background: linear-gradient(135deg, #fffae6 0%, #ffc857 30%, #ff2a5f 70%, #39d8e8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 10px 35px rgba(255,42,95,0.4);
+  margin:0;
+  font-family:"Arial Black", Impact, Arial, sans-serif;
+  font-size:clamp(19px, 4.4vw, 48px);
+  line-height:1.08;
+  letter-spacing:clamp(0.5px, 0.35vw, 4px);
+  font-weight:900;
+  text-transform:uppercase;
+  white-space:nowrap;
+  background:linear-gradient(180deg, #ffffff 0%, #fff0a6 28%, #ffc857 58%, #c97b14 88%, #ffdf73 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 5px 0 #3a2204) drop-shadow(0 12px 24px rgba(255, 195, 60, 0.55));
+}
+
+.intro-title .intro-subword {
+  display:block;
+  font-size:0.78em;
+  letter-spacing:clamp(3px, 0.8vw, 8px);
+  margin-top:4px;
+}
+
+.studio-divider {
+  height:3px;
+  width:min(420px, 85%);
+  margin:14px auto 12px;
+  border-radius:999px;
+  background:linear-gradient(90deg, transparent, #ffd700, #ffffff, #ffd700, transparent);
+  box-shadow:0 0 18px rgba(255, 215, 0, 0.85);
 }
 
 .intro-slogan {
-  color:#dbe6fb;
-  letter-spacing:3px;
-  font-size:clamp(12px, 2vw, 15px);
-  margin: 10px 0 24px;
+  color:#f5e7c4;
+  letter-spacing:4px;
+  font-size:clamp(11px, 2vw, 15px);
+  margin:0 0 24px;
   font-weight:bold;
   text-transform:uppercase;
+  text-shadow:0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
 .intro-enter {
-  border:none;
-  border-radius:35px;
-  padding:15px 42px;
-  background:linear-gradient(90deg,#ff2a5f,#ffc857,#39d8e8);
-  background-size:200% auto;
-  color:#090d1b;
-  font-size:16px;
+  border:2px solid #fff3b0;
+  border-radius:40px;
+  padding:16px 46px;
+  background:linear-gradient(180deg, #ffe680 0%, #ffb732 52%, #d9820b 100%);
+  color:#140c02;
+  font-size:clamp(14px, 2.2vw, 17px);
   font-weight:900;
   letter-spacing:3px;
-  box-shadow:0 0 35px rgba(255,42,95,0.7);
-  transition:all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation:btnShine 4s linear infinite;
-}
-
-@keyframes btnShine {
-  0% {background-position:0% center}
-  50% {background-position:100% center}
-  100% {background-position:0% center}
+  box-shadow:
+    0 10px 35px rgba(255, 190, 45, 0.65),
+    inset 0 2px 6px rgba(255, 255, 255, 0.85);
+  transition:transform .35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow .35s;
 }
 
 .intro-enter:hover {
-  transform:scale(1.08);
-  box-shadow:0 0 60px rgba(255,200,87,0.9);
+  transform:scale(1.07);
+  box-shadow:
+    0 14px 50px rgba(255, 215, 0, 0.95),
+    inset 0 2px 10px rgba(255, 255, 255, 1);
+}
+
+.studio-pedestal {
+  margin:22px auto 0;
+  width:min(540px, 94%);
+  padding:8px 16px;
+  border-radius:8px;
+  background:linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.22), rgba(255, 235, 150, 0.34), rgba(255, 215, 0, 0.22), transparent);
+  border-top:1px solid rgba(255, 215, 0, 0.55);
+  border-bottom:1px solid rgba(255, 215, 0, 0.35);
 }
 
 .intro-note {
   display:block;
-  margin-top:16px;
-  color:#9bb0d4;
+  color:#ffe394;
   font-size:10px;
-  letter-spacing:2px;
+  font-weight:bold;
+  letter-spacing:3px;
   text-transform:uppercase;
 }
 
 .intro-screen.leaving {
   opacity:0;
-  transform:scale(1.1);
+  transform:scale(1.08);
   visibility:hidden;
   pointer-events:none;
 }
@@ -521,9 +645,9 @@ body.intro-active {overflow:hidden}
   z-index:3;
   right:20px;
   top:20px;
-  border:1px solid rgba(255,255,255,0.25);
-  background:rgba(17,26,45,0.85);
-  color:#eaf0ff;
+  border:1px solid rgba(255, 215, 0, 0.45);
+  background:rgba(12, 19, 38, 0.85);
+  color:#ffe9a6;
   border-radius:20px;
   padding:8px 14px;
   font-size:11px;
@@ -536,22 +660,40 @@ body.intro-active {overflow:hidden}
 <body class="intro-active">
 
 <div class="intro-screen" id="introScreen" aria-label="Abertura do Intercontinental Play">
+  <div class="intro-stars"></div>
+  <div class="searchlight left-outer"></div>
+  <div class="searchlight left-inner"></div>
+  <div class="searchlight right-inner"></div>
+  <div class="searchlight right-outer"></div>
+
   <button class="sound-toggle" id="soundToggle" type="button">♫ SOM LIGADO</button>
 
-  <div class="intro-content">
-    <img class="intro-logo" src="./mascote-intercontinental.png" alt="Intercontinental Play" onerror="this.style.display='none'">
+  <div class="studio-monument">
+    <div class="studio-stars-arc" aria-hidden="true">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
 
     <div class="intro-kicker">APRESENTAÇÃO ESPECIAL</div>
 
-    <div class="intro-title">INTERCONTINENTAL<br>PLAY</div>
+    <div class="studio-stage">
+      <div class="studio-pillar" aria-hidden="true"></div>
+      <div class="studio-emblem">
+        <div class="intro-title">INTERCONTINENTAL<span class="intro-subword">PLAY</span></div>
+      </div>
+      <div class="studio-pillar" aria-hidden="true"></div>
+    </div>
 
-    <div class="intro-slogan">SEU CINEMA. SEU MUNDO.</div>
+    <div class="studio-divider"></div>
+
+    <div class="intro-slogan">SEU CINEMA • SEU MUNDO</div>
 
     <button class="intro-enter" id="enterPlay" type="button">
       ▶ &nbsp; ENTRAR NO CINEMA
     </button>
 
-    <span class="intro-note">PRODUÇÃO DIGITAL INTERCONTINENTAL</span>
+    <div class="studio-pedestal">
+      <span class="intro-note">GRANDES CLÁSSICOS • SÉRIES • PRODUÇÃO DIGITAL</span>
+    </div>
   </div>
 </div>
 
@@ -700,26 +842,27 @@ function playHollywoodSoundtrack() {
     if (ctx.state === "suspended") ctx.resume();
     const master = ctx.createGain();
     master.gain.setValueAtTime(0.0001, ctx.currentTime);
-    master.gain.exponentialRampToValueAtTime(0.42, ctx.currentTime + 0.15);
-    master.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 5.2);
+    master.gain.exponentialRampToValueAtTime(0.45, ctx.currentTime + 0.15);
+    master.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 5.4);
     master.connect(ctx.destination);
 
     const sub = ctx.createOscillator();
     const subG = ctx.createGain();
     sub.type = "sine";
-    sub.frequency.setValueAtTime(90, ctx.currentTime);
-    sub.frequency.exponentialRampToValueAtTime(32, ctx.currentTime + 1.2);
-    subG.gain.setValueAtTime(0.9, ctx.currentTime);
-    subG.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3.0);
+    sub.frequency.setValueAtTime(95, ctx.currentTime);
+    sub.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 1.4);
+    subG.gain.setValueAtTime(0.95, ctx.currentTime);
+    subG.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3.2);
     sub.connect(subG);
     subG.connect(master);
     sub.start(ctx.currentTime);
-    sub.stop(ctx.currentTime + 3.1);
+    sub.stop(ctx.currentTime + 3.3);
 
     const cinematicChords = [
-      {f1: 130.81, f2: 196.00, f3: 261.63, t: 0.1, d: 4.2, v: 0.18, type: "sawtooth"},
-      {f1: 164.81, f2: 246.94, f3: 329.63, t: 0.8, d: 3.5, v: 0.20, type: "triangle"},
-      {f1: 220.00, f2: 329.63, f3: 440.00, t: 1.6, d: 3.0, v: 0.22, type: "sine"}
+      {f1: 130.81, f2: 196.00, f3: 261.63, t: 0.1, d: 4.4, v: 0.18, type: "sawtooth"},
+      {f1: 164.81, f2: 246.94, f3: 329.63, t: 0.75, d: 3.7, v: 0.20, type: "triangle"},
+      {f1: 196.00, f2: 293.66, f3: 392.00, t: 1.45, d: 3.2, v: 0.22, type: "sine"},
+      {f1: 261.63, f2: 392.00, f3: 523.25, t: 2.1, d: 3.0, v: 0.24, type: "triangle"}
     ];
 
     cinematicChords.forEach(chord => {
@@ -729,7 +872,7 @@ function playHollywoodSoundtrack() {
         osc.type = chord.type;
         osc.frequency.setValueAtTime(freq, ctx.currentTime + chord.t);
         gain.gain.setValueAtTime(0.0001, ctx.currentTime + chord.t);
-        gain.gain.exponentialRampToValueAtTime(chord.v, ctx.currentTime + chord.t + 0.3);
+        gain.gain.exponentialRampToValueAtTime(chord.v, ctx.currentTime + chord.t + 0.28);
         gain.gain.setValueAtTime(chord.v, ctx.currentTime + chord.t + chord.d - 0.8);
         gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + chord.t + chord.d);
         osc.connect(gain);
@@ -743,21 +886,21 @@ function playHollywoodSoundtrack() {
     bellNotes.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      const startTime = ctx.currentTime + 2.0 + (idx * 0.15);
+      const startTime = ctx.currentTime + 2.15 + (idx * 0.14);
       osc.type = "sine";
       osc.frequency.setValueAtTime(freq, startTime);
       gain.gain.setValueAtTime(0.0001, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.2);
+      gain.gain.exponentialRampToValueAtTime(0.14, startTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.4);
       osc.connect(gain);
       gain.connect(master);
       osc.start(startTime);
-      osc.stop(startTime + 2.3);
+      osc.stop(startTime + 2.5);
     });
 
     setTimeout(() => {
       if (ctx.state !== "closed") ctx.close().catch(() => {});
-    }, 5500);
+    }, 5700);
   } catch (err) {
     console.log("Áudio indisponível:", err);
   }
@@ -768,7 +911,7 @@ function enterStreaming() {
   playHollywoodSoundtrack();
   intro.classList.add("leaving");
   document.body.classList.remove("intro-active");
-  setTimeout(() => intro.remove(), 1250);
+  setTimeout(() => intro.remove(), 1300);
 }
 
 document.getElementById("enterPlay").addEventListener("click", enterStreaming);
