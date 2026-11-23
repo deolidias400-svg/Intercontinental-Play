@@ -1284,5 +1284,26 @@ document.getElementById("installButton").addEventListener("click", async () => {
 
 render();
 </script>
+<!-- Contador Invisível Intercontinental Play -->
+<script>
+  (function() {
+    const NAMESPACE = "intercontinental-play-deolidias";
+    const HOJE = new Date().toISOString().split('T')[0];
+    const CHAVE_UNICO = "ip_visitante_unico_" + HOJE;
+
+    fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/total_views/up`)
+      .catch(() => {});
+
+    if (!localStorage.getItem(CHAVE_UNICO)) {
+      fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/unique_visitors/up`)
+        .then(res => {
+          if (res.ok) localStorage.setItem(CHAVE_UNICO, "1");
+        })
+        .catch(() => {});
+    }
+  })();
+</script>
+</body>
+</html>  
 </body>
 </html>
