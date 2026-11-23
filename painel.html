@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Controle - Intercontinental Play</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #1a1f2e 0%, #090b10 100%);
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(15, 19, 28, 0.95);
+      border: 2px solid #FFD700;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+    }
+    h1 {
+      color: #FFD700;
+      font-size: 1.6rem;
+      text-align: center;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .subtitulo {
+      text-align: center;
+      color: #9aa4b8;
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 320px;
+      margin: 20px auto;
+    }
+    input[type="password"] {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #FFD700;
+      background: #0d1017;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+    }
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FFD700, #d4af37);
+      color: #090b10;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    button:hover { transform: scale(1.02); opacity: 0.92; }
+    .erro { color: #ff6b6b; text-align: center; font-size: 0.85rem; display: none; }
+    .dashboard { display: none; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: #121724;
+      border: 1px solid rgba(255, 215, 0, 0.45);
+      border-radius: 10px;
+      padding: 22px;
+      text-align: center;
+    }
+    .card-titulo {
+      color: #b0b8c9;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .card-valor {
+      color: #FFD700;
+      font-size: 2.6rem;
+      font-weight: bold;
+    }
+    .acoes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+      padding-top: 16px;
+      font-size: 0.85rem;
+      color: #8f9bb3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Intercontinental Play</h1>
+    <p class="subtitulo">Painel de Monitoramento de Audiência</p>
+
+    <!-- Tela de Senha -->
+    <div id="telaLogin" class="login-box">
+      <input type="password" id="campoSenha" placeholder="Digite a senha do painel" />
+      <button onclick="verificarSenha()">Acessar Painel</button>
+      <p id="msgErro" class="erro">Senha incorreta. Tente novamente.</p>
+    </div>
+
+    <!-- Tela dos Números -->
+    <div id="telaDashboard" class="dashboard">
+      <div class="cards">
+        <div class="card">
+          <div class="card-titulo">Visitantes Únicos</div>
+          <div class="card-valor" id="valorUnicos">...</div>
+        </div>
+        <div class="card">
+          <div class="card-titulo">Visualizações Totais</div>
+          <div class="card-valor" id="valorTotais">...</div>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <span id="statusAtualizacao">Aguardando leitura...</span>
+        <button onclick="carregarDados()">Atualizar Números</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SENHA_ADMIN = "inter2026"; // Troque aqui se desejar outra senha
+    const NAMESPACE = "intercontinental-play-deolidias";
+
+    document.getElementById("campoSenha").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") verificarSenha();
+    });
+
+    function verificarSenha() {
+      const digitada = document.getElementById("campoSenha").value;
+      if (digitada === SENHA_ADMIN) {
+        document.getElementById("telaLogin").style.display = "none";
+        document.getElementById("telaDashboard").style.display = "block";
+        carregarDados();
+      } else {
+        document.getElementById("msgErro").style.display = "block";
+      }
+    }
+
+    async function carregarDados() {
+      const status = document.getElementById("statusAtualizacao");
+      status.textContent = "Consultando servidor...";
+
+      try {
+        const [resUnicos, resTotais] = await Promise.all([
+          fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/unique_visitors`),
+          fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/total_views`)
+        ]);
+
+        const dadosUnicos = resUnicos.ok ? await resUnicos.json() : { count: 0 };
+        const dadosTotais = resTotais.ok ? await resTotais.json() : { count: 0 };
+
+        document.getElementById("valorUnicos").textContent = dadosUnicos.count ?? 0;
+        document.getElementById("valorTotais").textContent = dadosTotais.count ?? 0;
+
+        const agora = new Date().toLocaleTimeString("pt-BR");
+        status.textContent = `Última atualização às ${agora}`;
+      } catch (erro) {
+        status.textContent = "Erro ao conectar com o contador.";
+      }
+    }
+  </script>
+
+</body>
+</html>
